@@ -3008,3 +3008,219 @@ ERROR 2025-07-24 08:27:15,443 views 15988 10628 Error generating AI insights: No
 ERROR 2025-07-24 08:27:15,445 log 15988 10628 Internal Server Error: /api/dashboard/stores/1/ai-insights/
 INFO 2025-07-24 12:39:45,555 autoreload 672 17280 Watching for file changes with StatReloader
 INFO 2025-07-24 13:03:53,000 autoreload 5416 8672 Watching for file changes with StatReloader
+INFO 2025-07-26 08:11:24,343 autoreload 20936 12000 Watching for file changes with StatReloader
+INFO 2025-07-26 08:17:01,213 autoreload 12576 17872 Watching for file changes with StatReloader
+WARNING 2025-07-26 08:19:28,358 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:19:28,366 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:19:28,379 fields 12576 14000 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:19:28,383 fields 12576 14000 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:20:22,219 log 12576 14000 Bad Request: /api/auth/register/
+WARNING 2025-07-26 08:20:39,413 log 12576 14000 Bad Request: /api/auth/register/
+WARNING 2025-07-26 08:20:54,473 log 12576 14000 Bad Request: /api/auth/register/
+INFO 2025-07-26 08:21:16,120 views 12576 14000 New user registered: mugahed
+WARNING 2025-07-26 08:21:16,347 fields 12576 14000 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:16,349 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:16,350 fields 12576 14000 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:16,351 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:39,445 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:39,446 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:58,456 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:58,457 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,224 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,224 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,260 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,263 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:04,026 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:04,026 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,189 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,192 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,192 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,193 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,120 fields 12576 11096 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,125 fields 12576 11096 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,229 fields 12576 11096 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,254 fields 12576 11096 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:31:07,955 fields 12576 10380 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:31:07,955 fields 12576 10380 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,861 fields 12576 12892 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,863 fields 12576 12892 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,920 fields 12576 10728 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,922 fields 12576 10728 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,146 fields 12576 12892 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,184 fields 12576 12892 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,096 log 12576 9864 Unauthorized: /api/auth/profile/
+WARNING 2025-07-26 08:32:21,165 fields 12576 10728 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,245 fields 12576 10728 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,650 fields 12576 21528 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,665 fields 12576 21528 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,668 fields 12576 8716 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,744 fields 12576 8716 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:32:32,607 views 12576 8716 User logged in: mugahed
+WARNING 2025-07-26 08:32:32,698 fields 12576 8716 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:32,816 fields 12576 8716 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:33,425 fields 12576 16640 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:33,434 fields 12576 16640 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:14,851 log 12576 15860 Unauthorized: /api/auth/profile/
+WARNING 2025-07-26 08:34:15,120 fields 12576 16956 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,137 fields 12576 16956 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,194 fields 12576 13116 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,233 fields 12576 13116 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,932 fields 12576 15860 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,937 fields 12576 16512 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,977 fields 12576 15860 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:16,018 fields 12576 16512 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:34:20,876 views 12576 16512 User logged in: mugahed
+WARNING 2025-07-26 08:34:21,004 fields 12576 16512 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:21,014 fields 12576 15896 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:21,015 fields 12576 16512 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:21,016 fields 12576 15896 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:34:40,013 views 12576 16632 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:34:40,014 log 12576 16632 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:34:40,032 fields 12576 8448 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:40,033 fields 12576 8448 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:02,307 views 12576 11900 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 08:35:02,340 fields 12576 13180 max_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:02,327 log 12576 11900 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:35:02,330 log 12576 10300 Unauthorized: /api/auth/profile/
+WARNING 2025-07-26 08:35:02,344 fields 12576 13180 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:02,483 views 12576 10300 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:35:02,523 log 12576 10300 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:35:03,331 fields 12576 9596 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:03,490 fields 12576 9596 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:03,403 fields 12576 10300 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:03,839 fields 12576 10300 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:35:11,767 views 12576 10300 User logged in: mugahed
+WARNING 2025-07-26 08:35:11,889 fields 12576 11900 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:11,897 fields 12576 11900 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:11,927 fields 12576 9596 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:11,944 fields 12576 9596 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:15,571 views 12576 9596 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:35:15,572 log 12576 9596 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:35:15,590 fields 12576 11900 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:15,593 fields 12576 11900 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:17,968 log 12576 21108 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 08:38:18,017 views 12576 14784 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 08:38:18,032 fields 12576 11924 max_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:38:18,033 log 12576 14784 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:38:18,034 fields 12576 11924 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,653 fields 12576 21108 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,666 fields 12576 21108 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,670 fields 12576 11872 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,699 fields 12576 11872 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:39:01,494 log 12576 22252 Not Found: /
+WARNING 2025-07-26 08:39:01,790 log 12576 22252 Not Found: /favicon.ico
+WARNING 2025-07-26 08:41:43,986 log 12576 16332 Bad Request: /api/auth/login/
+INFO 2025-07-26 08:41:53,549 views 12576 16332 User logged in: mugahed
+WARNING 2025-07-26 08:41:53,690 fields 12576 16332 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:53,691 fields 12576 16332 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:53,717 fields 12576 14552 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:53,727 fields 12576 14552 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:41:58,358 views 12576 14552 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:41:58,361 log 12576 14552 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:41:58,382 fields 12576 16332 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:58,383 fields 12576 16332 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,972 fields 12576 7356 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,972 fields 12576 7356 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,989 fields 12576 16332 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,990 fields 12576 16332 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,729 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,729 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,788 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,789 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,218 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,219 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,281 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,282 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,364 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,364 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,417 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,418 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,824 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,824 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,872 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,872 fields 12576 16832 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:42:32,435 views 12576 13508 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:42:32,436 log 12576 13508 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:42:32,486 fields 12576 21180 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:32,490 fields 12576 21180 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,575 fields 12576 16864 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,576 fields 12576 16864 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,628 fields 12576 16864 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,629 fields 12576 16864 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,762 fields 12576 5564 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,767 fields 12576 21552 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,767 fields 12576 5564 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,767 fields 12576 21552 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,566 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,567 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,628 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,629 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,879 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,879 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,929 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,930 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:28,954 fields 12576 14492 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:28,954 fields 12576 14492 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:28,967 log 12576 20488 Not Found: /api/products/488/
+WARNING 2025-07-26 08:44:29,036 fields 12576 20488 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,036 fields 12576 20488 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,267 fields 12576 14492 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,273 fields 12576 14492 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,325 fields 12576 14492 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,334 fields 12576 14492 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,028 fields 12576 8244 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,033 fields 12576 8244 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,129 fields 12576 8352 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,149 fields 12576 8352 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,279 fields 12576 2916 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,279 fields 12576 2916 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,372 fields 12576 520 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,374 fields 12576 520 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:50:24,537 views 12576 10376 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:50:24,538 log 12576 10376 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:50:24,720 fields 12576 10480 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:50:24,727 fields 12576 10480 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:57:31,840 autoreload 12576 17872 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\models.py changed, reloading.
+INFO 2025-07-26 08:57:44,564 autoreload 16736 15684 Watching for file changes with StatReloader
+INFO 2025-07-26 08:58:10,582 autoreload 16736 15684 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\models.py changed, reloading.
+INFO 2025-07-26 08:58:16,674 autoreload 19844 18524 Watching for file changes with StatReloader
+INFO 2025-07-26 08:58:46,228 autoreload 19844 18524 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\models.py changed, reloading.
+INFO 2025-07-26 08:58:49,755 autoreload 18512 6384 Watching for file changes with StatReloader
+INFO 2025-07-26 08:58:52,667 autoreload 18512 6384 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\models.py changed, reloading.
+INFO 2025-07-26 08:58:56,077 autoreload 21936 3000 Watching for file changes with StatReloader
+INFO 2025-07-26 08:59:14,457 autoreload 21936 3000 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\models.py changed, reloading.
+INFO 2025-07-26 08:59:18,117 autoreload 10912 13324 Watching for file changes with StatReloader
+INFO 2025-07-26 08:59:23,122 autoreload 10912 13324 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\models.py changed, reloading.
+INFO 2025-07-26 08:59:26,915 autoreload 4016 3224 Watching for file changes with StatReloader
+WARNING 2025-07-26 08:59:48,003 log 4016 22320 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 08:59:49,221 views 4016 15216 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:59:49,222 log 4016 15216 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 08:59:52,533 views 4016 22320 User logged in: mugahed
+ERROR 2025-07-26 08:59:57,995 views 4016 22320 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:59:57,997 log 4016 22320 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 09:06:44,584 autoreload 9372 13904 Watching for file changes with StatReloader
+WARNING 2025-07-26 09:06:53,429 log 9372 15256 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 09:06:54,134 views 9372 17640 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:06:54,157 log 9372 17640 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 09:06:59,098 views 9372 15256 User logged in: mugahed
+ERROR 2025-07-26 09:07:04,128 views 9372 12300 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:07:04,129 log 9372 12300 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 09:12:21,805 autoreload 9372 13904 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-26 09:12:28,768 autoreload 7368 22148 Watching for file changes with StatReloader
+INFO 2025-07-26 09:13:30,856 autoreload 7368 22148 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-26 09:13:40,132 autoreload 3468 20164 Watching for file changes with StatReloader
+ERROR 2025-07-26 09:13:42,355 views 3468 15516 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:15:35,692 log 3468 19700 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 09:15:35,779 views 3468 20956 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:15:44,076 views 3468 18088 User logged in: mugahed
+ERROR 2025-07-26 09:15:46,674 views 3468 1656 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:16:08,629 log 3468 5504 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:16:14,800 views 3468 16488 User logged in: mugahed
+WARNING 2025-07-26 09:20:34,973 log 3468 17772 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:20:40,998 views 3468 17772 User logged in: mugahed
+WARNING 2025-07-26 09:21:49,814 log 3468 21260 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:21:57,259 views 3468 17772 User logged in: mugahed
+WARNING 2025-07-26 09:22:19,762 log 3468 17772 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:24:20,060 views 3468 17772 User logged in: mugahed
+INFO 2025-07-26 09:24:56,075 views 3468 1928 User logged in: mugahed
+ERROR 2025-07-26 09:24:56,576 views 3468 8652 Error generating personalized recommendations for user 334: No module named 'redis'

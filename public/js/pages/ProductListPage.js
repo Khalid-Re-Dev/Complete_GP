@@ -1,10 +1,12 @@
 import { createElementFromHTML, showToast } from "../utils/helpers.js"
+import { PersonalizedRecommendationsSection } from "../components/PersonalizedRecommendations.js"
 import { productService } from "../services/api.js"
 import { ProductCard } from "../components/ProductCard.js"
 
 export default function ProductListPage() {
   const page = createElementFromHTML(`
         <div class="min-h-screen bg-gray-50">
+
             <!-- Header Section -->
             <div class="bg-white border-b">
                 <div class="container mx-auto py-8 px-4">
@@ -14,6 +16,9 @@ export default function ProductListPage() {
                     </div>
                 </div>
             </div>
+
+            <!-- Personalized Recommendations Section (only for authenticated users) -->
+            <div id="personalized-recommendations-section"></div>
 
             <!-- Main Content -->
             <div class="container mx-auto py-8 px-4">
@@ -184,6 +189,31 @@ export default function ProductListPage() {
             </div>
         </div>
     `)
+
+
+
+  // Helper to render personalized recommendations section
+  function renderPersonalizedSection() {
+    const container = page.querySelector('#personalized-recommendations-section')
+    if (!container) return
+    container.innerHTML = ''
+    const recSection = PersonalizedRecommendationsSection()
+    if (recSection && typeof recSection !== 'string') {
+      container.appendChild(recSection)
+    } else if (typeof recSection === 'string' && recSection) {
+      container.innerHTML = recSection
+    }
+  }
+
+  // Initial render
+  renderPersonalizedSection()
+
+  // Re-render on auth state change
+  import('../state/store.js').then(({ default: store }) => {
+    store.addObserver(() => {
+      renderPersonalizedSection()
+    })
+  })
 
   // Initialize page functionality
   initializeProductList(page)
@@ -366,11 +396,19 @@ function initializeProductList(page) {
         }
       })
 
+      // Ensure categoriesData is an array
+      let categoriesArr = []
+      if (Array.isArray(categoriesData)) {
+        categoriesArr = categoriesData
+      } else if (categoriesData && Array.isArray(categoriesData.results)) {
+        categoriesArr = categoriesData.results
+      }
+
       // Combine API categories with counts
-      const categories = categoriesData.map(category => ({
+      const categories = categoriesArr.map(category => ({
         name: category.name,
         count: categoryMap.get(category.name) || 0
-      })).filter(category => category.count > 0) // Only show categories with products
+      })).filter(category => category.count > 0)
 
       const totalProducts = currentProducts.length
       renderCategories(categories, totalProducts)

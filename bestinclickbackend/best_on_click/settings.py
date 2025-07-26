@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'best_on_click.wsgi.application'
 ASGI_APPLICATION = 'best_on_click.asgi.application'
 
 # Database configuration
-USE_SQLITE = config('USE_SQLITE', default=False, cast=bool)
+USE_SQLITE = config('USE_SQLITE', default=True, cast=bool)
 
 if USE_SQLITE:
     DATABASES = {
