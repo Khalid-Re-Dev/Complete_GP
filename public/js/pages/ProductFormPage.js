@@ -373,18 +373,26 @@ async function handleFormSubmit(page, productId, isDraft = false) {
  */
 async function loadCategories(page) {
   try {
-    const categories = await productService.getCategories()
-    const categorySelect = page.querySelector('#category')
+    let categories = await productService.getCategories();
+    // إذا كانت الاستجابة كائن فيه results، استخدمها
+    if (categories && typeof categories === 'object' && Array.isArray(categories.results)) {
+      categories = categories.results;
+    }
+    const categorySelect = page.querySelector('#category');
+
+    if (!Array.isArray(categories)) {
+      throw new Error('Categories response is not an array');
+    }
 
     categories.forEach(category => {
-      const option = document.createElement('option')
-      option.value = category.id
-      option.textContent = category.name
-      categorySelect.appendChild(option)
-    })
+      const option = document.createElement('option');
+      option.value = category.id;
+      option.textContent = category.name;
+      categorySelect.appendChild(option);
+    });
   } catch (error) {
-    console.error('Error loading categories:', error)
-    showToast('Failed to load categories', 'error')
+    console.error('Error loading categories:', error);
+    showToast('Failed to load categories', 'error');
   }
 }
 
@@ -393,18 +401,26 @@ async function loadCategories(page) {
  */
 async function loadBrands(page) {
   try {
-    const brands = await productService.getBrands()
-    const brandSelect = page.querySelector('#brand')
+    let brands = await productService.getBrands();
+    // إذا كانت الاستجابة كائن فيه results، استخدمها
+    if (brands && typeof brands === 'object' && Array.isArray(brands.results)) {
+      brands = brands.results;
+    }
+    const brandSelect = page.querySelector('#brand');
+
+    if (!Array.isArray(brands)) {
+      throw new Error('Brands response is not an array');
+    }
 
     brands.forEach(brand => {
-      const option = document.createElement('option')
-      option.value = brand.id
-      option.textContent = brand.name
-      brandSelect.appendChild(option)
-    })
+      const option = document.createElement('option');
+      option.value = brand.id;
+      option.textContent = brand.name;
+      brandSelect.appendChild(option);
+    });
   } catch (error) {
-    console.error('Error loading brands:', error)
-    showToast('Failed to load brands', 'error')
+    console.error('Error loading brands:', error);
+    showToast('Failed to load brands', 'error');
   }
 }
 

@@ -11,9 +11,11 @@ import ProductFormPage from "./pages/ProductFormPage.js"
 import AboutPage from "./pages/AboutPage.js"
 import ContactPage from "./pages/ContactPage.js"
 import NotFoundPage from "./pages/NotFoundPage.js"
+import CreateStorePage from "./pages/CreateStore.js"
 import store from "./state/store.js"
 
 // Define the routes and their corresponding page components
+import ReportsPage from "./pages/ReportsPage.js"
 const routes = {
   "/": HomePage,
   "/login": LoginPage,
@@ -28,9 +30,10 @@ const routes = {
   "/products/edit/:id": (params) => ProductFormPage(params.id),
   "/about": AboutPage,
   "/contact": ContactPage,
+  "/create-store": CreateStorePage,
+  "/reports": ReportsPage
   // Add more routes as needed
 }
-
 /**
  * A simple client-side router.
  * It parses the URL hash and renders the corresponding page.

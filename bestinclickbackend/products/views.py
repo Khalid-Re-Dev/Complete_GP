@@ -1,8 +1,16 @@
+# --- دالة فحص وجود متجر للمستخدم ---
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+
+# ضع الدالة بعد جميع الاستيرادات وليس في الأعلى
+
 """
 API views for products app.
 """
 
-from rest_framework import generics, status, filters
+from rest_framework import generics, status, filters, permissions
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
@@ -44,9 +52,9 @@ class BrandListView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
 
-class StoreListView(generics.ListAPIView):
+class StoreListCreateView(generics.ListCreateAPIView):
     """
-    List all active and verified stores.
+    List all active and verified stores, or create a new store.
     """
     queryset = Store.objects.filter(is_active=True, is_verified=True).order_by('-average_rating', 'name')
     serializer_class = StoreSerializer
@@ -54,6 +62,10 @@ class StoreListView(generics.ListAPIView):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'description']
     ordering_fields = ['name', 'average_rating', 'created_at']
+
+    def perform_create(self, serializer):
+        # ربط المتجر بالمستخدم الحالي تلقائياً
+        serializer.save(owner=self.request.user)
 
 
 class StoreDetailView(generics.RetrieveAPIView):
