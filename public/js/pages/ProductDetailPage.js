@@ -75,6 +75,10 @@ function renderProductDetails(page, product) {
   } else if (product.images && product.images.length > 0) {
     imageUrls = product.images.map(img => img.image || img.url || img)
   }
+  // Always ensure at least one placeholder if no images
+  if (!imageUrls || imageUrls.length === 0) {
+    imageUrls = ['/placeholder.jpg']
+  }
 
   // Update breadcrumb
   const breadcrumbProduct = page.querySelector('#breadcrumb-product')
@@ -93,12 +97,12 @@ function renderProductDetails(page, product) {
             <!-- Main Image Container -->
             <div class="main-image-container relative mb-4">
               <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden relative group shadow-lg">
-                <img src="${imageUrls[0] || 'https://via.placeholder.com/600x600/f3f4f6/9ca3af?text=' + encodeURIComponent(product.name)}"
+                <img src="${imageUrls[0]}"
                      alt="${product.name}"
                      class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                      id="main-image"
-                     onclick="openImageModal('${imageUrls[0] || ''}', '${product.name}')"
-                     onerror="this.src='https://via.placeholder.com/600x600/f3f4f6/9ca3af?text=' + encodeURIComponent('${product.name}'); this.onerror=null;">
+                     onclick="openImageModal('${imageUrls[0]}', '${product.name}')"
+                     onerror="this.src='/placeholder.jpg'; this.onerror=null;">
 
                 <!-- Image Loading Overlay -->
                 <div id="image-loading" class="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center hidden">
@@ -144,7 +148,7 @@ function renderProductDetails(page, product) {
                              alt="${product.name} - Image ${index + 1}"
                              class="w-full h-full object-cover transition-opacity duration-300 hover:opacity-80"
                              loading="lazy"
-                             onerror="this.src='https://via.placeholder.com/80x80/f3f4f6/9ca3af?text=${index + 1}'; this.onerror=null;">
+                             onerror="this.src='/placeholder.jpg'; this.onerror=null;">
 
                         <!-- Loading indicator for thumbnails -->
                         <div class="thumbnail-loading absolute inset-0 bg-gray-200 animate-pulse hidden"></div>
@@ -389,7 +393,12 @@ async function loadSimilarProducts(page, productId) {
 
 // Create optimized similar product card
 function createSimilarProductCard(similarProduct) {
-  const imageUrl = `https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=${encodeURIComponent(similarProduct.name)}`
+  // استخدم صورة محلية افتراضية إذا لم تتوفر صورة للمنتج المشابه
+  const imageUrl = similarProduct.image_urls && similarProduct.image_urls.length > 0
+    ? similarProduct.image_urls[0]
+    : (similarProduct.images && similarProduct.images.length > 0
+        ? (similarProduct.images[0].image || similarProduct.images[0].url || similarProduct.images[0])
+        : '/placeholder.jpg')
   const formattedPrice = formatCurrency(similarProduct.price)
   const rating = Math.round(similarProduct.rating * 10) / 10
   const stars = generateStarRating(rating)
@@ -401,7 +410,7 @@ function createSimilarProductCard(similarProduct) {
         <img src="${imageUrl}"
              alt="${similarProduct.name}"
              class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-             onerror="this.src='https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent('${similarProduct.name}'); this.onerror=null;">
+             onerror="this.src='/placeholder.jpg'; this.onerror=null;">
 
         <!-- AI Recommendation Badge -->
         <div class="absolute top-3 left-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">

@@ -103,10 +103,21 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
-            
+
+            <!-- Personalized Recommendations Section -->
+            <div id="personalized-recommendations-section"></div>
+
             <!-- Additional sections like Popular Products can be added here -->
         </div>
     `)
+  // استيراد سكشن التوصيات المخصصة وإضافته بعد المنتجات الجديدة
+  import("../components/PersonalizedRecommendations.js").then(module => {
+    const recSection = module.PersonalizedRecommendationsSection()
+    if (recSection) {
+      const container = page.querySelector("#personalized-recommendations-section")
+      if (container) container.appendChild(recSection)
+    }
+  })
 
   // Fetch and render products
   const newArrivalsGrid = page.querySelector("#new-arrivals-grid")

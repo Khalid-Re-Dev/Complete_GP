@@ -3,6 +3,7 @@ Models for store owner dashboard analytics and management.
 """
 
 from django.db import models
+from decimal import Decimal
 from django.contrib.auth import get_user_model
 from products.models import Store, Product
 from django.utils import timezone
@@ -30,8 +31,8 @@ class StoreAnalytics(models.Model):
     
     # Revenue metrics (conceptual - would integrate with payment system)
     total_orders = models.PositiveIntegerField(default=0)
-    total_revenue = models.DecimalField(max_digits=12, decimal_places=2, default=0)
-    average_order_value = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    total_revenue = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal('0.00'))
+    average_order_value = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     
     # AI insights
     ai_insights = models.JSONField(

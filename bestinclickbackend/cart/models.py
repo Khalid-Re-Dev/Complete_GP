@@ -66,7 +66,8 @@ class CartItem(models.Model):
     price_when_added = models.DecimalField(
         max_digits=10, 
         decimal_places=2,
-        help_text="Product price when added to cart"
+        help_text="Product price when added to cart",
+        default=Decimal('0.00')
     )
     
     class Meta:

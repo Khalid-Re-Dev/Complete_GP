@@ -4,6 +4,7 @@ URL configuration for products app.
 
 from django.urls import path
 from . import views
+from .views import StoreListCreateView
 
 app_name = 'products'
 
@@ -13,7 +14,7 @@ urlpatterns = [
     path('brands/', views.BrandListView.as_view(), name='brand_list'),
     
     # Stores
-    path('stores/', views.StoreListView.as_view(), name='store_list'),
+    path('stores/', StoreListCreateView.as_view(), name='store_list_create'),
     path('stores/<slug:slug>/', views.StoreDetailView.as_view(), name='store_detail'),
     
     # Products
@@ -26,4 +27,5 @@ urlpatterns = [
     
     # AI-powered endpoints
     path('best/', views.best_products, name='best_products'),
+
 ]

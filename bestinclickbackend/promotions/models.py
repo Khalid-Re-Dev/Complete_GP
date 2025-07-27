@@ -3,6 +3,7 @@ Models for promotions and discount QR code system.
 """
 
 from django.db import models
+from decimal import Decimal
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator, MaxValueValidator
 from products.models import Store
@@ -29,7 +30,9 @@ class Promotion(models.Model):
     value = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        help_text="Percentage (0-100) or fixed amount"
+        help_text="Percentage (0-100) or fixed amount",
+        default=Decimal('0.00'),
+        validators=[MinValueValidator(Decimal('0')), MaxValueValidator(Decimal('100'))]
     )
     
     # Validity period
@@ -52,7 +55,7 @@ class Promotion(models.Model):
     minimum_order_amount = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        default=0,
+        default=Decimal('0.00'),
         help_text="Minimum order amount to apply promotion"
     )
     
@@ -178,12 +181,14 @@ class StoreDiscountUsage(models.Model):
     store_cart_total = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        help_text="Total amount for this store's items"
+        help_text="Total amount for this store's items",
+        default=Decimal('0.00')
     )
     discount_applied = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        help_text="Actual discount amount applied for this store"
+        help_text="Actual discount amount applied for this store",
+        default=Decimal('0.00')
     )
     
     # Validation by store owner
@@ -218,8 +223,8 @@ class PromotionUsage(models.Model):
     discount_qr = models.ForeignKey(DiscountQR, on_delete=models.CASCADE)
     
     # Usage details
-    order_total = models.DecimalField(max_digits=10, decimal_places=2)
-    discount_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
+    discount_amount = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal('0.00'))
     
     used_at = models.DateTimeField(auto_now_add=True)
     

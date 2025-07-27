@@ -1,6 +1,43 @@
+
 """
 API views for store owner dashboard.
 """
+
+from rest_framework import generics, status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
+from django.db.models import Count, Avg, Sum, F, Q
+from django.utils import timezone
+from datetime import timedelta
+from products.models import Store, Product
+from products.permissions import IsStoreOwner
+from ai_models.models import UserBehaviorLog
+from .models import StoreAnalytics, ProductPerformance
+from .serializers import (
+    StoreAnalyticsSerializer,
+    ProductPerformanceSerializer,
+    StoreProductSerializer
+)
+from products.serializers import StoreSerializer
+import logging
+
+logger = logging.getLogger(__name__)
+
+# جلب بيانات المتجر الخاص بالمستخدم الحالي
+@api_view(['GET'])
+@permission_classes([IsAuthenticated, IsStoreOwner])
+def my_store(request):
+    """
+    Endpoint to get the current user's store info.
+    Returns store data if exists, or {"store": None} if not.
+    """
+    try:
+        store = Store.objects.get(owner=request.user)
+        return Response(StoreSerializer(store).data)
+    except Store.DoesNotExist:
+        return Response({"store": None})
 
 from rest_framework import generics, status
 from rest_framework.decorators import api_view, permission_classes
@@ -114,35 +151,36 @@ def store_performance(request, store_id):
     """
     Get detailed performance metrics for a store.
     """
+    import traceback
     try:
         store = get_object_or_404(Store, id=store_id, owner=request.user)
-        
+
         # Get recent user behavior for this store's products
         recent_behavior = UserBehaviorLog.objects.filter(
             product__store=store,
             timestamp__gte=timezone.now() - timedelta(days=30)
         )
-        
+
         # Calculate performance metrics
         total_views = recent_behavior.filter(action_type='view').count()
         total_clicks = recent_behavior.filter(action_type='click').count()
         total_cart_adds = recent_behavior.filter(action_type='add_to_cart').count()
         total_likes = recent_behavior.filter(action_type='like').count()
-        
+
         # Calculate conversion rates
         click_through_rate = (total_clicks / total_views * 100) if total_views > 0 else 0
         cart_conversion_rate = (total_cart_adds / total_clicks * 100) if total_clicks > 0 else 0
-        
+
         # Get product performance breakdown
         product_performance = recent_behavior.values(
             'product__id', 'product__name'
         ).annotate(
-            views=Count('id', filter=models.Q(action_type='view')),
-            clicks=Count('id', filter=models.Q(action_type='click')),
-            cart_adds=Count('id', filter=models.Q(action_type='add_to_cart')),
-            likes=Count('id', filter=models.Q(action_type='like'))
+            views=Count('id', filter=Q(action_type='view')),
+            clicks=Count('id', filter=Q(action_type='click')),
+            cart_adds=Count('id', filter=Q(action_type='add_to_cart')),
+            likes=Count('id', filter=Q(action_type='like'))
         ).order_by('-views')[:10]
-        
+
         performance_data = {
             'overview': {
                 'total_views': total_views,
@@ -157,13 +195,19 @@ def store_performance(request, store_id):
                 click_through_rate, cart_conversion_rate, total_views
             )
         }
-        
+
         return Response(performance_data, status=status.HTTP_200_OK)
-        
+
     except Exception as e:
-        logger.error(f"Error getting store performance: {str(e)}")
+        tb = traceback.format_exc()
+        logger.error(f"Error getting store performance: {str(e)}\nTraceback:\n{tb}")
+        # Return the error and traceback for debugging (remove in production)
         return Response(
-            {'error': 'Failed to get performance data'},
+            {
+                'error': 'Failed to get performance data',
+                'details': str(e),
+                'traceback': tb
+            },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
@@ -227,9 +271,9 @@ def product_performance(request, product_id):
         daily_metrics = recent_behavior.extra(
             select={'day': 'date(timestamp)'}
         ).values('day').annotate(
-            views=Count('id', filter=models.Q(action_type='view')),
-            clicks=Count('id', filter=models.Q(action_type='click')),
-            cart_adds=Count('id', filter=models.Q(action_type='add_to_cart'))
+            views=Count('id', filter=Q(action_type='view')),
+            clicks=Count('id', filter=Q(action_type='click')),
+            cart_adds=Count('id', filter=Q(action_type='add_to_cart'))
         ).order_by('day')
         
         performance_data = {

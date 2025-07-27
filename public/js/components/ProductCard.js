@@ -17,7 +17,7 @@ export function ProductCard(product) {
   const isInStock = product.in_stock !== undefined ? product.in_stock : (product.stock || 0) > 0
 
   // Get primary image
-  let imageUrl = 'https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent(product.name)
+  let imageUrl = '/placeholder.jpg'
   if (product.image_urls && product.image_urls.length > 0) {
     imageUrl = product.image_urls[0]
   } else if (product.images && product.images.length > 0) {
@@ -31,7 +31,7 @@ export function ProductCard(product) {
         <img src="${imageUrl}"
              alt="${product.name}"
              class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-             onerror="this.src='https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent('${product.name}'); this.onerror=null;">
+             onerror="this.src='/placeholder.jpg'; this.onerror=null;">
 
         <!-- Discount Badge -->
         ${hasDiscount ? `

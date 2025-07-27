@@ -279,6 +279,14 @@ export const productService = {
   getBrands: () => apiFetch("/products/brands/"),
   getStores: (params = "") => apiFetch(`/products/stores/?${params}`),
   getStoreBySlug: (slug) => apiFetch(`/products/stores/${slug}/`),
+  /**
+   * إنشاء متجر جديد
+   */
+  createStore: (storeData) =>
+    apiFetch("/products/stores/", {
+      method: "POST",
+      body: JSON.stringify(storeData),
+    }),
 }
 
 export const cartService = {
@@ -372,6 +380,12 @@ export const dashboardService = {
     }),
   getProductPerformance: (productId) =>
     apiFetch(`/dashboard/products/${productId}/performance/`),
+
+  /**
+   * جلب بيانات المتجر الخاص بالمستخدم الحالي
+   * يفترض وجود endpoint: /dashboard/my-store/
+   */
+  getMyStore: () => apiFetch('/dashboard/my-store/'),
 }
 
 export const reportsService = {

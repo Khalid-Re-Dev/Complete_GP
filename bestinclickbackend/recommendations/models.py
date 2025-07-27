@@ -4,6 +4,7 @@ Tracks recommendation performance and user interactions.
 """
 
 from django.db import models
+from decimal import Decimal
 from django.contrib.auth import get_user_model
 from products.models import Product
 import uuid
@@ -71,8 +72,8 @@ class UserPreference(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='preferences')
     category = models.ForeignKey('products.Category', on_delete=models.CASCADE, null=True, blank=True)
     brand = models.ForeignKey('products.Brand', on_delete=models.CASCADE, null=True, blank=True)
-    price_range_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    price_range_max = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    price_range_min = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=Decimal('0.00'))
+    price_range_max = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=Decimal('0.00'))
     preference_score = models.FloatField(help_text="Learned preference strength (-1 to 1)")
     last_updated = models.DateTimeField(auto_now=True)
     

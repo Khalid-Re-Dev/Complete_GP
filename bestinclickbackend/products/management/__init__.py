@@ -1,1 +1,1 @@
-# Management commands for products app
+"""Management commands for the products app."""

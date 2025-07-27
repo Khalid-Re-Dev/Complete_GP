@@ -3008,3 +3008,708 @@ ERROR 2025-07-24 08:27:15,443 views 15988 10628 Error generating AI insights: No
 ERROR 2025-07-24 08:27:15,445 log 15988 10628 Internal Server Error: /api/dashboard/stores/1/ai-insights/
 INFO 2025-07-24 12:39:45,555 autoreload 672 17280 Watching for file changes with StatReloader
 INFO 2025-07-24 13:03:53,000 autoreload 5416 8672 Watching for file changes with StatReloader
+INFO 2025-07-26 08:11:24,343 autoreload 20936 12000 Watching for file changes with StatReloader
+INFO 2025-07-26 08:17:01,213 autoreload 12576 17872 Watching for file changes with StatReloader
+WARNING 2025-07-26 08:19:28,358 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:19:28,366 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:19:28,379 fields 12576 14000 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:19:28,383 fields 12576 14000 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:20:22,219 log 12576 14000 Bad Request: /api/auth/register/
+WARNING 2025-07-26 08:20:39,413 log 12576 14000 Bad Request: /api/auth/register/
+WARNING 2025-07-26 08:20:54,473 log 12576 14000 Bad Request: /api/auth/register/
+INFO 2025-07-26 08:21:16,120 views 12576 14000 New user registered: mugahed
+WARNING 2025-07-26 08:21:16,347 fields 12576 14000 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:16,349 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:16,350 fields 12576 14000 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:16,351 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:39,445 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:39,446 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:58,456 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:58,457 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,224 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,224 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,260 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:21:59,263 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:04,026 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:04,026 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,189 fields 12576 5888 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,192 fields 12576 5484 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,192 fields 12576 5888 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:22:19,193 fields 12576 5484 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,120 fields 12576 11096 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,125 fields 12576 11096 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,229 fields 12576 11096 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:30:41,254 fields 12576 11096 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:31:07,955 fields 12576 10380 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:31:07,955 fields 12576 10380 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,861 fields 12576 12892 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,863 fields 12576 12892 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,920 fields 12576 10728 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:15,922 fields 12576 10728 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,146 fields 12576 12892 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,184 fields 12576 12892 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,096 log 12576 9864 Unauthorized: /api/auth/profile/
+WARNING 2025-07-26 08:32:21,165 fields 12576 10728 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:21,245 fields 12576 10728 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,650 fields 12576 21528 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,665 fields 12576 21528 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,668 fields 12576 8716 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:22,744 fields 12576 8716 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:32:32,607 views 12576 8716 User logged in: mugahed
+WARNING 2025-07-26 08:32:32,698 fields 12576 8716 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:32,816 fields 12576 8716 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:33,425 fields 12576 16640 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:32:33,434 fields 12576 16640 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:14,851 log 12576 15860 Unauthorized: /api/auth/profile/
+WARNING 2025-07-26 08:34:15,120 fields 12576 16956 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,137 fields 12576 16956 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,194 fields 12576 13116 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,233 fields 12576 13116 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,932 fields 12576 15860 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,937 fields 12576 16512 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:15,977 fields 12576 15860 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:16,018 fields 12576 16512 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:34:20,876 views 12576 16512 User logged in: mugahed
+WARNING 2025-07-26 08:34:21,004 fields 12576 16512 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:21,014 fields 12576 15896 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:21,015 fields 12576 16512 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:21,016 fields 12576 15896 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:34:40,013 views 12576 16632 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:34:40,014 log 12576 16632 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:34:40,032 fields 12576 8448 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:34:40,033 fields 12576 8448 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:02,307 views 12576 11900 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 08:35:02,340 fields 12576 13180 max_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:02,327 log 12576 11900 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:35:02,330 log 12576 10300 Unauthorized: /api/auth/profile/
+WARNING 2025-07-26 08:35:02,344 fields 12576 13180 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:02,483 views 12576 10300 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:35:02,523 log 12576 10300 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:35:03,331 fields 12576 9596 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:03,490 fields 12576 9596 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:03,403 fields 12576 10300 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:03,839 fields 12576 10300 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:35:11,767 views 12576 10300 User logged in: mugahed
+WARNING 2025-07-26 08:35:11,889 fields 12576 11900 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:11,897 fields 12576 11900 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:11,927 fields 12576 9596 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:11,944 fields 12576 9596 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:35:15,571 views 12576 9596 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:35:15,572 log 12576 9596 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:35:15,590 fields 12576 11900 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:35:15,593 fields 12576 11900 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:17,968 log 12576 21108 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 08:38:18,017 views 12576 14784 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 08:38:18,032 fields 12576 11924 max_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:38:18,033 log 12576 14784 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:38:18,034 fields 12576 11924 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,653 fields 12576 21108 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,666 fields 12576 21108 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,670 fields 12576 11872 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:38:18,699 fields 12576 11872 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:39:01,494 log 12576 22252 Not Found: /
+WARNING 2025-07-26 08:39:01,790 log 12576 22252 Not Found: /favicon.ico
+WARNING 2025-07-26 08:41:43,986 log 12576 16332 Bad Request: /api/auth/login/
+INFO 2025-07-26 08:41:53,549 views 12576 16332 User logged in: mugahed
+WARNING 2025-07-26 08:41:53,690 fields 12576 16332 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:53,691 fields 12576 16332 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:53,717 fields 12576 14552 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:53,727 fields 12576 14552 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:41:58,358 views 12576 14552 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:41:58,361 log 12576 14552 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:41:58,382 fields 12576 16332 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:41:58,383 fields 12576 16332 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,972 fields 12576 7356 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,972 fields 12576 7356 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,989 fields 12576 16332 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:05,990 fields 12576 16332 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,729 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,729 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,788 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:14,789 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,218 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,219 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,281 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:16,282 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,364 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,364 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,417 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:17,418 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,824 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,824 fields 12576 16832 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,872 fields 12576 16832 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:18,872 fields 12576 16832 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:42:32,435 views 12576 13508 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:42:32,436 log 12576 13508 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:42:32,486 fields 12576 21180 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:32,490 fields 12576 21180 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,575 fields 12576 16864 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,576 fields 12576 16864 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,628 fields 12576 16864 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:36,629 fields 12576 16864 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,762 fields 12576 5564 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,767 fields 12576 21552 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,767 fields 12576 5564 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:49,767 fields 12576 21552 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,566 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,567 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,628 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:55,629 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,879 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,879 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,929 fields 12576 1560 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:42:58,930 fields 12576 1560 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:28,954 fields 12576 14492 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:28,954 fields 12576 14492 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:28,967 log 12576 20488 Not Found: /api/products/488/
+WARNING 2025-07-26 08:44:29,036 fields 12576 20488 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,036 fields 12576 20488 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,267 fields 12576 14492 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,273 fields 12576 14492 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,325 fields 12576 14492 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:44:29,334 fields 12576 14492 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,028 fields 12576 8244 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,033 fields 12576 8244 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,129 fields 12576 8352 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:39,149 fields 12576 8352 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,279 fields 12576 2916 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,279 fields 12576 2916 min_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,372 fields 12576 520 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:45:50,374 fields 12576 520 min_value in DecimalField should be Decimal type.
+ERROR 2025-07-26 08:50:24,537 views 12576 10376 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:50:24,538 log 12576 10376 Internal Server Error: /api/recommendations/personalized/
+WARNING 2025-07-26 08:50:24,720 fields 12576 10480 max_value in DecimalField should be Decimal type.
+WARNING 2025-07-26 08:50:24,727 fields 12576 10480 min_value in DecimalField should be Decimal type.
+INFO 2025-07-26 08:57:31,840 autoreload 12576 17872 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\models.py changed, reloading.
+INFO 2025-07-26 08:57:44,564 autoreload 16736 15684 Watching for file changes with StatReloader
+INFO 2025-07-26 08:58:10,582 autoreload 16736 15684 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\models.py changed, reloading.
+INFO 2025-07-26 08:58:16,674 autoreload 19844 18524 Watching for file changes with StatReloader
+INFO 2025-07-26 08:58:46,228 autoreload 19844 18524 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\models.py changed, reloading.
+INFO 2025-07-26 08:58:49,755 autoreload 18512 6384 Watching for file changes with StatReloader
+INFO 2025-07-26 08:58:52,667 autoreload 18512 6384 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\models.py changed, reloading.
+INFO 2025-07-26 08:58:56,077 autoreload 21936 3000 Watching for file changes with StatReloader
+INFO 2025-07-26 08:59:14,457 autoreload 21936 3000 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\models.py changed, reloading.
+INFO 2025-07-26 08:59:18,117 autoreload 10912 13324 Watching for file changes with StatReloader
+INFO 2025-07-26 08:59:23,122 autoreload 10912 13324 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\models.py changed, reloading.
+INFO 2025-07-26 08:59:26,915 autoreload 4016 3224 Watching for file changes with StatReloader
+WARNING 2025-07-26 08:59:48,003 log 4016 22320 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 08:59:49,221 views 4016 15216 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:59:49,222 log 4016 15216 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 08:59:52,533 views 4016 22320 User logged in: mugahed
+ERROR 2025-07-26 08:59:57,995 views 4016 22320 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 08:59:57,997 log 4016 22320 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 09:06:44,584 autoreload 9372 13904 Watching for file changes with StatReloader
+WARNING 2025-07-26 09:06:53,429 log 9372 15256 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 09:06:54,134 views 9372 17640 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:06:54,157 log 9372 17640 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 09:06:59,098 views 9372 15256 User logged in: mugahed
+ERROR 2025-07-26 09:07:04,128 views 9372 12300 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:07:04,129 log 9372 12300 Internal Server Error: /api/recommendations/personalized/
+INFO 2025-07-26 09:12:21,805 autoreload 9372 13904 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-26 09:12:28,768 autoreload 7368 22148 Watching for file changes with StatReloader
+INFO 2025-07-26 09:13:30,856 autoreload 7368 22148 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-26 09:13:40,132 autoreload 3468 20164 Watching for file changes with StatReloader
+ERROR 2025-07-26 09:13:42,355 views 3468 15516 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:15:35,692 log 3468 19700 Unauthorized: /api/auth/profile/
+ERROR 2025-07-26 09:15:35,779 views 3468 20956 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:15:44,076 views 3468 18088 User logged in: mugahed
+ERROR 2025-07-26 09:15:46,674 views 3468 1656 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:16:08,629 log 3468 5504 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:16:14,800 views 3468 16488 User logged in: mugahed
+WARNING 2025-07-26 09:20:34,973 log 3468 17772 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:20:40,998 views 3468 17772 User logged in: mugahed
+WARNING 2025-07-26 09:21:49,814 log 3468 21260 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:21:57,259 views 3468 17772 User logged in: mugahed
+WARNING 2025-07-26 09:22:19,762 log 3468 17772 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:24:20,060 views 3468 17772 User logged in: mugahed
+INFO 2025-07-26 09:24:56,075 views 3468 1928 User logged in: mugahed
+ERROR 2025-07-26 09:24:56,576 views 3468 8652 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:37:20,485 log 3468 9448 Bad Request: /api/auth/login/
+WARNING 2025-07-26 09:37:33,868 log 3468 9448 Bad Request: /api/auth/login/
+WARNING 2025-07-26 09:37:41,834 log 3468 9448 Bad Request: /api/auth/login/
+INFO 2025-07-26 09:37:49,506 views 3468 9448 User logged in: mugahed
+ERROR 2025-07-26 09:37:49,676 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:38:57,881 views 3468 9448 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:39:44,231 log 3468 18548 Bad Request: /api/cart/update/
+WARNING 2025-07-26 09:39:48,287 log 3468 18548 Bad Request: /api/cart/update/
+ERROR 2025-07-26 09:40:00,296 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:40:23,097 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:40:23,117 log 3468 9448 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:40:37,127 views 3468 18548 User logged in: mugahed
+ERROR 2025-07-26 09:40:37,378 views 3468 9448 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:40:57,976 views 3468 8300 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:41:09,292 views 3468 18800 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:42:18,932 views 3468 8300 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:42:25,309 services 3468 18800 Enhanced search: 'L' -> 'l'
+INFO 2025-07-26 09:44:19,710 views 3468 9448 User logged in: mugahed
+ERROR 2025-07-26 09:44:19,838 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:44:28,525 views 3468 18800 User logged in: mugahed
+ERROR 2025-07-26 09:44:28,611 views 3468 9448 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:45:37,427 log 3468 18548 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:52:06,893 views 3468 8300 User logged in: mugahed
+ERROR 2025-07-26 09:52:07,043 views 3468 8300 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:59:29,985 views 3468 4796 User logged in: mugahed
+ERROR 2025-07-26 09:59:30,207 views 3468 9992 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-27 12:15:00,112 autoreload 15072 13204 Watching for file changes with StatReloader
+WARNING 2025-07-27 12:15:04,664 log 15072 17048 Not Found: /
+WARNING 2025-07-27 12:15:04,938 log 15072 20004 Not Found: /favicon.ico
+WARNING 2025-07-27 12:15:08,866 log 15072 16180 Unauthorized: /api/auth/profile/
+WARNING 2025-07-27 12:15:09,962 log 15072 9056 Unauthorized: /api/products/
+WARNING 2025-07-27 12:15:09,963 log 15072 17508 Unauthorized: /api/products/
+WARNING 2025-07-27 12:15:09,965 log 15072 17872 Unauthorized: /api/recommendations/personalized/
+INFO 2025-07-27 14:47:10,886 autoreload 12096 21596 Watching for file changes with StatReloader
+WARNING 2025-07-27 14:49:00,925 log 12096 4364 Bad Request: /api/auth/register/
+WARNING 2025-07-27 14:49:13,346 log 12096 16868 Bad Request: /api/auth/register/
+INFO 2025-07-27 14:49:23,919 views 12096 17696 New user registered: mugahedO
+ERROR 2025-07-27 14:49:24,161 views 12096 12820 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:24,165 views 12096 17696 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:49:24,177 log 12096 12820 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:49:24,178 log 12096 17696 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 14:49:24,197 views 12096 17696 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 14:49:24,200 log 12096 17696 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+WARNING 2025-07-27 14:49:24,205 log 12096 12820 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:49:24,224 views 12096 17696 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:24,225 log 12096 17696 Internal Server Error: /api/dashboard/stores/1/analytics/
+WARNING 2025-07-27 14:49:40,377 log 12096 7140 Unauthorized: /api/auth/profile/
+ERROR 2025-07-27 14:49:40,430 views 12096 16332 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:40,441 views 12096 7008 Error generating AI insights: No Store matches the given query.
+WARNING 2025-07-27 14:49:40,429 log 12096 22424 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:49:40,447 views 12096 22124 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:49:40,455 log 12096 16332 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:49:40,458 log 12096 7008 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 14:49:40,524 log 12096 22124 Internal Server Error: /api/dashboard/stores/1/performance/
+INFO 2025-07-27 14:49:45,807 views 12096 4176 User logged in: mugahedO
+ERROR 2025-07-27 14:49:45,898 views 12096 11632 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:45,903 log 12096 11632 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:49:45,923 views 12096 11632 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:49:45,928 log 12096 11632 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 14:49:45,988 views 12096 11632 Error generating AI insights: No Store matches the given query.
+WARNING 2025-07-27 14:49:45,982 log 12096 4176 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:49:45,991 log 12096 11632 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 14:49:46,006 views 12096 4176 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:46,008 log 12096 4176 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:49:54,329 views 12096 19924 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:54,336 log 12096 19924 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:49:54,359 views 12096 19924 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:49:54,361 log 12096 19924 Internal Server Error: /api/dashboard/stores/1/performance/
+WARNING 2025-07-27 14:49:54,369 log 12096 17316 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:49:54,385 views 12096 19924 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 14:49:54,389 views 12096 17316 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:49:54,390 log 12096 19924 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 14:49:54,391 log 12096 17316 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:50:06,281 views 12096 17316 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:50:06,285 log 12096 17316 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:50:06,287 views 12096 16600 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 14:50:06,288 views 12096 568 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:50:06,296 log 12096 16600 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+WARNING 2025-07-27 14:50:06,297 log 12096 16368 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:50:06,303 log 12096 568 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 14:50:06,333 views 12096 3876 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:50:06,337 log 12096 3876 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:51:33,083 views 12096 13252 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:51:33,085 views 12096 3896 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:51:33,087 log 12096 13252 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:51:33,087 log 12096 3896 Internal Server Error: /api/dashboard/stores/1/performance/
+WARNING 2025-07-27 14:51:33,108 log 12096 3896 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:51:33,144 views 12096 3896 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 14:51:33,146 log 12096 3896 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 14:51:33,154 views 12096 13252 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:51:33,161 log 12096 13252 Internal Server Error: /api/dashboard/stores/1/analytics/
+WARNING 2025-07-27 14:51:53,314 log 12096 21996 Unauthorized: /api/auth/profile/
+ERROR 2025-07-27 14:51:53,326 views 12096 21996 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:51:53,328 log 12096 21996 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:51:53,409 views 12096 22296 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:51:53,457 views 12096 21996 Error getting store analytics: No Store matches the given query.
+WARNING 2025-07-27 14:51:53,455 log 12096 11244 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:51:53,458 log 12096 22296 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 14:51:53,463 views 12096 13604 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 14:51:53,461 log 12096 21996 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:51:53,519 log 12096 13604 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+INFO 2025-07-27 14:51:58,815 views 12096 3696 User logged in: mugahedO
+ERROR 2025-07-27 14:51:58,897 views 12096 20748 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:51:58,904 log 12096 20748 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:51:58,927 views 12096 20748 Error getting store performance: No Store matches the given query.
+WARNING 2025-07-27 14:51:58,934 log 12096 3696 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:51:58,941 log 12096 20748 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 14:51:58,993 views 12096 20748 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 14:51:58,996 log 12096 20748 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 14:51:59,009 views 12096 3696 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:51:59,011 log 12096 3696 Internal Server Error: /api/dashboard/stores/1/analytics/
+WARNING 2025-07-27 14:55:09,242 log 12096 16552 Not Found: /api/dashboard/stores/1/products/
+INFO 2025-07-27 14:55:25,111 autoreload 12096 21596 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 14:55:29,582 autoreload 9772 144 Watching for file changes with StatReloader
+INFO 2025-07-27 14:55:44,947 autoreload 9772 144 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 14:55:46,945 autoreload 2520 21204 Watching for file changes with StatReloader
+INFO 2025-07-27 14:56:18,989 autoreload 2520 21204 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 14:56:21,121 autoreload 10632 18612 Watching for file changes with StatReloader
+INFO 2025-07-27 14:56:41,529 autoreload 10632 18612 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 14:56:43,768 autoreload 21952 18788 Watching for file changes with StatReloader
+INFO 2025-07-27 14:57:15,920 autoreload 21952 18788 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 14:57:18,126 autoreload 21136 14884 Watching for file changes with StatReloader
+INFO 2025-07-27 14:57:34,176 autoreload 21136 14884 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 14:57:36,101 autoreload 16016 22228 Watching for file changes with StatReloader
+WARNING 2025-07-27 14:57:40,352 log 16016 19872 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 14:57:45,714 views 16016 17588 User logged in: mugahedO
+ERROR 2025-07-27 14:57:45,948 views 16016 18464 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:57:45,950 log 16016 18464 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 14:57:46,065 views 16016 17588 Error generating AI insights: No Store matches the given query.
+WARNING 2025-07-27 14:57:46,099 log 16016 18464 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 14:57:46,179 views 16016 1096 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 14:57:46,147 log 16016 17588 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 14:57:46,301 log 16016 1096 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 14:57:46,314 views 16016 19356 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 14:57:46,343 log 16016 19356 Internal Server Error: /api/dashboard/stores/1/analytics/
+INFO 2025-07-27 14:59:31,749 autoreload 16016 22228 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-27 14:59:34,077 autoreload 17960 20188 Watching for file changes with StatReloader
+INFO 2025-07-27 15:00:01,494 autoreload 17960 20188 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-27 15:00:03,377 autoreload 8860 5268 Watching for file changes with StatReloader
+INFO 2025-07-27 15:03:05,055 autoreload 8860 5268 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:03:06,988 autoreload 9736 9536 Watching for file changes with StatReloader
+INFO 2025-07-27 15:03:14,954 views 9736 15976 User logged in: mugahedO
+WARNING 2025-07-27 15:03:18,470 log 9736 10832 Not Found: /api/dashboard/stores/undefined/performance/
+WARNING 2025-07-27 15:03:18,474 log 9736 15976 Not Found: /api/dashboard/stores/undefined/analytics/
+WARNING 2025-07-27 15:03:18,532 log 9736 10832 Not Found: /api/dashboard/stores/undefined/products/
+WARNING 2025-07-27 15:03:18,539 log 9736 15976 Not Found: /api/dashboard/stores/undefined/ai-insights/
+WARNING 2025-07-27 15:03:18,600 log 9736 10832 Not Found: /api/dashboard/stores/undefined/analytics/
+INFO 2025-07-27 15:03:35,351 autoreload 9736 9536 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:03:37,060 autoreload 12280 7104 Watching for file changes with StatReloader
+INFO 2025-07-27 15:05:57,096 views 12280 17704 User logged out: mugahedO
+INFO 2025-07-27 15:05:57,099 views 12280 1112 User logged out: mugahedO
+INFO 2025-07-27 15:06:01,730 views 12280 10156 User logged in: mugahedO
+WARNING 2025-07-27 15:06:05,467 log 12280 1112 Not Found: /api/dashboard/stores/undefined/products/
+WARNING 2025-07-27 15:06:05,470 log 12280 10156 Not Found: /api/dashboard/stores/undefined/performance/
+WARNING 2025-07-27 15:06:05,474 log 12280 17704 Not Found: /api/dashboard/stores/undefined/analytics/
+WARNING 2025-07-27 15:06:05,521 log 12280 1112 Not Found: /api/dashboard/stores/undefined/ai-insights/
+WARNING 2025-07-27 15:06:05,597 log 12280 17704 Not Found: /api/dashboard/stores/undefined/analytics/
+WARNING 2025-07-27 15:06:52,890 log 12280 17704 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:06:57,645 views 12280 17704 User logged in: mugahedO
+INFO 2025-07-27 15:08:25,117 views 12280 10156 User logged in: mugahedO
+INFO 2025-07-27 15:09:30,752 views 12280 7700 User logged in: mugahedO
+WARNING 2025-07-27 15:10:51,782 log 12280 848 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:10:57,206 views 12280 18816 User logged in: mugahedO
+WARNING 2025-07-27 15:13:57,530 log 12280 18816 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:14:02,469 views 12280 7700 User logged in: mugahedO
+WARNING 2025-07-27 15:14:50,333 log 12280 848 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:14:55,677 views 12280 7700 User logged in: mugahedO
+INFO 2025-07-27 15:18:07,102 autoreload 16216 9420 Watching for file changes with StatReloader
+WARNING 2025-07-27 15:18:15,706 log 16216 5524 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:18:19,742 views 16216 5524 User logged in: mugahedO
+WARNING 2025-07-27 15:19:15,231 log 16216 4852 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:19:15,587 log 16216 4852 Not Found: /favicon.ico
+INFO 2025-07-27 15:21:38,292 autoreload 16216 9420 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:21:40,607 autoreload 17568 5280 Watching for file changes with StatReloader
+INFO 2025-07-27 15:21:46,269 autoreload 17568 5280 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:21:47,961 autoreload 5508 14156 Watching for file changes with StatReloader
+WARNING 2025-07-27 15:21:53,563 log 5508 21476 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:21:58,661 views 5508 21476 User logged in: mugahedO
+WARNING 2025-07-27 15:23:52,122 log 5508 7500 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:23:52,338 log 5508 7500 Not Found: /favicon.ico
+INFO 2025-07-27 15:24:45,562 autoreload 21384 8800 Watching for file changes with StatReloader
+WARNING 2025-07-27 15:25:01,755 log 21384 17184 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:25:32,903 log 21384 17184 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:26:05,038 log 21384 5788 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:26:09,385 views 21384 18676 User logged in: mugahedO
+WARNING 2025-07-27 15:27:22,068 log 21384 17184 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:27:30,058 log 21384 17184 Not Found: / api/products/user-store-status/
+WARNING 2025-07-27 15:27:42,979 log 21384 17184 Not Found: /api/products/user-store-status/
+INFO 2025-07-27 15:30:39,221 autoreload 21384 8800 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:30:41,252 autoreload 11408 10984 Watching for file changes with StatReloader
+INFO 2025-07-27 15:31:18,911 autoreload 11408 10984 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:31:20,527 autoreload 17196 21976 Watching for file changes with StatReloader
+WARNING 2025-07-27 15:31:24,805 log 17196 18756 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:31:25,608 log 17196 18756 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:31:26,231 log 17196 18756 Not Found: /api/products/user-store-status/
+WARNING 2025-07-27 15:31:39,646 log 17196 19512 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 15:31:43,068 views 17196 19512 User logged in: mugahedO
+INFO 2025-07-27 15:32:18,882 views 17196 16248 New user registered: mugahed22
+INFO 2025-07-27 15:33:26,868 autoreload 17196 21976 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:33:29,905 autoreload 17272 9256 Watching for file changes with StatReloader
+INFO 2025-07-27 15:33:40,334 autoreload 17272 9256 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 15:33:42,364 autoreload 17952 10416 Watching for file changes with StatReloader
+WARNING 2025-07-27 15:33:48,088 log 17952 4792 Unauthorized: /api/auth/profile/
+ERROR 2025-07-27 15:33:48,305 views 17952 20136 Error generating AI insights: No Store matches the given query.
+WARNING 2025-07-27 15:33:48,303 log 17952 4792 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 15:33:48,311 views 17952 5476 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 15:33:48,313 views 17952 10776 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 15:33:48,316 log 17952 20136 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 15:33:48,322 log 17952 5476 Internal Server Error: /api/dashboard/stores/1/performance/
+ERROR 2025-07-27 15:33:48,353 log 17952 10776 Internal Server Error: /api/dashboard/stores/1/analytics/
+INFO 2025-07-27 15:33:53,010 views 17952 2192 User logged in: mugahed22
+ERROR 2025-07-27 15:33:53,070 views 17952 16760 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 15:33:53,077 log 17952 16760 Internal Server Error: /api/dashboard/stores/1/analytics/
+ERROR 2025-07-27 15:33:53,097 views 17952 16760 Error getting store performance: No Store matches the given query.
+ERROR 2025-07-27 15:33:53,100 log 17952 16760 Internal Server Error: /api/dashboard/stores/1/performance/
+WARNING 2025-07-27 15:33:53,110 log 17952 2192 Not Found: /api/dashboard/stores/1/products/
+ERROR 2025-07-27 15:33:53,121 views 17952 16760 Error generating AI insights: No Store matches the given query.
+ERROR 2025-07-27 15:33:53,132 log 17952 16760 Internal Server Error: /api/dashboard/stores/1/ai-insights/
+ERROR 2025-07-27 15:33:53,155 views 17952 16760 Error getting store analytics: No Store matches the given query.
+ERROR 2025-07-27 15:33:53,166 log 17952 16760 Internal Server Error: /api/dashboard/stores/1/analytics/
+WARNING 2025-07-27 15:49:00,249 log 17952 11256 Unauthorized: /api/auth/profile/
+WARNING 2025-07-27 15:49:00,287 log 17952 8352 Not Found: /api/dashboard/my-store/
+INFO 2025-07-27 15:49:04,861 views 17952 13592 User logged in: mugahed22
+WARNING 2025-07-27 15:49:04,981 log 17952 8352 Not Found: /api/dashboard/my-store/
+WARNING 2025-07-27 15:49:11,545 log 17952 8352 Not Found: /api/dashboard/my-store/
+INFO 2025-07-27 15:51:01,451 autoreload 17952 10416 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 15:51:03,965 autoreload 21224 8648 Watching for file changes with StatReloader
+INFO 2025-07-27 15:51:38,053 autoreload 21224 8648 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 15:51:41,655 autoreload 21220 3160 Watching for file changes with StatReloader
+INFO 2025-07-27 15:53:44,809 autoreload 21220 3160 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 15:53:48,022 autoreload 6072 6680 Watching for file changes with StatReloader
+INFO 2025-07-27 15:53:53,477 autoreload 6072 6680 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 15:53:55,225 autoreload 16364 20000 Watching for file changes with StatReloader
+INFO 2025-07-27 15:54:22,191 autoreload 16364 20000 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 15:54:24,518 autoreload 12916 22360 Watching for file changes with StatReloader
+INFO 2025-07-27 15:54:33,766 autoreload 12916 22360 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 15:54:35,744 autoreload 1220 10064 Watching for file changes with StatReloader
+INFO 2025-07-27 15:54:44,676 views 1220 20024 User logged in: mugahed22
+WARNING 2025-07-27 16:01:04,273 log 1220 3220 Unauthorized: /api/auth/profile/
+WARNING 2025-07-27 16:01:04,603 log 1220 3220 Unauthorized: /api/auth/token/refresh/
+INFO 2025-07-27 16:01:08,952 views 1220 3220 User logged in: mugahed22
+WARNING 2025-07-27 16:03:52,168 log 1220 20024 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 16:03:56,228 views 1220 3220 User logged in: mugahed22
+WARNING 2025-07-27 16:04:07,496 log 1220 3220 Method Not Allowed: /api/products/stores/
+WARNING 2025-07-27 16:04:22,767 log 1220 3220 Method Not Allowed: /api/products/stores/
+INFO 2025-07-27 16:05:19,208 autoreload 1220 10064 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 16:05:22,353 autoreload 10740 13504 Watching for file changes with StatReloader
+INFO 2025-07-27 16:05:31,093 autoreload 10740 13504 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-27 16:05:33,835 autoreload 15132 16608 Watching for file changes with StatReloader
+INFO 2025-07-27 16:05:41,833 autoreload 15132 16608 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 16:05:44,040 autoreload 13068 9372 Watching for file changes with StatReloader
+WARNING 2025-07-27 16:05:45,221 log 13068 12360 Method Not Allowed: /api/products/stores/
+WARNING 2025-07-27 16:05:49,637 log 13068 12360 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 16:05:54,683 views 13068 12360 User logged in: mugahed22
+WARNING 2025-07-27 16:06:01,481 log 13068 8352 Method Not Allowed: /api/products/stores/
+INFO 2025-07-27 16:06:52,754 autoreload 13068 9372 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-27 16:06:56,797 autoreload 12276 15060 Watching for file changes with StatReloader
+INFO 2025-07-27 16:07:05,177 autoreload 12276 15060 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-27 16:07:07,460 autoreload 16824 19696 Watching for file changes with StatReloader
+INFO 2025-07-27 16:07:16,690 autoreload 16824 19696 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-27 16:07:18,664 autoreload 3388 18796 Watching for file changes with StatReloader
+ERROR 2025-07-27 16:07:19,729 views 3388 7480 Error getting store performance: name 'models' is not defined
+ERROR 2025-07-27 16:07:19,748 log 3388 7480 Internal Server Error: /api/dashboard/stores/138/performance/
+WARNING 2025-07-27 16:07:33,317 log 3388 7480 Unauthorized: /api/auth/profile/
+ERROR 2025-07-27 16:07:33,654 views 3388 7480 Error getting store performance: name 'models' is not defined
+ERROR 2025-07-27 16:07:33,891 log 3388 7480 Internal Server Error: /api/dashboard/stores/138/performance/
+INFO 2025-07-27 16:07:38,317 views 3388 20736 User logged in: mugahed22
+ERROR 2025-07-27 16:07:38,653 views 3388 17764 Error getting store performance: name 'models' is not defined
+ERROR 2025-07-27 16:07:38,693 log 3388 17764 Internal Server Error: /api/dashboard/stores/138/performance/
+WARNING 2025-07-27 16:08:56,065 log 3388 14876 Unauthorized: /api/auth/profile/
+ERROR 2025-07-27 16:08:56,754 views 3388 17764 Error getting store performance: name 'models' is not defined
+ERROR 2025-07-27 16:08:57,024 log 3388 17764 Internal Server Error: /api/dashboard/stores/138/performance/
+INFO 2025-07-27 16:09:03,359 views 3388 12508 User logged in: mugahed22
+ERROR 2025-07-27 16:09:03,737 views 3388 18232 Error getting store performance: name 'models' is not defined
+ERROR 2025-07-27 16:09:03,748 log 3388 18232 Internal Server Error: /api/dashboard/stores/138/performance/
+INFO 2025-07-27 16:12:17,073 autoreload 3388 18796 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 16:12:20,764 autoreload 15748 1244 Watching for file changes with StatReloader
+INFO 2025-07-27 16:12:30,741 autoreload 15748 1244 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 16:12:34,472 autoreload 10004 21484 Watching for file changes with StatReloader
+INFO 2025-07-27 16:12:37,590 autoreload 10004 21484 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-07-27 16:12:42,630 autoreload 3028 22024 Watching for file changes with StatReloader
+WARNING 2025-07-27 16:12:45,595 log 3028 17536 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 16:12:51,494 views 3028 17536 User logged in: mugahed22
+WARNING 2025-07-27 22:47:06,183 log 3028 6652 Unauthorized: /api/auth/profile/
+WARNING 2025-07-27 22:47:06,415 log 3028 20116 Unauthorized: /api/dashboard/my-store/
+INFO 2025-07-27 22:47:11,250 views 3028 6652 User logged in: mugahed22
+WARNING 2025-07-27 22:48:39,699 log 3028 18368 Unauthorized: /api/auth/profile/
+WARNING 2025-07-27 22:48:39,813 log 3028 18368 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-07-27 22:48:39,816 log 3028 5284 Unauthorized: /api/dashboard/stores/138/analytics/
+WARNING 2025-07-27 22:48:39,818 log 3028 20084 Unauthorized: /api/dashboard/stores/138/performance/
+WARNING 2025-07-27 22:48:39,849 log 3028 16932 Unauthorized: /api/dashboard/stores/138/products/
+WARNING 2025-07-27 22:48:39,878 log 3028 18368 Unauthorized: /api/dashboard/stores/138/ai-insights/
+WARNING 2025-07-27 22:48:39,883 log 3028 5284 Unauthorized: /api/dashboard/stores/138/analytics/
+INFO 2025-07-27 22:48:43,877 views 3028 16932 User logged in: mugahed22
+WARNING 2025-07-27 22:50:11,501 log 3028 17960 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 22:50:17,852 views 3028 2244 User logged in: mugahed22
+ERROR 2025-07-27 22:53:45,159 views 3028 18388 Error generating personalized recommendations for user 337: No module named 'redis'
+WARNING 2025-07-27 22:56:08,601 log 3028 9140 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 22:56:12,599 views 3028 8764 User logged in: mugahed22
+ERROR 2025-07-27 22:56:33,620 views 3028 8764 Error in report generation: {'report_type': [ErrorDetail(string='"products" is not a valid choice.', code='invalid_choice')]}
+ERROR 2025-07-27 22:56:33,621 log 3028 8764 Internal Server Error: /api/reports/generate/
+INFO 2025-07-27 22:57:55,595 autoreload 3028 22024 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-07-27 22:57:59,657 autoreload 10392 8344 Watching for file changes with StatReloader
+INFO 2025-07-27 22:58:04,302 autoreload 10392 8344 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-07-27 22:58:06,077 autoreload 10544 12584 Watching for file changes with StatReloader
+ERROR 2025-07-27 22:58:09,102 views 10544 4804 Error in report generation: {'report_type': [ErrorDetail(string='"products" is not a valid choice.', code='invalid_choice')]}
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py", line 38, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 231, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'report_type': [ErrorDetail(string='"products" is not a valid choice.', code='invalid_choice')]}
+
+ERROR 2025-07-27 22:58:09,113 log 10544 4804 Internal Server Error: /api/reports/generate/
+ERROR 2025-07-27 23:01:08,042 views 10544 19048 Error in report generation: {'report_type': [ErrorDetail(string='"products" is not a valid choice.', code='invalid_choice')]}
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py", line 38, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 231, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'report_type': [ErrorDetail(string='"products" is not a valid choice.', code='invalid_choice')]}
+
+ERROR 2025-07-27 23:01:08,054 log 10544 19048 Internal Server Error: /api/reports/generate/
+WARNING 2025-07-27 23:01:11,331 log 10544 20200 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:01:19,611 views 10544 19048 User logged in: mugahed22
+ERROR 2025-07-27 23:01:47,469 views 10544 20200 Error in report generation: NOT NULL constraint failed: generated_reports.raw_data
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: NOT NULL constraint failed: generated_reports.raw_data
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py", line 41, in create
+    report = GeneratedReport.objects.create(
+        report_type=serializer.validated_data['report_type'],
+    ...<5 lines>...
+        status='pending'
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 677, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1845, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: NOT NULL constraint failed: generated_reports.raw_data
+
+ERROR 2025-07-27 23:01:47,483 log 10544 20200 Internal Server Error: /api/reports/generate/
+INFO 2025-07-27 23:02:43,562 autoreload 10544 12584 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\models.py changed, reloading.
+INFO 2025-07-27 23:02:45,788 autoreload 11588 1424 Watching for file changes with StatReloader
+INFO 2025-07-27 23:03:27,231 autoreload 5812 14512 Watching for file changes with StatReloader
+INFO 2025-07-27 23:03:29,389 autoreload 5812 14512 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\models.py changed, reloading.
+INFO 2025-07-27 23:03:31,197 autoreload 8808 20820 Watching for file changes with StatReloader
+WARNING 2025-07-27 23:03:35,405 log 8808 10952 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:03:39,743 views 8808 16552 User logged in: mugahed22
+ERROR 2025-07-27 23:03:53,991 services 8808 5024 Error generating store_performance report: Store matching query does not exist.
+ERROR 2025-07-27 23:03:53,995 views 8808 5024 Error generating report: Store matching query does not exist.
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py", line 54, in create
+    report_data = report_service.generate_report(
+        report_type=report.report_type,
+    ...<4 lines>...
+        parameters=report.parameters
+    )
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\services.py", line 34, in generate_report
+    return self._generate_store_performance_report(store_id, date_from, date_to, parameters)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\services.py", line 57, in _generate_store_performance_report
+    store = Store.objects.get(id=store_id)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 647, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+products.models.Store.DoesNotExist: Store matching query does not exist.
+
+ERROR 2025-07-27 23:03:54,014 log 8808 5024 Internal Server Error: /api/reports/generate/
+ERROR 2025-07-27 23:04:54,758 services 8808 5024 Error generating product_analysis report: Store matching query does not exist.
+ERROR 2025-07-27 23:04:54,760 views 8808 5024 Error generating report: Store matching query does not exist.
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py", line 54, in create
+    report_data = report_service.generate_report(
+        report_type=report.report_type,
+    ...<4 lines>...
+        parameters=report.parameters
+    )
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\services.py", line 36, in generate_report
+    return self._generate_product_analysis_report(store_id, date_from, date_to, parameters)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\services.py", line 132, in _generate_product_analysis_report
+    store = Store.objects.get(id=store_id)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 647, in get
+    raise self.model.DoesNotExist(
+        "%s matching query does not exist." % self.model._meta.object_name
+    )
+products.models.Store.DoesNotExist: Store matching query does not exist.
+
+ERROR 2025-07-27 23:04:54,779 log 8808 5024 Internal Server Error: /api/reports/generate/
+INFO 2025-07-27 23:06:37,210 autoreload 8808 20820 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-07-27 23:06:39,561 autoreload 22400 19512 Watching for file changes with StatReloader
+INFO 2025-07-27 23:06:52,192 autoreload 22400 19512 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-07-27 23:06:54,385 autoreload 12296 19748 Watching for file changes with StatReloader
+WARNING 2025-07-27 23:07:04,165 log 12296 11196 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:07:08,843 views 12296 11196 User logged in: mugahed22
+WARNING 2025-07-27 23:09:20,045 log 12296 11196 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:09:24,234 views 12296 19452 User logged in: mugahed22
+WARNING 2025-07-27 23:10:47,775 log 12296 6892 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:10:51,657 views 12296 19452 User logged in: mugahed22
+WARNING 2025-07-27 23:12:17,866 log 12296 19452 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:12:21,683 views 12296 11196 User logged in: mugahed22

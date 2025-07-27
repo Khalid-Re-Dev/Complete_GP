@@ -3,11 +3,14 @@ URL configuration for dashboard app.
 """
 
 from django.urls import path
+
 from . import views
 
 app_name = 'dashboard'
 
 urlpatterns = [
+    # Endpoint: بيانات المتجر الخاص بالمستخدم الحالي
+    path('my-store/', views.my_store, name='my_store'),
     # Store management
     path('stores/<int:store_id>/products/', views.StoreProductsView.as_view(), name='store_products'),
     path('stores/<int:store_id>/analytics/', views.store_analytics, name='store_analytics'),

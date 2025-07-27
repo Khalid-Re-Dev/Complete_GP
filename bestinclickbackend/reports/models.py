@@ -43,7 +43,7 @@ class GeneratedReport(models.Model):
     )
     
     # Report content
-    raw_data = models.JSONField(help_text="Raw aggregated data used in the report")
+    raw_data = models.JSONField(null=True, blank=True, help_text="Raw aggregated data used in the report")
     ai_summary_text = models.TextField(
         help_text="AI-generated narrative summary of key insights and trends"
     )
