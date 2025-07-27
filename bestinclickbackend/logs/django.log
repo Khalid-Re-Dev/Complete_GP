@@ -3224,3 +3224,29 @@ WARNING 2025-07-26 09:22:19,762 log 3468 17772 Unauthorized: /api/auth/profile/
 INFO 2025-07-26 09:24:20,060 views 3468 17772 User logged in: mugahed
 INFO 2025-07-26 09:24:56,075 views 3468 1928 User logged in: mugahed
 ERROR 2025-07-26 09:24:56,576 views 3468 8652 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:37:20,485 log 3468 9448 Bad Request: /api/auth/login/
+WARNING 2025-07-26 09:37:33,868 log 3468 9448 Bad Request: /api/auth/login/
+WARNING 2025-07-26 09:37:41,834 log 3468 9448 Bad Request: /api/auth/login/
+INFO 2025-07-26 09:37:49,506 views 3468 9448 User logged in: mugahed
+ERROR 2025-07-26 09:37:49,676 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:38:57,881 views 3468 9448 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:39:44,231 log 3468 18548 Bad Request: /api/cart/update/
+WARNING 2025-07-26 09:39:48,287 log 3468 18548 Bad Request: /api/cart/update/
+ERROR 2025-07-26 09:40:00,296 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:40:23,097 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:40:23,117 log 3468 9448 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:40:37,127 views 3468 18548 User logged in: mugahed
+ERROR 2025-07-26 09:40:37,378 views 3468 9448 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:40:57,976 views 3468 8300 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:41:09,292 views 3468 18800 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-26 09:42:18,932 views 3468 8300 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:42:25,309 services 3468 18800 Enhanced search: 'L' -> 'l'
+INFO 2025-07-26 09:44:19,710 views 3468 9448 User logged in: mugahed
+ERROR 2025-07-26 09:44:19,838 views 3468 18548 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:44:28,525 views 3468 18800 User logged in: mugahed
+ERROR 2025-07-26 09:44:28,611 views 3468 9448 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-26 09:45:37,427 log 3468 18548 Unauthorized: /api/auth/profile/
+INFO 2025-07-26 09:52:06,893 views 3468 8300 User logged in: mugahed
+ERROR 2025-07-26 09:52:07,043 views 3468 8300 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-26 09:59:29,985 views 3468 4796 User logged in: mugahed
+ERROR 2025-07-26 09:59:30,207 views 3468 9992 Error generating personalized recommendations for user 334: No module named 'redis'
