@@ -4919,3 +4919,51 @@ ERROR 2025-07-28 00:59:11,376 views 14828 16012 Error generating personalized re
 ERROR 2025-07-28 00:59:14,372 services 14828 8544 Error comparing products: division by zero
 ERROR 2025-07-28 00:59:14,373 views 14828 8544 Error comparing products: 'criteria'
 ERROR 2025-07-28 00:59:14,374 log 14828 8544 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:09:55,940 log 14828 11704 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:10:04,381 views 14828 13124 User logged in: mugahed
+ERROR 2025-07-28 01:10:04,608 views 14828 13124 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:10:07,899 services 14828 10252 Error comparing products: division by zero
+ERROR 2025-07-28 01:10:07,900 views 14828 10252 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:10:07,901 log 14828 10252 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:10:34,898 log 14828 10252 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:10:35,105 services 14828 18536 Error comparing products: division by zero
+ERROR 2025-07-28 01:10:35,483 views 14828 18536 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:10:35,564 log 14828 18536 Internal Server Error: /api/comparisons/products/
+INFO 2025-07-28 01:10:40,191 views 14828 9180 User logged in: mugahed
+ERROR 2025-07-28 01:10:40,334 views 14828 13124 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:10:44,318 services 14828 9180 Error comparing products: division by zero
+ERROR 2025-07-28 01:10:44,319 views 14828 9180 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:10:44,320 log 14828 9180 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:11:52,036 log 14828 9180 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:11:52,318 services 14828 9180 Error comparing products: division by zero
+ERROR 2025-07-28 01:11:52,424 views 14828 9180 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:11:52,426 log 14828 9180 Internal Server Error: /api/comparisons/products/
+INFO 2025-07-28 01:11:56,360 views 14828 10252 User logged in: mugahed
+ERROR 2025-07-28 01:11:56,519 views 14828 10252 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:11:58,788 services 14828 5464 Error comparing products: division by zero
+ERROR 2025-07-28 01:11:58,788 views 14828 5464 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:11:58,789 log 14828 5464 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:12:09,848 log 14828 5464 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:12:10,054 services 14828 10252 Error comparing products: division by zero
+ERROR 2025-07-28 01:12:10,054 views 14828 10252 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:12:10,055 log 14828 10252 Internal Server Error: /api/comparisons/products/
+INFO 2025-07-28 01:12:14,052 views 14828 5464 User logged in: mugahed
+ERROR 2025-07-28 01:12:14,165 views 14828 13124 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:12:17,747 services 14828 12964 Error comparing products: division by zero
+ERROR 2025-07-28 01:12:17,747 views 14828 12964 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:12:17,749 log 14828 12964 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:14:19,810 log 14828 12964 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:14:20,255 services 14828 12964 Error comparing products: division by zero
+ERROR 2025-07-28 01:14:20,255 views 14828 12964 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:14:20,256 log 14828 12964 Internal Server Error: /api/comparisons/products/
+INFO 2025-07-28 01:14:25,112 views 14828 12964 User logged in: mugahed
+ERROR 2025-07-28 01:14:25,540 views 14828 8976 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:14:28,802 services 14828 12964 Error comparing products: division by zero
+ERROR 2025-07-28 01:14:28,803 views 14828 12964 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:14:28,807 log 14828 12964 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:18:28,987 log 14828 8616 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:18:35,648 views 14828 3968 User logged in: mugahed
+ERROR 2025-07-28 01:18:35,877 views 14828 3796 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:18:39,391 services 14828 3968 Error comparing products: division by zero
+ERROR 2025-07-28 01:18:39,391 views 14828 3968 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:18:39,393 log 14828 3968 Internal Server Error: /api/comparisons/products/
