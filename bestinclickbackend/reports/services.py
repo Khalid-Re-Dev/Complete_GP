@@ -198,8 +198,10 @@ class ReportGenerationService:
         ).order_by('-total_actions')[:20]
         
         # Popular times analysis
+        # Use strftime for SQLite compatibility (EXTRACT is for PostgreSQL)
+        # Double percent for Django ORM string formatting
         hourly_activity = behavior_query.extra(
-            select={'hour': 'EXTRACT(hour FROM timestamp)'}
+            select={'hour': "strftime('%%H', timestamp)"}
         ).values('hour').annotate(
             activity_count=Count('id')
         ).order_by('hour')

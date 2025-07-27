@@ -36,6 +36,17 @@ class GenerateReportView(generics.CreateAPIView):
         احترافي: إذا لم يُرسل store_id أو كان غير صحيح، يتم جلب أول متجر يملكه المستخدم تلقائياً أو إرجاع رسالة خطأ واضحة.
         """
         import traceback
+        from decimal import Decimal
+        def convert_decimal(obj):
+            if isinstance(obj, dict):
+                return {k: convert_decimal(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_decimal(i) for i in obj]
+            elif isinstance(obj, Decimal):
+                return float(obj)
+            else:
+                return obj
+
         try:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
@@ -60,13 +71,15 @@ class GenerateReportView(generics.CreateAPIView):
                     )
 
             # Create report record
+            parameters = serializer.validated_data.get('parameters', {})
+            parameters = convert_decimal(parameters)
             report = GeneratedReport.objects.create(
                 report_type=serializer.validated_data['report_type'],
                 generated_by=request.user,
                 store_id=store_id,
                 date_from=serializer.validated_data['date_from'],
                 date_to=serializer.validated_data['date_to'],
-                parameters=serializer.validated_data.get('parameters', {}),
+                parameters=parameters,
                 status='pending'
             )
 
@@ -83,9 +96,9 @@ class GenerateReportView(generics.CreateAPIView):
                 )
 
                 # Update report with generated data
-                report.raw_data = report_data['raw_data']
+                report.raw_data = convert_decimal(report_data['raw_data'])
                 report.ai_summary_text = report_data['ai_summary']
-                report.visualizations = report_data.get('visualizations', {})
+                report.visualizations = convert_decimal(report_data.get('visualizations', {}))
                 report.status = 'completed'
                 report.completed_at = timezone.now()
                 report.save()
