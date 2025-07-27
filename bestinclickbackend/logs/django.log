@@ -4718,3 +4718,8 @@ INFO 2025-07-27 23:24:05,047 autoreload 13968 19708 C:\Users\maaab\OneDrive\Docu
 INFO 2025-07-27 23:24:07,251 autoreload 1072 8660 Watching for file changes with StatReloader
 INFO 2025-07-27 23:24:14,441 autoreload 1072 8660 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\reports\services.py changed, reloading.
 INFO 2025-07-27 23:24:15,815 autoreload 20100 936 Watching for file changes with StatReloader
+INFO 2025-07-27 23:25:11,874 views 20100 11468 User logged in: mugahed
+ERROR 2025-07-27 23:25:12,299 views 20100 9464 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-27 23:26:43,524 log 20100 8064 Unauthorized: /api/auth/profile/
+INFO 2025-07-27 23:26:47,800 views 20100 22004 User logged in: mugahed
+ERROR 2025-07-27 23:26:47,969 views 20100 22452 Error generating personalized recommendations for user 334: No module named 'redis'

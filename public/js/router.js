@@ -16,6 +16,7 @@ import store from "./state/store.js"
 
 // Define the routes and their corresponding page components
 import ReportsPage from "./pages/ReportsPage.js"
+import ComparePage from "./pages/ComparePage.js"
 const routes = {
   "/": HomePage,
   "/login": LoginPage,
@@ -31,7 +32,8 @@ const routes = {
   "/about": AboutPage,
   "/contact": ContactPage,
   "/create-store": CreateStorePage,
-  "/reports": ReportsPage
+  "/reports": ReportsPage,
+  "/compare": ComparePage
   // Add more routes as needed
 }
 /**
