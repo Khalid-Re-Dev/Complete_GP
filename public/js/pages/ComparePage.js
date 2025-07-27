@@ -6,6 +6,7 @@ export default function ComparePage() {
     const container = document.createElement('div');
     container.className = 'compare-page container py-8 px-4'; // Added px-4 for horizontal padding
     container.innerHTML = `
+<<<<<<< Updated upstream
         <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">مقارنة المنتجات المتشابهة</h1>
         <div id="loading-spinner" class="text-center text-gray-500 mt-6">
             <svg class="animate-spin h-10 w-10 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -235,5 +236,105 @@ export default function ComparePage() {
             aiDiv.innerHTML = ''; // Clear AI analysis on error
         });
 
+=======
+        <h1 class="text-2xl font-bold mb-4">Product Comparison</h1>
+        <p>اختر المنتجات التي تريد مقارنتها ثم اضغط زر "قارن المنتجات المختارة".</p>
+        <form id="compare-form">
+            <div id="compare-table" class="mt-6"></div>
+            <button type="submit" id="compare-btn" class="btn btn-primary mt-4" disabled>قارن المنتجات المختارة</button>
+        </form>
+        <div id="ai-analysis" class="mt-8"></div>
+    `;
+
+    const form = container.querySelector('#compare-form');
+    const compareBtn = container.querySelector('#compare-btn');
+    const aiDiv = container.querySelector('#ai-analysis');
+    let selectedIds = [];
+
+    // Fetch products from backend (use full backend URL)
+    fetch('http://localhost:8000/api/products/')
+        .then(res => res.json())
+        .then(data => {
+            const products = data.results || data; // handle paginated or plain list
+            const tableDiv = container.querySelector('#compare-table');
+            if (!products.length) {
+                tableDiv.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+            // Add checkboxes for selection
+            let table = `<div class="overflow-x-auto"><table class="min-w-full border text-sm"><thead><tr>
+                <th class="border px-2 py-1"></th>
+                <th class="border px-2 py-1">Image</th>
+                <th class="border px-2 py-1">Name</th>
+                <th class="border px-2 py-1">Brand</th>
+                <th class="border px-2 py-1">Store</th>
+                <th class="border px-2 py-1">Price</th>
+                <th class="border px-2 py-1">Final Price</th>
+                <th class="border px-2 py-1">Rating</th>
+            </tr></thead><tbody>`;
+            for (const p of products) {
+                table += `<tr>
+                    <td class="border px-2 py-1 text-center"><input type="checkbox" class="compare-checkbox" value="${p.id}"></td>
+                    <td class="border px-2 py-1"><img src="${(p.images && p.images[0] && p.images[0].image) || '/public/placeholder.jpg'}" alt="${p.name}" style="width:48px;height:48px;object-fit:contain;"></td>
+                    <td class="border px-2 py-1">${p.name}</td>
+                    <td class="border px-2 py-1">${p.brand ? p.brand.name : '-'}</td>
+                    <td class="border px-2 py-1">${p.store ? p.store.name : '-'}</td>
+                    <td class="border px-2 py-1">${p.price}</td>
+                    <td class="border px-2 py-1">${p.final_price}</td>
+                    <td class="border px-2 py-1">${p.average_rating || '-'}</td>
+                </tr>`;
+            }
+            table += '</tbody></table></div>';
+            tableDiv.innerHTML = table;
+
+            // Checkbox logic
+            const checkboxes = tableDiv.querySelectorAll('.compare-checkbox');
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', () => {
+                    selectedIds = Array.from(checkboxes).filter(c => c.checked).map(c => parseInt(c.value));
+                    compareBtn.disabled = selectedIds.length < 2;
+                });
+            });
+        })
+        .catch(err => {
+            const tableDiv = container.querySelector('#compare-table');
+            tableDiv.innerHTML = `<p class="text-red-500">Error loading products for comparison.</p>`;
+        });
+
+    // Handle compare submit
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        aiDiv.innerHTML = '';
+        if (selectedIds.length < 2) return;
+        compareBtn.disabled = true;
+        compareBtn.textContent = '...جاري المقارنة';
+        fetch('http://localhost:8000/api/comparisons/products/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ product_ids: selectedIds })
+        })
+        .then(res => res.json())
+        .then(data => {
+            compareBtn.disabled = false;
+            compareBtn.textContent = 'قارن المنتجات المختارة';
+            if (data.error) {
+                aiDiv.innerHTML = `<p class="text-red-500">${data.error}</p>`;
+                return;
+            }
+            // Show AI analysis and criteria
+            aiDiv.innerHTML = `<div class="bg-gray-50 p-4 rounded border">
+                <h2 class="font-bold mb-2">نتيجة المقارنة الذكية</h2>
+                <div class="mb-2"><b>المعايير:</b> ${Array.isArray(data.comparison_criteria) ? data.comparison_criteria.join(', ') : data.comparison_criteria}</div>
+                <div><b>تحليل AI:</b><br><pre class="whitespace-pre-wrap">${data.ai_analysis}</pre></div>
+            </div>`;
+        })
+        .catch(() => {
+            compareBtn.disabled = false;
+            compareBtn.textContent = 'قارن المنتجات المختارة';
+            aiDiv.innerHTML = `<p class="text-red-500">حدث خطأ أثناء المقارنة.</p>`;
+        });
+    });
+
+>>>>>>> Stashed changes
     return container;
 }
