@@ -1,3 +1,18 @@
+// Compare button handler: navigates to Compare page with product ID (number only)
+window.compareProduct = function(productId, event = null) {
+  if (event) {
+    const button = event.target.closest('button');
+    const originalContent = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+    button.disabled = true;
+    setTimeout(() => {
+      button.innerHTML = originalContent;
+      button.disabled = false;
+    }, 1000);
+  }
+  // Navigate to compare page with product id in hash
+  location.hash = `/compare?product=${encodeURIComponent(productId)}`;
+}
 import { formatCurrency, showToast } from "../utils/helpers.js?v=2024"
 
 /**
@@ -12,6 +27,7 @@ export function ProductCard(product) {
   const hasDiscount = (product.discount_percentage || 0) > 0
   const categoryName = product.category?.name || product.category || 'Uncategorized'
   const productSlug = product.slug || product.id
+  const productId = product.id
   const rating = product.average_rating || product.rating || 0
   const reviewsCount = product.total_reviews || product.reviews_count || 0
   const isInStock = product.in_stock !== undefined ? product.in_stock : (product.stock || 0) > 0
@@ -59,6 +75,12 @@ export function ProductCard(product) {
                   title="Quick View"
                   aria-label="View ${product.name} details">
             <i class="fa-solid fa-eye"></i>
+          </button>
+          <button class="action-button"
+                  onclick="event.stopPropagation(); compareProduct('${productId}', event)"
+                  title="Compare"
+                  aria-label="Compare ${product.name}">
+            <i class="fa-solid fa-code-compare"></i>
           </button>
         </div>
       </div>
