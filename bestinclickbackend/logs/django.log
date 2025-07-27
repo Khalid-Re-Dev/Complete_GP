@@ -4967,3 +4967,145 @@ ERROR 2025-07-28 01:18:35,877 views 14828 3796 Error generating personalized rec
 ERROR 2025-07-28 01:18:39,391 services 14828 3968 Error comparing products: division by zero
 ERROR 2025-07-28 01:18:39,391 views 14828 3968 Error comparing products: 'criteria'
 ERROR 2025-07-28 01:18:39,393 log 14828 3968 Internal Server Error: /api/comparisons/products/
+INFO 2025-07-28 01:21:36,135 autoreload 5940 20676 Watching for file changes with StatReloader
+INFO 2025-07-28 01:22:08,714 autoreload 4184 16512 Watching for file changes with StatReloader
+WARNING 2025-07-28 01:22:11,698 log 4184 18868 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:22:12,160 views 4184 19680 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:22:19,499 views 4184 6064 User logged in: mugahed
+ERROR 2025-07-28 01:22:19,913 views 4184 17936 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:23:01,742 views 4184 13956 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:23:05,292 services 4184 16012 Error comparing products: division by zero
+ERROR 2025-07-28 01:23:05,301 views 4184 16012 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:23:05,304 log 4184 16012 Internal Server Error: /api/comparisons/products/
+WARNING 2025-07-28 01:23:07,595 log 4184 16012 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:23:08,126 services 4184 16012 Error comparing products: division by zero
+ERROR 2025-07-28 01:23:08,168 views 4184 16012 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:23:08,237 log 4184 16012 Internal Server Error: /api/comparisons/products/
+INFO 2025-07-28 01:23:13,133 views 4184 21296 User logged in: mugahed
+ERROR 2025-07-28 01:23:13,249 views 4184 6476 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:23:17,156 services 4184 12200 Error comparing products: division by zero
+ERROR 2025-07-28 01:23:17,156 views 4184 12200 Error comparing products: 'criteria'
+ERROR 2025-07-28 01:23:17,157 log 4184 12200 Internal Server Error: /api/comparisons/products/
+ERROR 2025-07-28 01:24:52,597 views 4184 6476 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:24:53,868 views 4184 12200 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:30:40,160 log 4184 8448 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:30:40,296 views 4184 13136 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:30:40,381 views 4184 13136 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:30:49,704 views 4184 19240 User logged in: mugahed
+ERROR 2025-07-28 01:30:51,456 views 4184 13524 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:30:51,711 views 4184 13524 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:31:14,961 services 4184 16416 Enhanced search: 'í' -> 'í'
+INFO 2025-07-28 01:31:17,060 services 4184 16416 Enhanced search: 'í' -> 'í'
+INFO 2025-07-28 01:31:18,568 services 4184 16416 Enhanced search: 'D' -> 'd'
+INFO 2025-07-28 01:31:26,420 services 4184 16416 Enhanced search: 'DE' -> 'de'
+INFO 2025-07-28 01:31:29,260 services 4184 16416 Enhanced search: 'DEL' -> 'del'
+INFO 2025-07-28 01:31:29,673 services 4184 16416 Enhanced search: 'DELL' -> 'dell'
+INFO 2025-07-28 01:31:31,802 services 4184 16416 Enhanced search: 'DEL' -> 'del'
+WARNING 2025-07-28 01:32:29,766 log 4184 4008 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:32:35,303 views 4184 4008 User logged in: mugahed
+ERROR 2025-07-28 01:32:35,393 views 4184 4488 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:33:20,075 log 4184 4008 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:33:30,539 views 4184 16416 User logged in: mugahed
+INFO 2025-07-28 01:33:34,894 views 4184 16416 User logged in: mugahed
+INFO 2025-07-28 01:33:49,032 views 4184 16416 User logged in: mugahed
+WARNING 2025-07-28 01:33:51,243 log 4184 13524 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:33:55,377 views 4184 16416 User logged in: mugahed
+ERROR 2025-07-28 01:33:55,465 views 4184 4488 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:35:18,202 log 4184 4008 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:35:30,784 views 4184 13524 User logged in: mugahed
+WARNING 2025-07-28 01:35:32,634 log 4184 13524 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:35:36,918 views 4184 4488 User logged in: mugahed
+ERROR 2025-07-28 01:35:37,008 views 4184 16416 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:36:41,278 log 4184 13524 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:37:01,949 views 4184 16416 User logged in: mugahed
+ERROR 2025-07-28 01:37:02,076 views 4184 4488 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:37:21,582 services 4184 4008 Enhanced search: 'D' -> 'd'
+INFO 2025-07-28 01:37:22,889 services 4184 4008 Enhanced search: 'DD' -> 'dd'
+INFO 2025-07-28 01:37:23,328 services 4184 4008 Enhanced search: 'D' -> 'd'
+INFO 2025-07-28 01:37:24,763 services 4184 4008 Enhanced search: 'DE' -> 'de'
+INFO 2025-07-28 01:37:25,392 services 4184 4008 Enhanced search: 'DELL' -> 'dell'
+INFO 2025-07-28 01:37:28,980 services 4184 4008 Enhanced search: 'DILL' -> 'dill'
+WARNING 2025-07-28 01:39:39,626 log 4184 13524 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:39:43,243 views 4184 16416 User logged in: mugahed
+ERROR 2025-07-28 01:39:43,419 views 4184 16416 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 01:39:43,966 views 4184 4008 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:40:15,176 services 4184 16416 Enhanced search: 'í' -> 'í'
+INFO 2025-07-28 01:40:17,965 services 4184 16416 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:40:18,477 services 4184 16416 Enhanced search: 'di' -> 'di'
+INFO 2025-07-28 01:40:18,814 services 4184 16416 Enhanced search: 'dil' -> 'dil'
+INFO 2025-07-28 01:40:19,774 services 4184 16416 Enhanced search: 'dell' -> 'dell'
+INFO 2025-07-28 01:40:27,305 services 4184 16416 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:40:28,335 services 4184 16416 Enhanced search: 'dee' -> 'dee'
+INFO 2025-07-28 01:40:29,180 services 4184 16416 Enhanced search: 'deel' -> 'deel'
+INFO 2025-07-28 01:40:30,973 services 4184 16416 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:40:32,436 services 4184 16416 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:40:33,896 services 4184 16416 Enhanced search: 'da' -> 'da'
+INFO 2025-07-28 01:40:34,407 services 4184 16416 Enhanced search: 'dall' -> 'dall'
+INFO 2025-07-28 01:40:37,006 services 4184 16416 Enhanced search: 'dal' -> 'dal'
+INFO 2025-07-28 01:40:37,735 services 4184 16416 Enhanced search: 'da' -> 'da'
+INFO 2025-07-28 01:40:38,512 services 4184 16416 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:40:39,259 services 4184 16416 Enhanced search: 'di' -> 'di'
+INFO 2025-07-28 01:40:40,223 services 4184 16416 Enhanced search: 'dell' -> 'dell'
+ERROR 2025-07-28 01:40:51,805 views 4184 16416 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:41:27,481 log 4184 4488 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:41:33,642 views 4184 16416 User logged in: mugahed
+WARNING 2025-07-28 01:41:35,906 log 4184 16416 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:41:40,219 views 4184 16416 User logged in: mugahed
+ERROR 2025-07-28 01:41:40,492 views 4184 4488 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:43:32,646 log 4184 4008 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:43:32,910 views 4184 4008 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:46:36,847 views 4184 13180 User logged in: mugahed
+ERROR 2025-07-28 01:46:36,937 views 4184 11952 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:47:55,311 log 4184 10056 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:50:06,066 views 4184 11952 User logged in: mugahed
+ERROR 2025-07-28 01:50:06,304 views 4184 11952 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:50:43,757 services 4184 13180 Enhanced search: 'í' -> 'í'
+INFO 2025-07-28 01:50:47,300 services 4184 13180 Enhanced search: 'b' -> 'b'
+INFO 2025-07-28 01:50:48,087 services 4184 13180 Enhanced search: 'bel' -> 'bel'
+INFO 2025-07-28 01:50:49,489 services 4184 13180 Enhanced search: 'be' -> 'be'
+INFO 2025-07-28 01:50:51,624 services 4184 13180 Enhanced search: 'bel' -> 'bel'
+INFO 2025-07-28 01:50:52,088 services 4184 13180 Enhanced search: 'bell' -> 'bell'
+INFO 2025-07-28 01:50:53,146 services 4184 13180 Enhanced search: 'bel' -> 'bel'
+INFO 2025-07-28 01:50:53,778 services 4184 13180 Enhanced search: 'b' -> 'b'
+INFO 2025-07-28 01:50:56,056 services 4184 13180 Enhanced search: 'dll' -> 'dll'
+INFO 2025-07-28 01:50:57,825 services 4184 13180 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:50:59,949 services 4184 13180 Enhanced search: 'di' -> 'di'
+INFO 2025-07-28 01:51:00,526 services 4184 13180 Enhanced search: 'dell' -> 'dell'
+ERROR 2025-07-28 01:52:04,268 views 4184 11952 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:52:04,242 log 4184 13180 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 01:52:08,704 views 4184 10056 User logged in: mugahed
+ERROR 2025-07-28 01:52:08,890 views 4184 10056 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:52:12,679 services 4184 11952 Enhanced search: 'í' -> 'í'
+INFO 2025-07-28 01:52:16,231 services 4184 11952 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:52:17,947 services 4184 11952 Enhanced search: 'dl' -> 'dl'
+INFO 2025-07-28 01:52:19,261 services 4184 11952 Enhanced search: 'dll' -> 'dll'
+INFO 2025-07-28 01:52:20,511 services 4184 11952 Enhanced search: 'dl' -> 'dl'
+INFO 2025-07-28 01:52:29,627 services 4184 11952 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:52:31,645 services 4184 11952 Enhanced search: 'dall' -> 'dall'
+INFO 2025-07-28 01:52:33,462 services 4184 11952 Enhanced search: 'da' -> 'da'
+INFO 2025-07-28 01:52:34,368 services 4184 11952 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:52:35,492 services 4184 11952 Enhanced search: 'dell' -> 'dell'
+INFO 2025-07-28 01:52:36,945 services 4184 11952 Enhanced search: 'di' -> 'di'
+INFO 2025-07-28 01:52:37,443 services 4184 11952 Enhanced search: 'd' -> 'd'
+INFO 2025-07-28 01:52:43,453 services 4184 11952 Enhanced search: 'b' -> 'b'
+INFO 2025-07-28 01:52:45,195 services 4184 11952 Enhanced search: 'bi' -> 'bi'
+INFO 2025-07-28 01:52:48,808 services 4184 11952 Enhanced search: 'bia' -> 'bia'
+INFO 2025-07-28 01:52:50,611 services 4184 11952 Enhanced search: 'bi' -> 'bi'
+INFO 2025-07-28 01:52:51,143 services 4184 11952 Enhanced search: 'b' -> 'b'
+INFO 2025-07-28 01:52:52,159 services 4184 11952 Enhanced search: 'be' -> 'be'
+INFO 2025-07-28 01:52:52,506 services 4184 11952 Enhanced search: 'bea' -> 'bea'
+INFO 2025-07-28 01:52:56,340 services 4184 11952 Enhanced search: 'beau' -> 'beau'
+INFO 2025-07-28 01:52:57,309 services 4184 11952 Enhanced search: 'beaut' -> 'beaut'
+INFO 2025-07-28 01:52:57,672 services 4184 11952 Enhanced search: 'beauty' -> 'beauty'
+INFO 2025-07-28 01:53:01,843 services 4184 11952 Enhanced search: 'bauty' -> 'bauty'
+INFO 2025-07-28 01:53:02,174 services 4184 11952 Enhanced search: 'biauty' -> 'biauty'
+INFO 2025-07-28 01:53:05,571 services 4184 11952 Enhanced search: 'biaut' -> 'biaut'
+WARNING 2025-07-28 01:57:08,911 log 4184 13180 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 01:57:09,043 views 4184 13180 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:57:13,620 views 4184 18644 User logged in: mugahed
+ERROR 2025-07-28 01:57:13,777 views 4184 18644 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 01:57:33,110 services 4184 10432 Enhanced search: 'í' -> 'í'
+INFO 2025-07-28 01:57:37,465 services 4184 10432 Enhanced search: 'da' -> 'da'
+INFO 2025-07-28 01:57:38,220 services 4184 10432 Enhanced search: 'dall' -> 'dall'
+ERROR 2025-07-28 01:57:47,195 views 4184 18644 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 01:57:47,175 log 4184 20388 Unauthorized: /api/auth/profile/

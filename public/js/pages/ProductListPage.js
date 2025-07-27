@@ -1,5 +1,4 @@
 import { createElementFromHTML, showToast } from "../utils/helpers.js"
-import { PersonalizedRecommendationsSection } from "../components/PersonalizedRecommendations.js"
 import { productService } from "../services/api.js"
 import { ProductCard } from "../components/ProductCard.js"
 
@@ -7,7 +6,6 @@ export default function ProductListPage() {
   const page = createElementFromHTML(`
         <div class="min-h-screen bg-gray-50">
 
-            <!-- Header Section -->
             <div class="bg-white border-b">
                 <div class="container mx-auto py-8 px-4">
                     <div class="text-center">
@@ -17,15 +15,9 @@ export default function ProductListPage() {
                 </div>
             </div>
 
-            <!-- Personalized Recommendations Section (only for authenticated users) -->
-            <div id="personalized-recommendations-section"></div>
-
-            <!-- Main Content -->
             <div class="container mx-auto py-8 px-4">
                 <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    <!-- Filters Sidebar -->
                     <aside class="lg:col-span-1">
-                        <!-- Mobile filter toggle -->
                         <div class="lg:hidden mb-6">
                             <button class="w-full bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex items-center justify-between hover:shadow-md hover:border-secondary/30 transition-all duration-200" onclick="toggleMobileFilters()">
                                 <span class="flex items-center font-semibold text-primary">
@@ -39,7 +31,6 @@ export default function ProductListPage() {
                         </div>
 
                         <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hidden lg:block" id="filters-panel">
-                            <!-- Header -->
                             <div class="border-b border-gray-100 p-6">
                                 <h3 class="font-bold text-xl text-primary flex items-center">
                                     <div class="w-8 h-8 bg-secondary/10 rounded-lg flex items-center justify-center mr-3">
@@ -51,7 +42,6 @@ export default function ProductListPage() {
                             </div>
 
                             <div class="p-6 space-y-8">
-                                <!-- Categories -->
                                 <div>
                                     <div class="flex items-center justify-between mb-4">
                                         <h4 class="font-semibold text-primary flex items-center">
@@ -61,11 +51,21 @@ export default function ProductListPage() {
                                         <span class="text-xs text-gray-500 bg-light-gray px-2 py-1 rounded font-medium">Filter</span>
                                     </div>
                                     <div id="category-filters" class="space-y-1">
-                                        <!-- Categories will be loaded here -->
-                                    </div>
+                                        </div>
                                 </div>
 
-                                <!-- Price Range -->
+                                <div>
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="font-semibold text-primary flex items-center">
+                                            <i class="fa-solid fa-store text-secondary mr-2"></i>
+                                            Stores
+                                        </h4>
+                                        <span class="text-xs text-gray-500 bg-light-gray px-2 py-1 rounded font-medium">Filter</span>
+                                    </div>
+                                    <div id="store-filters" class="space-y-1">
+                                        </div>
+                                </div>
+
                                 <div>
                                     <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
                                         <i class="fa-solid fa-dollar-sign text-secondary mr-2"></i>
@@ -99,7 +99,6 @@ export default function ProductListPage() {
                                     </div>
                                 </div>
 
-                                <!-- Sort Options -->
                                 <div>
                                     <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
                                         <i class="fa-solid fa-sort text-secondary mr-2"></i>
@@ -119,7 +118,6 @@ export default function ProductListPage() {
                                     </div>
                                 </div>
 
-                                <!-- Clear Filters -->
                                 <div class="pt-6">
                                     <button class="w-full border border-gray-300 text-gray-700 hover:text-gray-900 hover:border-gray-400 font-medium py-2.5 px-4 rounded-md transition-colors duration-200 flex items-center justify-center bg-white" id="clear-filters">
                                         <i class="fa-solid fa-refresh mr-2"></i>
@@ -130,9 +128,7 @@ export default function ProductListPage() {
                         </div>
                     </aside>
 
-                    <!-- Main Content -->
                     <main class="lg:col-span-3">
-                        <!-- Search and Actions Bar -->
                         <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-6 mb-6">
                             <div class="flex flex-col lg:flex-row gap-4">
                                 <div class="flex-1">
@@ -148,7 +144,6 @@ export default function ProductListPage() {
                             </div>
                         </div>
 
-                        <!-- Results Header -->
                         <div class="bg-white rounded-xl shadow-lg border border-gray-100 p-5 mb-6">
                             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                 <div id="results-info" class="text-gray-700 font-semibold flex items-center">
@@ -169,7 +164,6 @@ export default function ProductListPage() {
                             </div>
                         </div>
 
-                        <!-- Products Grid -->
                         <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
                             <div class="col-span-full flex justify-center py-12">
                                 <div class="text-center">
@@ -179,36 +173,16 @@ export default function ProductListPage() {
                             </div>
                         </div>
 
-                        <!-- Pagination -->
                         <div class="flex justify-center">
                             <div class="flex gap-2" id="pagination">
-                                <!-- Pagination will be loaded here -->
-                            </div>
+                                </div>
                         </div>
                     </main>
+                </div>
             </div>
         </div>
     `)
 
-
-
-  // Helper to render personalized recommendations section
-  function renderPersonalizedSection() {
-    const container = page.querySelector('#personalized-recommendations-section')
-    if (!container) return
-    container.innerHTML = ''
-    const recSection = PersonalizedRecommendationsSection()
-    if (recSection && typeof recSection !== 'string') {
-      container.appendChild(recSection)
-    } else if (typeof recSection === 'string' && recSection) {
-      container.innerHTML = recSection
-    }
-  }
-
-  // Initial render
-  renderPersonalizedSection()
-
-  // Re-render on auth state change
   import('../state/store.js').then(({ default: store }) => {
     store.addObserver(() => {
       renderPersonalizedSection()
@@ -241,15 +215,23 @@ export default function ProductListPage() {
 
 function initializeProductList(page) {
   let currentProducts = []
-  let filteredProducts = []
   let searchTimeout = null
+  let priceInputTimeout = null // For debouncing price inputs
   let currentFilters = {
     category: null,
+    store: null, // Changed from vendor to store
     priceMin: null,
     priceMax: null,
     search: '',
     sort: 'name'
   }
+
+  // Define common misspellings/aliases for search terms
+  const searchAliases = {
+    "dill": "dell",
+    // Add more as needed: e.g., "aple": "apple", "samung": "samsung"
+  };
+
 
   // Parse URL parameters on page load
   function parseUrlParams() {
@@ -258,13 +240,15 @@ function initializeProductList(page) {
     if (urlParams.get('search')) {
       currentFilters.search = urlParams.get('search')
       const searchInput = page.querySelector('#search-input')
-      if (searchInput) searchInput.value = currentFilters.search
+      if (searchInput) searchInput.value = currentFilters.search // Display original search term in input
     }
 
     if (urlParams.get('category')) {
       currentFilters.category = urlParams.get('category')
-      const categoryRadio = page.querySelector(`input[name="category"][value="${currentFilters.category}"]`)
-      if (categoryRadio) categoryRadio.checked = true
+    }
+
+    if (urlParams.get('store')) { // Parse store from URL
+      currentFilters.store = urlParams.get('store')
     }
 
     if (urlParams.get('sort')) {
@@ -272,7 +256,46 @@ function initializeProductList(page) {
       const sortSelect = page.querySelector('#sort-select')
       if (sortSelect) sortSelect.value = currentFilters.sort
     }
+
+    if (urlParams.get('price__gte')) {
+        currentFilters.priceMin = parseFloat(urlParams.get('price__gte'))
+        const priceMinInput = page.querySelector('#price-min')
+        if (priceMinInput) priceMinInput.value = currentFilters.priceMin
+    }
+    if (urlParams.get('price__lte')) {
+        currentFilters.priceMax = parseFloat(urlParams.get('price__lte'))
+        const priceMaxInput = page.querySelector('#price-max')
+        if (priceMaxInput) priceMaxInput.value = currentFilters.priceMax
+    }
   }
+
+  // Update URL to reflect current filters
+  function updateUrl() {
+    const urlParams = new URLSearchParams()
+    if (currentFilters.category) {
+      urlParams.append('category', currentFilters.category)
+    }
+    if (currentFilters.store) { // Add store to URL
+      urlParams.append('store', currentFilters.store)
+    }
+    if (currentFilters.priceMin) {
+      urlParams.append('price__gte', currentFilters.priceMin)
+    }
+    if (currentFilters.priceMax) {
+      urlParams.append('price__lte', currentFilters.priceMax)
+    }
+    if (currentFilters.search) {
+      urlParams.append('search', currentFilters.search)
+    }
+    if (currentFilters.sort && currentFilters.sort !== 'name') { // Only add sort if not default
+      urlParams.append('sort', currentFilters.sort)
+    }
+
+    const newHash = urlParams.toString() ? `?${urlParams.toString()}` : ''
+    // Using replaceState for cleaner URL without adding to browser history
+    history.replaceState(null, '', `#${newHash}`)
+  }
+
 
   // Load products
   async function loadProducts() {
@@ -280,9 +303,18 @@ function initializeProductList(page) {
       // Build query parameters
       const params = new URLSearchParams()
 
+      // Apply search alias before sending to API
+      let searchTermForAPI = currentFilters.search.toLowerCase();
+      if (searchAliases[searchTermForAPI]) {
+        searchTermForAPI = searchAliases[searchTermForAPI];
+      }
+
       // Add filters to API call
       if (currentFilters.category) {
         params.append('category__name', currentFilters.category)
+      }
+      if (currentFilters.store) { // Add store filter to API call
+        params.append('store__name', currentFilters.store) // Assuming API filters by store name
       }
       if (currentFilters.priceMin) {
         params.append('price__gte', currentFilters.priceMin)
@@ -290,8 +322,8 @@ function initializeProductList(page) {
       if (currentFilters.priceMax) {
         params.append('price__lte', currentFilters.priceMax)
       }
-      if (currentFilters.search) {
-        params.append('search', currentFilters.search)
+      if (searchTermForAPI) { // Use aliased search term
+        params.append('search', searchTermForAPI) // API should handle partial search
       }
       if (currentFilters.sort) {
         let ordering = ''
@@ -316,10 +348,10 @@ function initializeProductList(page) {
 
       const data = await productService.getProducts(params.toString())
       currentProducts = data.results || data
-      filteredProducts = [...currentProducts]
 
-      // Load categories from API
+      // Load categories and stores after products are loaded to get counts
       await loadCategoriesFromAPI()
+      await loadStoresFromAPI() // Load stores
 
       renderProducts()
       updateResultsInfo()
@@ -333,18 +365,23 @@ function initializeProductList(page) {
   // Render products
   function renderProducts() {
     const grid = page.querySelector('#products-grid')
-    if (filteredProducts.length === 0) {
+    if (currentProducts.length === 0) {
       grid.innerHTML = '<p class="text-muted col-span-full text-center">No products found.</p>'
       return
     }
 
-    grid.innerHTML = filteredProducts.map(ProductCard).join('')
+    grid.innerHTML = currentProducts.map(ProductCard).join('')
   }
 
   // Update results info
   function updateResultsInfo() {
     const info = page.querySelector('#results-info')
-    info.textContent = `Showing ${filteredProducts.length} of ${currentProducts.length} products`
+    if (info) {
+      info.innerHTML = `Showing <span class="text-secondary">${currentProducts.length}</span> products`
+      if (currentFilters.search) {
+          info.innerHTML += ` for "<span class="text-secondary">${currentFilters.search}</span>"`
+      }
+    }
   }
 
   // Apply filters - now triggers a new API call
@@ -373,21 +410,12 @@ function initializeProductList(page) {
     }
   }
 
-  // Update results info
-  function updateResultsInfo() {
-    const info = page.querySelector('#results-info')
-    if (info) {
-      info.textContent = `Showing ${currentProducts.length} products`
-    }
-  }
-
-  // Load categories from API
+  // Load categories from API and calculate counts
   async function loadCategoriesFromAPI() {
     try {
       const categoriesData = await productService.getCategories()
       const container = page.querySelector('#category-filters')
 
-      // Generate category counts from current products
       const categoryMap = new Map()
       currentProducts.forEach(product => {
         if (product.category && product.category.name) {
@@ -396,7 +424,6 @@ function initializeProductList(page) {
         }
       })
 
-      // Ensure categoriesData is an array
       let categoriesArr = []
       if (Array.isArray(categoriesData)) {
         categoriesArr = categoriesData
@@ -404,59 +431,104 @@ function initializeProductList(page) {
         categoriesArr = categoriesData.results
       }
 
-      // Combine API categories with counts
       const categories = categoriesArr.map(category => ({
         name: category.name,
         count: categoryMap.get(category.name) || 0
-      })).filter(category => category.count > 0)
+      })).filter(category => category.count > 0) // Only show categories with products
 
       const totalProducts = currentProducts.length
       renderCategories(categories, totalProducts)
 
+      // Set initial radio button state based on currentFilters.category
+      if (currentFilters.category) {
+        const selectedRadio = container.querySelector(`input[name="category"][value="${currentFilters.category}"]`)
+        if (selectedRadio) {
+            selectedRadio.checked = true
+            updateFilterRadioStyle(selectedRadio.parentElement, true)
+        }
+      } else {
+        const allCategoriesRadio = container.querySelector(`input[name="category"][value=""]`)
+        if (allCategoriesRadio) {
+            allCategoriesRadio.checked = true
+            updateFilterRadioStyle(allCategoriesRadio.parentElement, true)
+        }
+      }
+
+
     } catch (error) {
       console.error('Failed to load categories:', error)
-      // Fallback to generating categories from products
-      loadCategoriesFromProducts()
+      // Fallback: If API fails, categories won't be displayed, which is acceptable.
     }
   }
 
-  // Fallback: Load categories from actual product data
-  function loadCategoriesFromProducts() {
-    const container = page.querySelector('#category-filters')
+  // Load stores from API and calculate counts (Changed from loadVendorsFromAPI)
+  async function loadStoresFromAPI() {
+    try {
+      const storesData = await productService.getStores() // Assuming a new service method: getStores
+      const container = page.querySelector('#store-filters') // Changed ID
 
-    // Generate categories from current products
-    const categoryMap = new Map()
-    currentProducts.forEach(product => {
-      if (product.category && product.category.name) {
-        const count = categoryMap.get(product.category.name) || 0
-        categoryMap.set(product.category.name, count + 1)
+      const storeMap = new Map()
+      currentProducts.forEach(product => {
+        if (product.store && product.store.name) { // Assuming product has a store object
+          const count = storeMap.get(product.store.name) || 0
+          storeMap.set(product.store.name, count + 1)
+        }
+      })
+
+      let storesArr = []
+      if (Array.isArray(storesData)) {
+        storesArr = storesData
+      } else if (storesData && Array.isArray(storesData.results)) {
+        storesArr = storesData.results
       }
-    })
+      
+      const stores = storesArr.map(store => ({
+        name: store.name,
+        count: storeMap.get(store.name) || 0
+      })).filter(store => store.count > 0) // Only show stores with products
 
-    const categories = Array.from(categoryMap.entries()).map(([name, count]) => ({ name, count }))
-    const totalProducts = currentProducts.length
-    renderCategories(categories, totalProducts)
+      const totalProducts = currentProducts.length
+      renderStores(stores, totalProducts) // Changed to renderStores
+      
+      // Set initial radio button state based on currentFilters.store
+      if (currentFilters.store) {
+        const selectedRadio = container.querySelector(`input[name="store"][value="${currentFilters.store}"]`)
+        if (selectedRadio) {
+            selectedRadio.checked = true
+            updateFilterRadioStyle(selectedRadio.parentElement, true)
+        }
+      } else {
+        const allStoresRadio = container.querySelector(`input[name="store"][value=""]`)
+        if (allStoresRadio) {
+            allStoresRadio.checked = true
+            updateFilterRadioStyle(allStoresRadio.parentElement, true)
+        }
+      } 
+
+    } catch (error) {
+      console.error('Failed to load stores:', error)
+      // Fallback: If API fails, stores won't be displayed.
+    }
   }
+
 
   // Render categories in the UI
   function renderCategories(categories, totalProducts) {
     const container = page.querySelector('#category-filters')
+    if (!container) return;
 
-    // Add "All Categories" option
     const allCategoriesHtml = `
-      <label class="category-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200 border border-secondary bg-secondary/5" data-category="all">
-        <input type="radio" name="category" value="" class="category-radio sr-only" checked>
-        <div class="w-4 h-4 border-2 border-secondary rounded-full mr-3 flex items-center justify-center bg-secondary">
-          <div class="w-2 h-2 bg-white rounded-full"></div>
-        </div>
-        <span class="font-medium text-primary flex-1">All Categories</span>
-        <span class="text-sm text-gray-500 bg-white px-2 py-1 rounded font-medium">${totalProducts}</span>
+      <label class="category-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200" data-category="all">
+        <input type="radio" name="category" value="" class="category-radio sr-only" ${!currentFilters.category ? 'checked' : ''}>
+        <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"></div>
+        <span class="font-medium text-gray-700 flex-1">All Categories</span>
+        <span class="text-sm text-gray-500 bg-light-gray px-2 py-1 rounded font-medium">${totalProducts}</span>
       </label>
     `
 
     const categoriesHtml = categories.map(category => `
       <label class="category-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200" data-category="${category.name}">
-        <input type="radio" name="category" value="${category.name}" class="category-radio sr-only">
+        <input type="radio" name="category" value="${category.name}" class="category-radio sr-only" ${currentFilters.category === category.name ? 'checked' : ''}>
         <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"></div>
         <span class="font-medium text-gray-700 flex-1">${category.name}</span>
         <span class="text-sm text-gray-500 bg-light-gray px-2 py-1 rounded font-medium">${category.count}</span>
@@ -464,35 +536,103 @@ function initializeProductList(page) {
     `).join('')
 
     container.innerHTML = allCategoriesHtml + categoriesHtml
+    // Apply initial styling for selected category
+    container.querySelectorAll('.category-filter').forEach(label => {
+        const radio = label.querySelector('.category-radio')
+        updateFilterRadioStyle(label, radio.checked)
+    })
   }
+
+  // Render stores in the UI (Changed from renderVendors)
+  function renderStores(stores, totalProducts) {
+    const container = page.querySelector('#store-filters') // Changed ID
+    if (!container) return;
+
+    const allStoresHtml = `
+      <label class="store-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200" data-store="all">
+        <input type="radio" name="store" value="" class="store-radio sr-only" ${!currentFilters.store ? 'checked' : ''}>
+        <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"></div>
+        <span class="font-medium text-gray-700 flex-1">All Stores</span>
+        <span class="text-sm text-gray-500 bg-light-gray px-2 py-1 rounded font-medium">${totalProducts}</span>
+      </label>
+    `
+
+    const storesHtml = stores.map(store => `
+      <label class="store-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200" data-store="${store.name}">
+        <input type="radio" name="store" value="${store.name}" class="store-radio sr-only" ${currentFilters.store === store.name ? 'checked' : ''}>
+        <div class="w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center"></div>
+        <span class="font-medium text-gray-700 flex-1">${store.name}</span>
+        <span class="text-sm text-gray-500 bg-light-gray px-2 py-1 rounded font-medium">${store.count}</span>
+      </label>
+    `).join('')
+
+    container.innerHTML = allStoresHtml + storesHtml
+    // Apply initial styling for selected store
+    container.querySelectorAll('.store-filter').forEach(label => {
+        const radio = label.querySelector('.store-radio')
+        updateFilterRadioStyle(label, radio.checked)
+    })
+  }
+
+  // Helper function to update radio button visual style
+  function updateFilterRadioStyle(labelElement, isChecked) {
+      const radioButton = labelElement.querySelector('div')
+      const textSpan = labelElement.querySelector('span.font-medium')
+      const countSpan = labelElement.querySelector('span.text-sm')
+
+      if (isChecked) {
+          labelElement.classList.add('border', 'border-secondary', 'bg-secondary/5')
+          labelElement.classList.remove('border-gray-200') // Ensure this isn't conflicting
+          radioButton.classList.add('border-secondary', 'bg-secondary')
+          radioButton.classList.remove('border-gray-300')
+          radioButton.innerHTML = '<div class="w-2 h-2 bg-white rounded-full"></div>'
+          if (textSpan) textSpan.classList.add('text-primary')
+          if (countSpan) {
+              countSpan.classList.add('bg-white')
+              countSpan.classList.remove('bg-light-gray')
+          }
+      } else {
+          labelElement.classList.remove('border', 'border-secondary', 'bg-secondary/5')
+          labelElement.classList.add('border-gray-200') // Add back default border
+          radioButton.classList.remove('border-secondary', 'bg-secondary')
+          radioButton.classList.add('border-gray-300')
+          radioButton.innerHTML = ''
+          if (textSpan) textSpan.classList.remove('text-primary')
+          if (countSpan) {
+              countSpan.classList.remove('bg-white')
+              countSpan.classList.add('bg-light-gray')
+          }
+      }
+  }
+
 
   // Event listeners
   page.addEventListener('change', async (e) => {
+    // Category filter
     if (e.target.name === 'category') {
+      currentFilters.category = e.target.value || null
       // Update visual state for all category filters
       const container = page.querySelector('#category-filters')
       container.querySelectorAll('.category-filter').forEach(label => {
         const radio = label.querySelector('.category-radio')
-        const radioButton = label.querySelector('div')
-
-        if (radio.checked) {
-          // Selected state
-          label.className = 'category-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200 border border-secondary bg-secondary/5'
-          radioButton.className = 'w-4 h-4 border-2 border-secondary rounded-full mr-3 flex items-center justify-center bg-secondary'
-          radioButton.innerHTML = '<div class="w-2 h-2 bg-white rounded-full"></div>'
-        } else {
-          // Unselected state
-          label.className = 'category-filter flex items-center p-3 rounded-md hover:bg-light-gray cursor-pointer transition-colors duration-200'
-          radioButton.className = 'w-4 h-4 border-2 border-gray-300 rounded-full mr-3 flex items-center justify-center'
-          radioButton.innerHTML = ''
-        }
+        updateFilterRadioStyle(label, radio.checked)
       })
-
-      // Update filter
-      currentFilters.category = e.target.value || null
       await applyFilters()
     }
 
+    // Store filter (Changed from vendor)
+    if (e.target.name === 'store') {
+        currentFilters.store = e.target.value || null
+        // Update visual state for all store filters
+        const container = page.querySelector('#store-filters')
+        container.querySelectorAll('.store-filter').forEach(label => {
+            const radio = label.querySelector('.store-radio')
+            updateFilterRadioStyle(label, radio.checked)
+        })
+        await applyFilters()
+    }
+
+    // Sort select
     if (e.target.id === 'sort-select') {
       currentFilters.sort = e.target.value
       await applyFilters()
@@ -509,12 +649,28 @@ function initializeProductList(page) {
     }
 
     if (e.target.id === 'clear-filters') {
-      currentFilters = { category: null, priceMin: null, priceMax: null, search: '', sort: 'name' }
+      currentFilters = { category: null, store: null, priceMin: null, priceMax: null, search: '', sort: 'name' }
       page.querySelector('#search-input').value = ''
       page.querySelector('#price-min').value = ''
       page.querySelector('#price-max').value = ''
       page.querySelector('#sort-select').value = 'name'
-      page.querySelector('input[name="category"][value=""]').checked = true
+
+      // Reset category and store radios
+      const allCategoryRadio = page.querySelector('input[name="category"][value=""]')
+      if (allCategoryRadio) allCategoryRadio.checked = true
+      const allStoreRadio = page.querySelector('input[name="store"][value=""]')
+      if (allStoreRadio) allStoreRadio.checked = true
+
+      // Update styles for all filters
+      page.querySelectorAll('.category-filter').forEach(label => {
+          const radio = label.querySelector('.category-radio')
+          updateFilterRadioStyle(label, radio.checked)
+      })
+      page.querySelectorAll('.store-filter').forEach(label => { // Changed from vendor-filter
+          const radio = label.querySelector('.store-radio')
+          updateFilterRadioStyle(label, radio.checked)
+      })
+
       applyFilters()
     }
 
@@ -531,6 +687,18 @@ function initializeProductList(page) {
       searchTimeout = setTimeout(async () => {
         await applyFilters()
       }, 300)
+    }
+
+    // Debounce price inputs
+    if (e.target.id === 'price-min' || e.target.id === 'price-max') {
+        clearTimeout(priceInputTimeout);
+        priceInputTimeout = setTimeout(async () => {
+            const minInput = page.querySelector('#price-min');
+            const maxInput = page.querySelector('#price-max');
+            currentFilters.priceMin = minInput.value ? parseFloat(minInput.value) : null;
+            currentFilters.priceMax = maxInput.value ? parseFloat(maxInput.value) : null;
+            await applyFilters();
+        }, 500); // Adjust debounce time as needed
     }
   })
 
@@ -561,8 +729,84 @@ function initializeProductList(page) {
   if (window.innerWidth < 1024) {
     page.querySelector('#filters-panel').classList.add('hidden')
   }
+  // Add CSS for filter sections to enable scrolling
+  const style = document.createElement('style')
+  style.textContent = `
+    #category-filters, #store-filters {
+      max-height: 200px; /* Adjust as needed */
+      overflow-y: auto;
+      padding-right: 10px; /* Space for scrollbar */
+    }
+
+    /* Custom scrollbar for Webkit browsers */
+    #category-filters::-webkit-scrollbar,
+    #store-filters::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #category-filters::-webkit-scrollbar-track,
+    #store-filters::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    #category-filters::-webkit-scrollbar-thumb,
+    #store-filters::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 1
+0px;
+    }
+
+    #category-filters::-webkit-scrollbar-thumb:hover,
+    #store-filters::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    /* Animations for mobile filter panel */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+  `
+  document.head.appendChild(style)
 
   // Initialize
   parseUrlParams()
-  loadProducts()
+  loadProducts() // Initial load of products with parsed URL params
+}/**
+ * Renders the personalized recommendations section.
+ * This function is called when the store state changes.
+ */
+function renderPersonalizedSection() {
+  import("../components/PersonalizedRecommendations.js").then(module => {
+    const recSection = module.PersonalizedRecommendationsSection()
+    if (recSection) {
+      const container = page.querySelector("#personalized-recommendations-section")
+      if (container) {
+        // Clear existing recommendations before adding new ones
+        container.innerHTML = ''
+        container.appendChild(recSection)
+      }
+    }
+  })
 }
+
+// Initial render of personalized section
+renderPersonalizedSection()
