@@ -3,6 +3,7 @@
  */
 import { createElementFromHTML, formatCurrency, showToast } from "../utils/helpers.js"
 import { cartService } from "../services/api.js"
+import { CheckoutModal } from "../components/CheckoutModal.js"
 import store from "../state/store.js"
 
 export default function CartPage() {
@@ -343,8 +344,34 @@ function initializeCartPage(page) {
   }
 
   window.proceedToCheckout = function() {
-    // TODO: Implement checkout functionality
-    showToast('Checkout functionality coming soon!', 'info')
+    const { isAuthenticated } = store.getState()
+    
+    if (!isAuthenticated) {
+      showToast('Please login to proceed with checkout', 'warning')
+      location.hash = '/login'
+      return
+    }
+
+    if (!cartData || !cartData.items || cartData.items.length === 0) {
+      showToast('Your cart is empty', 'warning')
+      return
+    }
+
+    // Create and show checkout modal
+    try {
+      console.log('🛒 Opening checkout modal...')
+      const checkoutModal = CheckoutModal(cartData)
+      if (checkoutModal) {
+        document.body.appendChild(checkoutModal)
+        console.log('✅ Checkout modal opened successfully')
+      } else {
+        console.error('❌ Failed to create checkout modal')
+        showToast('Failed to open checkout', 'error')
+      }
+    } catch (error) {
+      console.error('❌ Error opening checkout modal:', error)
+      showToast('Error opening checkout', 'error')
+    }
   }
 
   // Initialize

@@ -32,12 +32,12 @@ def general_recommendations(request):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        # Check cache first
-        cache_key = f"general_recommendations_{serializer.validated_data.get('limit', 10)}"
-        cached_result = cache.get(cache_key)
-        
-        if cached_result:
-            return Response(cached_result, status=status.HTTP_200_OK)
+        # Check cache first (disabled temporarily due to Redis issue)
+        # cache_key = f"general_recommendations_{serializer.validated_data.get('limit', 10)}"
+        # cached_result = cache.get(cache_key)
+        # 
+        # if cached_result:
+        #     return Response(cached_result, status=status.HTTP_200_OK)
         
         # Generate recommendations
         recommendation_service = RecommendationService()
@@ -74,8 +74,8 @@ def general_recommendations(request):
             }
         }
         
-        # Cache for 15 minutes
-        cache.set(cache_key, response_data, 900)
+        # Cache for 15 minutes (disabled temporarily due to Redis issue)
+        # cache.set(cache_key, response_data, 900)
         
         return Response(response_data, status=status.HTTP_200_OK)
         
@@ -98,12 +98,12 @@ def personalized_recommendations(request):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        # Check cache for this user
-        cache_key = f"personalized_recommendations_{request.user.id}_{serializer.validated_data.get('limit', 10)}"
-        cached_result = cache.get(cache_key)
-        
-        if cached_result:
-            return Response(cached_result, status=status.HTTP_200_OK)
+        # Check cache for this user (disabled temporarily due to Redis issue)
+        # cache_key = f"personalized_recommendations_{request.user.id}_{serializer.validated_data.get('limit', 10)}"
+        # cached_result = cache.get(cache_key)
+        # 
+        # if cached_result:
+        #     return Response(cached_result, status=status.HTTP_200_OK)
         
         # Generate personalized recommendations
         recommendation_service = RecommendationService()
@@ -141,8 +141,8 @@ def personalized_recommendations(request):
             }
         }
         
-        # Cache for 5 minutes (shorter for personalized)
-        cache.set(cache_key, response_data, 300)
+        # Cache for 5 minutes (shorter for personalized) (disabled temporarily due to Redis issue)
+        # cache.set(cache_key, response_data, 300)
         
         return Response(response_data, status=status.HTTP_200_OK)
         

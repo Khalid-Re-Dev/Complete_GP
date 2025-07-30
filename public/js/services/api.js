@@ -14,6 +14,11 @@ const API_BASE_URL = "http://localhost:8000/api"
 // Flag to use mock API when backend is not available
 let USE_MOCK_API = false
 
+// Generate unique session ID for recommendations
+function generateSessionId() {
+  return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+}
+
 /**
  * A wrapper around the native fetch API.
  * - Automatically adds the Authorization header for authenticated requests.
@@ -103,7 +108,26 @@ async function apiFetch(endpoint, options = {}) {
         location.hash = "/login"
       }
 
-      throw new Error(errorData.detail || errorData.message || JSON.stringify(errorData))
+      // Create more descriptive error messages
+      let errorMessage = 'An error occurred'
+      if (errorData.detail) {
+        errorMessage = errorData.detail
+      } else if (errorData.message) {
+        errorMessage = errorData.message
+      } else if (errorData.error) {
+        errorMessage = errorData.error
+      } else if (typeof errorData === 'string') {
+        errorMessage = errorData
+      } else {
+        // For validation errors, extract meaningful messages
+        if (errorData.exclude_products) {
+          errorMessage = 'Invalid product IDs in exclude list'
+        } else {
+          errorMessage = JSON.stringify(errorData)
+        }
+      }
+      
+      throw new Error(errorMessage)
     }
 
     // Handle responses with no content (e.g., 204 No Content)
@@ -133,6 +157,27 @@ async function apiFetch(endpoint, options = {}) {
   }
 }
 
+/**
+ * Simple API call wrapper - alias for apiFetch
+ * @param {string} endpoint - The API endpoint
+ * @param {string} method - HTTP method (GET, POST, PUT, DELETE)
+ * @param {object} data - Request body data
+ * @param {object} options - Additional fetch options
+ * @returns {Promise<object>} API response
+ */
+export async function apiCall(endpoint, method = 'GET', data = null, options = {}) {
+  const requestOptions = {
+    method,
+    ...options
+  }
+
+  if (data && (method === 'POST' || method === 'PUT' || method === 'PATCH')) {
+    requestOptions.body = JSON.stringify(data)
+  }
+
+  return await apiFetch(endpoint, requestOptions)
+}
+
 // Handle mock API calls
 async function handleMockApiCall(endpoint, options) {
   if (endpoint.startsWith("/auth/login")) {
@@ -143,6 +188,8 @@ async function handleMockApiCall(endpoint, options) {
     return await mockAuthService.register(body)
   } else if (endpoint.startsWith("/auth/profile")) {
     return await mockAuthService.getProfile()
+  } else if (endpoint.startsWith("/products/stores")) {
+    return await mockProductService.getStores()
   } else if (endpoint.startsWith("/products/") && endpoint.includes("/similar")) {
     const id = endpoint.split('/')[2]
     return await mockProductService.getSimilarProducts(id)
@@ -150,7 +197,8 @@ async function handleMockApiCall(endpoint, options) {
     const id = endpoint.split('/')[2]
     return await mockProductService.getProductById(id)
   } else if (endpoint.startsWith("/products")) {
-    return await mockProductService.getProducts()
+    const params = endpoint.split('?')[1] || ''
+    return await mockProductService.getProducts(params)
   } else if (endpoint.startsWith("/dashboard/stats")) {
     return await mockDashboardService.getStats()
   } else if (endpoint.startsWith("/dashboard/my-products")) {
@@ -375,16 +423,30 @@ export const dashboardService = {
 }
 
 export const reportsService = {
-  // Report Generation
-  generateReport: (reportData) =>
+  // Report Generation - Updated to match backend API
+  generateReport: (reportType, storeId, dateFrom, dateTo, parameters = {}) =>
     apiFetch("/reports/generate/", {
       method: "POST",
-      body: JSON.stringify(reportData),
+      body: JSON.stringify({
+        report_type: reportType,
+        store_id: storeId,
+        date_from: dateFrom,
+        date_to: dateTo,
+        parameters: parameters
+      }),
     }),
+  
+  // Get all reports for current user
   getReports: () => apiFetch("/reports/"),
-  getReportDetails: (reportId) => apiFetch(`/reports/${reportId}/`),
+  
+  // Get specific report details
+  getReport: (reportId) => apiFetch(`/reports/${reportId}/`),
+  
+  // Get report status
   getReportStatus: (reportId) => apiFetch(`/reports/${reportId}/status/`),
-  downloadReport: (reportId) => apiFetch(`/reports/${reportId}/download/`),
+  
+  // Download report
+  downloadReport: (reportId, format = 'csv') => apiFetch(`/reports/${reportId}/download/?format=${format}`),
 
   // Report Schedules
   getReportSchedules: () => apiFetch("/reports/schedules/"),
@@ -422,8 +484,60 @@ export const reportService = {
 }
 
 export const recommendationService = {
-  getRecommendations: (params = "") => apiFetch(`/recommendations/?${params}`),
-  getPersonalizedRecs: () => apiFetch("/recommendations/personalized/"),
+  // General recommendations (no auth required)
+  getGeneralRecommendations: (params = {}) => {
+    const queryParams = new URLSearchParams()
+    queryParams.append('limit', params.limit || 10)
+    queryParams.append('session_id', params.session_id || generateSessionId())
+    
+    if (params.category_id) {
+      queryParams.append('category_id', params.category_id)
+    }
+    
+    if (params.exclude_products && Array.isArray(params.exclude_products) && params.exclude_products.length > 0) {
+      queryParams.append('exclude_products', params.exclude_products.join(','))
+    }
+    
+    return apiFetch(`/recommendations/general/?${queryParams.toString()}`)
+  },
+
+  // Personalized recommendations (auth required)
+  getPersonalizedRecommendations: (params = {}) => {
+    const queryParams = new URLSearchParams()
+    queryParams.append('limit', params.limit || 10)
+    queryParams.append('session_id', params.session_id || generateSessionId())
+    
+    if (params.category_id) {
+      queryParams.append('category_id', params.category_id)
+    }
+    
+    if (params.exclude_products && Array.isArray(params.exclude_products) && params.exclude_products.length > 0) {
+      queryParams.append('exclude_products', params.exclude_products.join(','))
+    }
+    
+    return apiFetch(`/recommendations/personalized/?${queryParams.toString()}`)
+  },
+
+  // Real-time personalization
+  getRealtimePersonalization: (sessionId) => {
+    const queryParams = new URLSearchParams({ session_id: sessionId }).toString()
+    return apiFetch(`/recommendations/realtime/?${queryParams}`)
+  },
+
+  // Track recommendation interactions
+  trackInteraction: (interactionData) =>
+    apiFetch("/recommendations/track/", {
+      method: "POST",
+      body: JSON.stringify({
+        session_id: interactionData.session_id,
+        product_id: interactionData.product_id,
+        action: interactionData.action, // 'click', 'add_to_cart', 'purchase'
+        timestamp: interactionData.timestamp || new Date().toISOString()
+      }),
+    }),
+
+  // Helper to generate session ID
+  generateSessionId,
 }
 
 export const comparisonService = {
@@ -440,7 +554,7 @@ export const comparisonService = {
 }
 
 export const commentService = {
-  getComments: (productSlug) => apiFetch(`/comments/?product=${productSlug}`),
+  getComments: (productId) => apiFetch(`/comments/product/${productId}/`),
   createComment: (commentData) =>
     apiFetch("/comments/", {
       method: "POST",
@@ -455,4 +569,10 @@ export const commentService = {
     apiFetch(`/comments/${id}/`, {
       method: "DELETE",
     }),
+  markHelpful: (commentId, isHelpful) =>
+    apiFetch(`/comments/${commentId}/helpful/`, {
+      method: "POST",
+      body: JSON.stringify({ is_helpful: isHelpful }),
+    }),
+  getSentiment: (commentId) => apiFetch(`/comments/${commentId}/sentiment/`),
 }

@@ -6,10 +6,13 @@ import ProductDetailPage from "./pages/ProductDetailPage.js"
 import CartPage from "./pages/CartPage.js"
 import DashboardPage from "./pages/DashboardPage.js"
 import StoreOwnerDashboard from "./pages/StoreOwnerDashboard.js"
+import SuperAdminDashboard from "./pages/SuperAdminDashboard.js"
 import ProductManagementPage from "./pages/ProductManagementPage.js"
 import ProductFormPage from "./pages/ProductFormPage.js"
 import AboutPage from "./pages/AboutPage.js"
 import ContactPage from "./pages/ContactPage.js"
+import ReportsPage from "./pages/ReportsPage.js"
+import PromotionsPage from "./pages/PromotionsPage.js"
 import NotFoundPage from "./pages/NotFoundPage.js"
 import store from "./state/store.js"
 
@@ -23,11 +26,14 @@ const routes = {
   "/cart": CartPage,
   "/dashboard": DashboardPage,
   "/store-dashboard": StoreOwnerDashboard,
+  "/super-admin": SuperAdminDashboard,
   "/products-management": ProductManagementPage,
   "/products/add": () => ProductFormPage(),
   "/products/edit/:id": (params) => ProductFormPage(params.id),
   "/about": AboutPage,
   "/contact": ContactPage,
+  "/reports": ReportsPage,
+  "/promotions": PromotionsPage,
   // Add more routes as needed
 }
 
@@ -71,10 +77,36 @@ export const router = () => {
       routeHandler = dynamicRoute ? routes[dynamicRoute] : NotFoundPage
     }
 
-    // Protect dashboard route
+    // Protect dashboard routes
     if (path.startsWith("/dashboard") && !store.getState().isAuthenticated) {
       location.hash = "/login"
       return
+    }
+
+    // Protect store owner routes
+    if (path.startsWith("/store-dashboard") || path.startsWith("/products-management")) {
+      const { isAuthenticated, user } = store.getState()
+      if (!isAuthenticated) {
+        location.hash = "/login"
+        return
+      }
+      if (user.role !== 'store_owner' && user.role !== 'admin') {
+        location.hash = "/dashboard"
+        return
+      }
+    }
+
+    // Protect super admin routes
+    if (path.startsWith("/super-admin")) {
+      const { isAuthenticated, user } = store.getState()
+      if (!isAuthenticated) {
+        location.hash = "/login"
+        return
+      }
+      if (user.role !== 'admin') {
+        location.hash = "/dashboard"
+        return
+      }
     }
 
     // Render the page
