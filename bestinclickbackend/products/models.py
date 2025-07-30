@@ -173,6 +173,8 @@ class Product(models.Model):
     average_rating = models.FloatField(default=0.0)
     total_reviews = models.PositiveIntegerField(default=0)
     view_count = models.PositiveIntegerField(default=0)
+    sentiment_rating = models.FloatField(default=0.0, help_text="Average sentiment score from reviews")
+    interaction_score = models.FloatField(default=0.0, help_text="Calculated score based on reviews, brand value, and interactions")
     
     # Product attributes (flexible JSON field)
     attributes = models.JSONField(
@@ -258,3 +260,23 @@ class ProductLike(models.Model):
     
     def __str__(self):
         return f"{self.user.username} likes {self.product.name}"
+
+
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_reviews')
+    rating = models.PositiveIntegerField(default=5, validators=[MinValueValidator(1), MaxValueValidator(5)])
+    comment = models.TextField()
+    sentiment = models.CharField(max_length=20, blank=True, null=True)
+    is_owner = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'product_reviews'
+        ordering = ['-created_at']
+        constraints = [
+            models.UniqueConstraint(fields=['user', 'product'], name='unique_user_product_review')
+        ]
+
+    def __str__(self):
+        return f"Review by {self.user.username} on {self.product.name}"

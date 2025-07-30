@@ -159,7 +159,7 @@ class RecommendationService:
             logger.error(f"Error generating general recommendations: {str(e)}")
             return []
     
-    def get_personalized_recommendations(self, user: User, limit: int = 10, 
+    def get_personalized_recommendations(self, user: User, limit: int = 10,
                                        category_id: Optional[int] = None,
                                        exclude_products: List[int] = None) -> List[Dict]:
         """
@@ -167,18 +167,21 @@ class RecommendationService:
         """
         try:
             exclude_products = exclude_products or []
-            
+            logger.info(f"Getting personalized recommendations for user {user.id}, limit: {limit}")
+
             # Get user's interaction history
             user_interactions = UserBehaviorLog.objects.filter(
                 user=user,
                 timestamp__gte=timezone.now() - timedelta(days=30)
             ).select_related('product')
-            
+
+            logger.info(f"Found {user_interactions.count()} user interactions in the last 30 days")
+
             # Analyze user preferences
             viewed_categories = set()
             liked_products = []
             viewed_brands = set()
-            
+
             for interaction in user_interactions:
                 if interaction.product:
                     if interaction.action_type == 'view':
@@ -186,29 +189,35 @@ class RecommendationService:
                         viewed_brands.add(interaction.product.brand_id)
                     elif interaction.action_type == 'like':
                         liked_products.append(interaction.product)
+
+            logger.info(f"User preferences - Categories: {len(viewed_categories)}, Brands: {len(viewed_brands)}, Liked products: {len(liked_products)}")
             
             # Content-based filtering
             content_based = self._get_content_based_recommendations(
                 viewed_categories, viewed_brands, exclude_products, limit//2
             )
-            
+            logger.info(f"Content-based recommendations: {len(content_based)}")
+
             # Collaborative filtering (simplified)
             collaborative = self._get_collaborative_recommendations(
                 user, exclude_products, limit//2
             )
-            
+            logger.info(f"Collaborative filtering recommendations: {len(collaborative)}")
+
             # Combine recommendations
             all_recommendations = content_based + collaborative
-            
+            logger.info(f"Total combined recommendations: {len(all_recommendations)}")
+
             # Remove duplicates and limit
             seen_products = set()
             final_recommendations = []
-            
+
             for rec in all_recommendations:
                 if rec['product_id'] not in seen_products and len(final_recommendations) < limit:
                     seen_products.add(rec['product_id'])
                     final_recommendations.append(rec)
-            
+
+            logger.info(f"Final personalized recommendations count: {len(final_recommendations)}")
             return final_recommendations
             
         except Exception as e:
@@ -221,48 +230,62 @@ class RecommendationService:
         Get recommendations based on content similarity.
         """
         recommendations = []
-        
+        logger.info(f"Content-based filtering - Categories: {viewed_categories}, Brands: {viewed_brands}, Limit: {limit}")
+
         if viewed_categories or viewed_brands:
             queryset = Product.objects.filter(is_active=True).exclude(id__in=exclude_products)
-            
+
             if viewed_categories:
                 queryset = queryset.filter(category_id__in=viewed_categories)
-            
+
             products = queryset.order_by('-average_rating', '-view_count')[:limit]
-            
+            logger.info(f"Found {products.count()} products for content-based recommendations")
+
             for product in products:
-                recommendations.append({
-                    'product_id': product.id,
-                    'name': product.name,
-                    'price': float(product.get_final_price()),
-                    'rating': product.average_rating,
-                    'score': 0.7,
-                    'algorithm': 'content_based',
-                    'reason': 'Based on your browsing history'
-                })
-        
+                try:
+                    recommendations.append({
+                        'product_id': product.id,
+                        'name': product.name,
+                        'price': float(product.get_final_price()),
+                        'rating': product.average_rating,
+                        'score': 0.7,
+                        'algorithm': 'content_based',
+                        'reason': 'Based on your browsing history'
+                    })
+                except Exception as e:
+                    logger.error(f"Error processing product {product.id} for content-based recommendations: {str(e)}")
+                    continue
+        else:
+            logger.info("No viewed categories or brands found for content-based recommendations")
+
+        logger.info(f"Returning {len(recommendations)} content-based recommendations")
         return recommendations
     
-    def _get_collaborative_recommendations(self, user: User, exclude_products: List[int], 
+    def _get_collaborative_recommendations(self, user: User, exclude_products: List[int],
                                          limit: int) -> List[Dict]:
         """
         Get recommendations based on collaborative filtering.
         """
         recommendations = []
-        
+        logger.info(f"Collaborative filtering for user {user.id}, limit: {limit}")
+
         # Find users with similar behavior (simplified)
         user_liked_products = UserBehaviorLog.objects.filter(
             user=user,
             action_type='like'
         ).values_list('product_id', flat=True)
-        
+
+        logger.info(f"User has liked {len(user_liked_products)} products")
+
         if user_liked_products:
             # Find other users who liked similar products
             similar_users = UserBehaviorLog.objects.filter(
                 action_type='like',
                 product_id__in=user_liked_products
             ).exclude(user=user).values_list('user_id', flat=True).distinct()
-            
+
+            logger.info(f"Found {len(similar_users)} similar users")
+
             # Get products liked by similar users
             recommended_products = UserBehaviorLog.objects.filter(
                 user_id__in=similar_users,
@@ -272,7 +295,9 @@ class RecommendationService:
             ).values('product_id').annotate(
                 like_count=Count('id')
             ).order_by('-like_count')[:limit]
-            
+
+            logger.info(f"Found {recommended_products.count()} potential collaborative recommendations")
+
             for item in recommended_products:
                 try:
                     product = Product.objects.get(id=item['product_id'], is_active=True)
@@ -286,8 +311,15 @@ class RecommendationService:
                         'reason': 'Users with similar taste also liked this'
                     })
                 except Product.DoesNotExist:
+                    logger.warning(f"Product {item['product_id']} not found or inactive")
                     continue
-        
+                except Exception as e:
+                    logger.error(f"Error processing collaborative recommendation for product {item['product_id']}: {str(e)}")
+                    continue
+        else:
+            logger.info("No liked products found for collaborative filtering")
+
+        logger.info(f"Returning {len(recommendations)} collaborative recommendations")
         return recommendations
     
     def get_similar_products(self, product: Product, limit: int = 10) -> List[Dict]:

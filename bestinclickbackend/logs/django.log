@@ -5109,3 +5109,1461 @@ INFO 2025-07-28 01:57:37,465 services 4184 10432 Enhanced search: 'da' -> 'da'
 INFO 2025-07-28 01:57:38,220 services 4184 10432 Enhanced search: 'dall' -> 'dall'
 ERROR 2025-07-28 01:57:47,195 views 4184 18644 Error generating personalized recommendations for user 334: No module named 'redis'
 WARNING 2025-07-28 01:57:47,175 log 4184 20388 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 02:08:40,735 autoreload 1756 17140 Watching for file changes with StatReloader
+INFO 2025-07-28 02:09:09,662 views 1756 20576 User logged in: mugahed
+ERROR 2025-07-28 02:09:09,887 views 1756 6920 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 02:14:57,122 log 1756 18260 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 02:14:57,483 views 1756 22476 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:15:02,823 views 1756 18260 User logged in: mugahed
+ERROR 2025-07-28 02:15:03,238 views 1756 16996 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 02:23:11,227 log 1756 13388 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 02:23:11,340 views 1756 12084 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:23:11,769 views 1756 12084 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:23:16,164 views 1756 14808 User logged in: mugahed
+ERROR 2025-07-28 02:23:16,291 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 02:23:53,452 log 1756 13388 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 02:23:54,405 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:24:00,435 views 1756 13388 User logged in: mugahed
+ERROR 2025-07-28 02:24:00,627 views 1756 2976 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:24:08,400 views 1756 13388 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:24:49,729 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:24:49,764 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:24:52,220 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:24:52,296 views 1756 2976 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:25:01,646 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:25:01,684 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:25:01,726 views 1756 14788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 02:25:23,302 views 1756 14808 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 02:29:57,516 log 1756 14788 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 02:29:58,150 views 1756 13388 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:30:04,444 views 1756 18580 User logged in: mugahed
+ERROR 2025-07-28 02:30:04,690 views 1756 14464 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 02:31:14,291 log 1756 14464 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 02:31:24,592 views 1756 14464 User logged in: mugahed
+ERROR 2025-07-28 02:31:25,197 views 1756 6856 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 02:35:55,874 log 1756 22424 Not Found: /favicon.ico
+ERROR 2025-07-28 02:36:01,827 log 1756 22424 Internal Server Error: /api/cart/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 212, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 58, in retrieve
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 711, in to_representation
+    iterable = data.all() if isinstance(data, models.manager.BaseManager) else data
+               ~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 164, in all
+    return self.get_queryset()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\fields\related_descriptors.py", line 750, in get_queryset
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: 'Cart' instance needs to have a primary key value before this relationship can be used.
+WARNING 2025-07-28 02:38:26,209 log 1756 22424 Unauthorized: /api/cart/saved/
+WARNING 2025-07-28 02:40:05,430 log 1756 20936 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 02:40:05,841 views 1756 17020 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:40:16,849 views 1756 11300 User logged in: mugahed
+ERROR 2025-07-28 02:40:17,835 views 1756 6924 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:46:20,370 views 1756 15372 User logged in: mugahed
+ERROR 2025-07-28 02:46:20,840 views 1756 13744 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:48:17,409 autoreload 1756 17140 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\cart\views.py changed, reloading.
+INFO 2025-07-28 02:48:23,270 autoreload 3460 6096 Watching for file changes with StatReloader
+INFO 2025-07-28 02:48:47,285 autoreload 3460 6096 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\cart\views.py changed, reloading.
+INFO 2025-07-28 02:48:49,920 autoreload 4684 11912 Watching for file changes with StatReloader
+INFO 2025-07-28 02:49:04,651 autoreload 4684 11912 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\cart\views.py changed, reloading.
+INFO 2025-07-28 02:49:07,581 autoreload 8224 18696 Watching for file changes with StatReloader
+WARNING 2025-07-28 02:49:13,068 log 8224 4112 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 02:49:15,302 views 8224 6076 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 02:49:18,819 views 8224 5924 User logged in: mugahed
+ERROR 2025-07-28 02:49:18,974 views 8224 6772 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:04:26,398 autoreload 1028 9464 Watching for file changes with StatReloader
+WARNING 2025-07-28 11:04:41,439 log 1028 11856 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 11:04:42,103 log 1028 9488 Unauthorized: /api/products/
+WARNING 2025-07-28 11:04:42,104 log 1028 14380 Unauthorized: /api/products/
+WARNING 2025-07-28 11:04:42,107 log 1028 2232 Unauthorized: /api/recommendations/personalized/
+INFO 2025-07-28 11:05:09,192 views 1028 18412 User logged in: mugahed
+ERROR 2025-07-28 11:05:09,339 views 1028 14748 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:09:11,457 log 1028 6448 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:09:11,670 views 1028 20036 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:10:21,814 views 1028 16020 User logged in: mugahed
+ERROR 2025-07-28 11:10:22,578 views 1028 2016 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:10:22,680 views 1028 2016 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:10:22,749 views 1028 8 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:10:22,808 views 1028 8 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:11:21,022 log 1028 22100 Not Found: /api/products/506/
+INFO 2025-07-28 11:17:38,687 autoreload 1028 9464 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\promotions\__init__.py changed, reloading.
+INFO 2025-07-28 11:17:43,274 autoreload 12136 14388 Watching for file changes with StatReloader
+WARNING 2025-07-28 11:17:56,497 log 12136 14416 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:17:56,901 views 12136 14416 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:18:01,486 views 12136 3096 User logged in: mugahed
+ERROR 2025-07-28 11:18:01,565 views 12136 22476 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:22:54,549 log 12136 16192 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:22:55,217 views 12136 6124 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:23:07,073 views 12136 16976 User logged in: mugahed
+ERROR 2025-07-28 11:23:07,191 views 12136 11048 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:24:06,128 log 12136 6324 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:24:06,540 views 12136 16976 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:24:10,745 views 12136 21372 User logged in: mugahed
+ERROR 2025-07-28 11:24:10,853 views 12136 10628 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:24:55,767 log 12136 10036 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:24:56,147 views 12136 21372 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:25:00,238 views 12136 12408 User logged in: mugahed
+ERROR 2025-07-28 11:25:00,332 views 12136 8872 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:28:24,809 log 12136 18112 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:28:24,974 views 12136 12408 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:28:25,134 views 12136 12408 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:28:28,839 views 12136 6324 User logged in: mugahed
+ERROR 2025-07-28 11:28:28,929 views 12136 552 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:34:09,971 log 12136 16432 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:34:10,071 views 12136 18744 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:34:14,456 views 12136 16432 User logged in: mugahed
+ERROR 2025-07-28 11:34:14,506 views 12136 16432 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:34:22,210 views 12136 2172 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:34:22,195 log 12136 8032 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:34:22,232 views 12136 2172 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:34:25,642 views 12136 2172 User logged in: mugahed
+ERROR 2025-07-28 11:34:25,701 views 12136 2172 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:34:35,221 log 12136 2172 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:34:35,483 views 12136 2172 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:34:35,602 views 12136 2172 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:34:39,143 views 12136 2172 User logged in: mugahed
+ERROR 2025-07-28 11:34:39,560 views 12136 16752 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:41:49,435 log 12136 7824 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:41:49,663 views 12136 22504 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:41:55,290 views 12136 5444 User logged in: mugahed
+WARNING 2025-07-28 11:42:52,129 log 12136 12580 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:42:52,146 views 12136 5276 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:42:52,386 views 12136 12580 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:42:53,529 log 12136 19356 Unauthorized: /api/recommendations/personalized/
+INFO 2025-07-28 11:42:56,703 views 12136 12132 User logged in: mugahed
+ERROR 2025-07-28 11:42:56,806 views 12136 19356 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:43:09,379 views 12136 12132 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:45:47,865 log 12136 11404 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:45:47,909 views 12136 11404 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:45:48,104 views 12136 6920 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:45:53,677 views 12136 7480 User logged in: mugahed
+ERROR 2025-07-28 11:45:53,791 views 12136 7480 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:46:21,021 log 12136 8032 Not Found: /api/products/undefined/
+WARNING 2025-07-28 11:46:22,185 log 12136 8032 Not Found: /api/products/undefined/
+ERROR 2025-07-28 11:46:29,672 views 12136 5592 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:46:38,209 log 12136 7480 Not Found: /api/products/undefined/
+ERROR 2025-07-28 11:46:44,247 views 12136 7480 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:46:54,477 views 12136 7480 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:46:54,420 log 12136 5592 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:46:54,708 views 12136 7480 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:46:58,447 views 12136 5592 User logged in: mugahed
+ERROR 2025-07-28 11:46:58,564 views 12136 5320 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:47:07,102 log 12136 5592 Not Found: /api/products/undefined/
+ERROR 2025-07-28 11:47:13,710 views 12136 5592 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:47:37,552 log 12136 9256 Not Found: /api/products/undefined/
+WARNING 2025-07-28 11:49:54,321 log 12136 8624 Not Found: /api/products/undefined/
+ERROR 2025-07-28 11:49:54,335 views 12136 19668 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:49:54,324 log 12136 6592 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 11:49:58,863 views 12136 8624 User logged in: mugahed
+ERROR 2025-07-28 11:49:58,975 views 12136 19668 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:50:37,282 log 12136 3352 Unauthorized: /api/cart/saved/
+WARNING 2025-07-28 11:50:37,897 log 12136 3352 Not Found: /favicon.ico
+WARNING 2025-07-28 11:50:41,029 log 12136 3352 Unauthorized: /api/recommendations/personalized/
+INFO 2025-07-28 11:53:07,867 autoreload 12136 14388 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 11:53:12,117 autoreload 15784 10640 Watching for file changes with StatReloader
+INFO 2025-07-28 11:53:16,880 autoreload 15784 10640 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 11:53:20,222 autoreload 8272 21816 Watching for file changes with StatReloader
+WARNING 2025-07-28 11:54:15,675 log 8272 15852 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:54:16,621 views 8272 20524 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:58:26,552 autoreload 8272 21816 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 11:58:28,753 autoreload 7320 9300 Watching for file changes with StatReloader
+INFO 2025-07-28 11:59:02,266 autoreload 7320 9300 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 11:59:04,490 autoreload 13456 11684 Watching for file changes with StatReloader
+INFO 2025-07-28 11:59:17,392 views 13456 11688 User logged in: mugahed
+ERROR 2025-07-28 11:59:17,518 views 13456 13652 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:59:25,829 views 13456 18864 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:59:34,998 views 13456 18864 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:59:34,952 log 13456 13652 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 11:59:38,971 views 13456 16888 User logged in: mugahed
+ERROR 2025-07-28 11:59:39,055 views 13456 16888 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 11:59:50,809 views 13456 16888 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 11:59:50,775 log 13456 19864 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 11:59:51,211 views 13456 16888 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 11:59:55,726 views 13456 5840 User logged in: mugahed
+ERROR 2025-07-28 11:59:55,823 views 13456 11592 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 12:01:28,326 views 13456 11592 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:01:28,302 log 13456 3224 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:01:28,453 views 13456 3224 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:01:34,299 views 13456 4500 User logged in: mugahed
+ERROR 2025-07-28 12:01:34,395 views 13456 3864 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 12:02:08,592 views 13456 4500 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 12:02:17,263 views 13456 3864 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:03:55,396 autoreload 13456 11684 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:03:57,713 autoreload 1708 5484 Watching for file changes with StatReloader
+WARNING 2025-07-28 12:04:00,928 log 1708 19964 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:04:01,390 views 1708 9364 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:04:06,779 views 1708 19964 User logged in: mugahed
+ERROR 2025-07-28 12:04:06,878 views 1708 19480 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:07:07,600 autoreload 1708 5484 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:07:09,942 autoreload 2668 16048 Watching for file changes with StatReloader
+INFO 2025-07-28 12:07:21,688 autoreload 2668 16048 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:07:23,818 autoreload 10416 12316 Watching for file changes with StatReloader
+INFO 2025-07-28 12:07:42,939 autoreload 10416 12316 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:07:45,528 autoreload 12700 16940 Watching for file changes with StatReloader
+INFO 2025-07-28 12:07:57,715 autoreload 12700 16940 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:08:00,750 autoreload 19824 19764 Watching for file changes with StatReloader
+INFO 2025-07-28 12:08:15,934 autoreload 19824 19764 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:08:18,757 autoreload 10216 12344 Watching for file changes with StatReloader
+INFO 2025-07-28 12:08:41,408 autoreload 10216 12344 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-07-28 12:08:44,390 autoreload 20120 19412 Watching for file changes with StatReloader
+INFO 2025-07-28 12:08:57,268 autoreload 20120 19412 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-07-28 12:08:59,166 autoreload 8344 16016 Watching for file changes with StatReloader
+INFO 2025-07-28 12:09:22,746 autoreload 8344 16016 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-07-28 12:09:24,566 autoreload 20980 14088 Watching for file changes with StatReloader
+INFO 2025-07-28 12:10:11,858 autoreload 20980 14088 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-07-28 12:10:13,581 autoreload 14792 8848 Watching for file changes with StatReloader
+WARNING 2025-07-28 12:11:39,070 log 14792 17760 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:11:39,531 views 14792 17760 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:11:42,980 views 14792 15656 User logged in: mugahed
+ERROR 2025-07-28 12:11:43,066 views 14792 15656 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:12:01,745 autoreload 14792 8848 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:12:04,203 autoreload 5104 11872 Watching for file changes with StatReloader
+WARNING 2025-07-28 12:12:05,321 log 5104 8656 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:12:05,712 views 5104 9256 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:12:10,436 views 5104 6928 User logged in: mugahed
+ERROR 2025-07-28 12:12:10,522 views 5104 8656 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:12:48,762 log 5104 20124 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:12:53,433 views 5104 6928 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:14:51,609 log 5104 1840 Not Found: /api/products/undefined/
+WARNING 2025-07-28 12:15:08,594 log 5104 10400 Not Found: /api/products/undefined/
+WARNING 2025-07-28 12:15:12,178 log 5104 10400 Not Found: /api/products/undefined/
+WARNING 2025-07-28 12:15:14,794 log 5104 8920 Not Found: /api/comparisons/products/undefined/
+ERROR 2025-07-28 12:15:18,888 views 5104 10400 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:21:54,121 autoreload 5104 11872 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:21:56,779 autoreload 19964 13968 Watching for file changes with StatReloader
+INFO 2025-07-28 12:22:01,453 autoreload 19964 13968 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:22:03,152 autoreload 7528 8332 Watching for file changes with StatReloader
+WARNING 2025-07-28 12:22:09,400 log 7528 15772 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:22:09,971 views 7528 6948 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:22:12,778 views 7528 15612 User logged in: mugahed
+ERROR 2025-07-28 12:22:12,849 views 7528 15612 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:22:17,383 log 7528 12704 Not Found: /api/products/undefined/
+WARNING 2025-07-28 12:23:29,501 log 7528 5184 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 12:23:29,546 log 7528 12392 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:23:29,725 views 7528 12208 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:23:35,930 views 7528 7776 User logged in: mugahed
+ERROR 2025-07-28 12:23:36,058 views 7528 7776 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:23:46,725 log 7528 5184 Not Found: /api/products/undefined/
+WARNING 2025-07-28 12:24:51,936 log 7528 1588 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 12:24:51,963 log 7528 7776 Not Found: /api/products/undefined/
+INFO 2025-07-28 12:24:56,325 views 7528 7776 User logged in: mugahed
+ERROR 2025-07-28 12:24:56,456 views 7528 5184 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:25:02,118 log 7528 1588 Not Found: /api/products/undefined/
+WARNING 2025-07-28 12:26:27,709 log 7528 1588 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:26:27,744 views 7528 5184 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:26:27,740 log 7528 7776 Not Found: /api/products/undefined/
+INFO 2025-07-28 12:26:31,493 views 7528 1588 User logged in: mugahed
+ERROR 2025-07-28 12:26:31,606 views 7528 1588 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:26:35,618 log 7528 7776 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:26:38,648 views 7528 7776 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:44:24,619 log 7528 552 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:44:24,697 views 7528 19572 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 12:44:24,864 views 7528 13356 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:44:29,731 views 7528 19572 User logged in: mugahed
+ERROR 2025-07-28 12:44:29,804 views 7528 19572 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:44:33,958 log 7528 19572 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:45:49,653 views 7528 20004 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:45:53,144 log 7528 20004 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:45:54,794 views 7528 20004 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 12:45:56,169 views 7528 20004 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:45:56,125 log 7528 9052 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:45:56,405 views 7528 20004 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:46:00,080 views 7528 19944 User logged in: mugahed
+ERROR 2025-07-28 12:46:00,189 views 7528 19944 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:46:03,293 log 7528 9052 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:46:08,729 views 7528 20004 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:46:28,334 log 7528 9052 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:46:28,598 views 7528 19944 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 12:46:29,360 views 7528 19944 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:50:04,282 views 7528 22340 User logged in: mugahed
+ERROR 2025-07-28 12:50:04,355 views 7528 22340 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:50:21,732 log 7528 4368 Not Found: /api/products/undefined/
+ERROR 2025-07-28 12:51:41,510 views 7528 22340 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 12:51:41,459 log 7528 4368 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:51:42,095 views 7528 4368 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:51:46,553 views 7528 18224 User logged in: mugahed
+ERROR 2025-07-28 12:51:46,677 views 7528 18224 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:56:27,347 autoreload 7528 8332 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:56:32,050 autoreload 1904 13356 Watching for file changes with StatReloader
+INFO 2025-07-28 12:56:43,610 autoreload 1904 13356 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 12:56:46,026 autoreload 10784 20880 Watching for file changes with StatReloader
+WARNING 2025-07-28 12:56:50,307 log 10784 20040 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 12:56:51,201 views 10784 2016 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 12:56:54,856 views 10784 4120 User logged in: mugahed
+ERROR 2025-07-28 12:56:54,939 views 10784 20040 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:00:28,123 log 10784 20040 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:00:28,159 views 10784 4120 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 13:00:28,278 views 10784 10952 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:00:32,235 views 10784 12332 User logged in: mugahed
+ERROR 2025-07-28 13:00:32,334 views 10784 12332 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:01:30,367 log 10784 16788 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:01:30,417 views 10784 16788 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 13:01:30,767 views 10784 16788 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:01:34,129 views 10784 12144 User logged in: mugahed
+ERROR 2025-07-28 13:01:34,221 views 10784 12144 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:04:48,255 log 10784 21208 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:04:48,285 views 10784 16828 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:04:52,147 views 10784 15676 User logged in: mugahed
+ERROR 2025-07-28 13:04:52,245 views 10784 21564 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 13:05:10,328 views 10784 20724 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:05:10,275 log 10784 15676 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:05:10,640 views 10784 15676 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:05:14,747 views 10784 21572 User logged in: mugahed
+ERROR 2025-07-28 13:05:14,835 views 10784 21572 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:05:18,371 log 10784 20724 Not Found: /api/products/undefined/
+ERROR 2025-07-28 13:05:21,387 views 10784 20724 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:05:41,365 log 10784 21572 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:05:41,457 views 10784 13264 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 13:05:41,656 views 10784 21572 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:05:46,036 views 10784 21572 User logged in: mugahed
+ERROR 2025-07-28 13:05:46,128 views 10784 13264 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:05:49,679 log 10784 8668 Not Found: /api/comparisons/products/undefined/
+ERROR 2025-07-28 13:05:52,386 views 10784 21572 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:05:54,979 log 10784 14292 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:14:59,282 log 10784 19944 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:14:59,342 views 10784 8920 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:15:03,453 views 10784 19944 User logged in: mugahed
+ERROR 2025-07-28 13:15:03,547 views 10784 19944 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:15:39,248 log 10784 12492 Not Found: /api/products/undefined/
+ERROR 2025-07-28 13:17:38,800 views 10784 19944 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:17:38,760 log 10784 76 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:17:39,001 views 10784 76 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:17:42,623 views 10784 76 User logged in: mugahed
+ERROR 2025-07-28 13:17:42,718 views 10784 5512 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:17:46,727 log 10784 76 Not Found: /api/comparisons/products/undefined/
+ERROR 2025-07-28 13:17:49,429 views 10784 15880 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:17:52,555 log 10784 12516 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:18:47,115 log 10784 15712 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:18:48,329 log 10784 15712 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:21:02,284 log 10784 18304 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:21:02,402 views 10784 2720 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:21:07,895 views 10784 18304 User logged in: mugahed
+ERROR 2025-07-28 13:21:07,962 views 10784 18304 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:21:12,500 log 10784 18304 Not Found: /api/products/undefined/
+ERROR 2025-07-28 13:21:16,663 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:22:24,639 log 10784 18304 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:22:24,723 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 13:22:24,817 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:22:29,169 views 10784 18304 User logged in: mugahed
+ERROR 2025-07-28 13:22:29,230 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:22:33,482 log 10784 1560 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:24:53,855 log 10784 6056 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:24:53,959 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:24:53,883 log 10784 18304 Not Found: /api/products/undefined/
+INFO 2025-07-28 13:24:58,241 views 10784 18304 User logged in: mugahed
+ERROR 2025-07-28 13:24:58,336 views 10784 18304 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:25:03,716 log 10784 20272 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:26:10,598 log 10784 20272 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 13:26:10,631 log 10784 18304 Not Found: /api/products/undefined/
+INFO 2025-07-28 13:26:13,534 views 10784 20272 User logged in: mugahed
+ERROR 2025-07-28 13:26:13,636 views 10784 20272 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:26:45,939 log 10784 6056 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:26:45,969 views 10784 20272 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:26:49,889 views 10784 1560 User logged in: mugahed
+ERROR 2025-07-28 13:26:49,943 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 13:28:17,328 views 10784 6056 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:28:17,282 log 10784 1560 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 13:28:20,950 views 10784 11680 User logged in: mugahed
+ERROR 2025-07-28 13:28:21,023 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:28:26,009 log 10784 11680 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:29:52,964 log 10784 18180 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 13:29:53,000 log 10784 1560 Not Found: /api/products/undefined/
+INFO 2025-07-28 13:29:56,508 views 10784 1560 User logged in: mugahed
+ERROR 2025-07-28 13:29:56,586 views 10784 1560 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:30:00,157 log 10784 18180 Not Found: /api/products/undefined/
+INFO 2025-07-28 13:31:53,298 autoreload 10784 20880 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 13:31:57,026 autoreload 11400 5024 Watching for file changes with StatReloader
+INFO 2025-07-28 13:32:06,329 autoreload 11400 5024 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 13:32:08,788 autoreload 676 16136 Watching for file changes with StatReloader
+WARNING 2025-07-28 13:32:10,677 log 676 15964 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 13:32:10,980 log 676 3772 Not Found: /api/products/undefined/
+INFO 2025-07-28 13:32:13,854 views 676 15964 User logged in: mugahed
+ERROR 2025-07-28 13:32:13,925 views 676 15964 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:32:16,914 log 676 18428 Not Found: /api/comparisons/products/undefined/
+ERROR 2025-07-28 13:32:19,003 views 676 16356 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:32:22,632 log 676 15964 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:32:24,777 log 676 15964 Not Found: /api/products/undefined/
+ERROR 2025-07-28 13:32:27,793 views 676 15964 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:33:15,094 autoreload 676 16136 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 13:33:17,211 autoreload 19108 11684 Watching for file changes with StatReloader
+INFO 2025-07-28 13:33:35,829 autoreload 19108 11684 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 13:33:38,845 autoreload 21524 9296 Watching for file changes with StatReloader
+WARNING 2025-07-28 13:33:40,091 log 21524 18288 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 13:33:40,493 views 21524 10484 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:33:43,569 views 21524 5320 User logged in: mugahed
+ERROR 2025-07-28 13:33:43,624 views 21524 5320 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:33:48,103 log 21524 5320 Not Found: /api/products/undefined/
+ERROR 2025-07-28 13:33:51,614 views 21524 15492 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 13:34:28,008 autoreload 21524 9296 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 13:34:30,482 autoreload 1624 11796 Watching for file changes with StatReloader
+INFO 2025-07-28 13:35:14,861 autoreload 1624 11796 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-07-28 13:35:29,901 autoreload 7588 19476 Watching for file changes with StatReloader
+INFO 2025-07-28 13:35:34,114 views 7588 12840 User logged in: mugahed
+ERROR 2025-07-28 13:35:34,183 views 7588 12840 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:35:38,886 log 7588 9876 Not Found: /api/products/undefined/
+ERROR 2025-07-28 13:35:41,498 views 7588 8588 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:35:51,153 log 7588 11612 Not Found: /api/products/undefined/
+WARNING 2025-07-28 13:40:42,029 log 7588 11612 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 13:40:42,134 log 7588 12840 Not Found: /api/products/undefined/
+INFO 2025-07-28 13:40:47,419 views 7588 8132 User logged in: mugahed
+ERROR 2025-07-28 13:40:47,519 views 7588 12840 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 13:40:52,721 log 7588 8132 Not Found: /api/products/undefined/
+WARNING 2025-07-28 17:50:58,629 log 7588 23996 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 17:50:58,675 log 7588 10328 Unauthorized: /api/products/undefined/
+INFO 2025-07-28 17:51:06,007 views 7588 23300 User logged in: mugahed
+ERROR 2025-07-28 17:51:06,126 views 7588 23264 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:01:09,076 log 7588 20800 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:01:12,956 views 7588 20800 User logged in: mugahed
+ERROR 2025-07-28 18:01:13,027 views 7588 20800 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:01:31,419 log 7588 22544 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:01:35,726 views 7588 12208 User logged in: mugahed
+ERROR 2025-07-28 18:01:35,833 views 7588 12208 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:05:02,762 log 7588 14172 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:05:07,382 views 7588 22544 User logged in: mugahed
+ERROR 2025-07-28 18:05:07,452 views 7588 22544 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 18:05:17,130 views 7588 14172 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:05:41,054 log 7588 22544 Not Found: /api/products/475/
+WARNING 2025-07-28 18:15:48,587 log 7588 19764 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:15:52,749 views 7588 12200 User logged in: mugahed
+ERROR 2025-07-28 18:15:52,828 views 7588 19764 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:15:54,999 log 7588 9028 Not Found: /api/products/undefined/
+ERROR 2025-07-28 18:15:59,738 views 7588 14272 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 18:16:12,477 views 7588 19764 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:18:00,700 log 7588 12200 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:18:13,015 views 7588 19764 User logged in: mugahed
+ERROR 2025-07-28 18:18:13,088 views 7588 19764 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:19:19,084 log 7588 4492 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:19:23,958 views 7588 22368 User logged in: mugahed
+ERROR 2025-07-28 18:19:24,035 views 7588 22368 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:20:58,270 log 7588 14800 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:21:03,044 views 7588 14800 User logged in: mugahed
+ERROR 2025-07-28 18:21:03,109 views 7588 14800 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:23:10,570 log 7588 17864 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:23:15,782 views 7588 5468 User logged in: mugahed
+ERROR 2025-07-28 18:23:15,866 views 7588 5468 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 18:39:47,648 autoreload 18120 5900 Watching for file changes with StatReloader
+WARNING 2025-07-28 18:40:03,178 log 18120 24184 Not Found: /api/products/2/
+ERROR 2025-07-28 18:40:07,065 views 18120 20288 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 18:40:17,503 views 18120 20288 User logged in: mugahed
+ERROR 2025-07-28 18:40:17,574 views 18120 20288 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:44:39,620 log 18120 8360 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:44:44,334 views 18120 10792 User logged in: mugahed
+ERROR 2025-07-28 18:44:44,461 views 18120 10792 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:45:57,328 log 18120 6896 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:46:02,481 views 18120 8360 User logged in: mugahed
+ERROR 2025-07-28 18:46:02,618 views 18120 10152 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:51:43,904 log 18120 23940 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:51:48,699 views 18120 23624 User logged in: mugahed
+ERROR 2025-07-28 18:51:48,797 views 18120 10720 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:53:38,171 log 18120 23940 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:53:42,832 views 18120 10720 User logged in: mugahed
+ERROR 2025-07-28 18:53:42,909 views 18120 10720 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 18:55:24,889 log 18120 14588 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 18:55:30,584 views 18120 23940 User logged in: mugahed
+ERROR 2025-07-28 18:55:30,709 views 18120 23940 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 18:58:26,221 autoreload 18120 5900 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-28 18:58:29,552 autoreload 22760 22744 Watching for file changes with StatReloader
+INFO 2025-07-28 18:58:39,005 autoreload 22760 22744 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-28 18:58:40,888 autoreload 14840 2976 Watching for file changes with StatReloader
+INFO 2025-07-28 19:01:58,079 autoreload 23148 21424 Watching for file changes with StatReloader
+INFO 2025-07-28 19:02:03,633 views 23148 11112 User logged in: mugahed
+ERROR 2025-07-28 19:02:03,761 views 23148 23336 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 19:03:28,331 autoreload 23148 21424 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:03:30,469 autoreload 8804 4616 Watching for file changes with StatReloader
+INFO 2025-07-28 19:03:40,002 autoreload 8804 4616 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:03:41,694 autoreload 22424 14736 Watching for file changes with StatReloader
+INFO 2025-07-28 19:04:45,989 autoreload 22424 14736 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:04:48,324 autoreload 1836 23604 Watching for file changes with StatReloader
+INFO 2025-07-28 19:04:54,333 views 1836 4440 User logged in: mugahed
+ERROR 2025-07-28 19:04:54,423 views 1836 20356 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 19:05:01,103 views 1836 4440 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 19:07:14,944 autoreload 1836 23604 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:07:16,919 autoreload 17660 5400 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:07:53,525 log 17660 17672 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 19:07:53,717 log 17660 17672 Unauthorized: /api/auth/token/refresh/
+INFO 2025-07-28 19:07:57,743 views 17660 9836 User logged in: mugahed
+ERROR 2025-07-28 19:07:57,844 views 17660 17672 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:08:47,957 log 17660 22744 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:08:51,664 views 17660 17672 User logged in: mugahed
+ERROR 2025-07-28 19:08:51,753 views 17660 22744 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:10:03,529 log 17660 9836 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:10:07,288 views 17660 9836 User logged in: mugahed
+ERROR 2025-07-28 19:10:07,390 views 17660 9836 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:11:13,706 log 17660 21752 Not Found: /
+WARNING 2025-07-28 19:11:22,022 log 17660 21752 Not Found: /api/products/505/reviews/
+WARNING 2025-07-28 19:12:28,386 log 17660 23816 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:12:33,947 views 17660 9048 User logged in: mugahed
+ERROR 2025-07-28 19:12:34,055 views 17660 18620 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:15:41,853 log 17660 4600 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:15:46,298 views 17660 19884 User logged in: mugahed
+ERROR 2025-07-28 19:15:46,402 views 17660 18584 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:18:06,292 log 17660 19884 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:18:11,240 views 17660 3852 User logged in: mugahed
+ERROR 2025-07-28 19:18:11,384 views 17660 3852 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:18:19,955 log 17660 18500 Not Found: /api/products/505/reviews/
+WARNING 2025-07-28 19:20:28,458 log 17660 19928 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:20:34,578 views 17660 19928 User logged in: mugahed
+ERROR 2025-07-28 19:20:34,743 views 17660 3852 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:21:30,158 log 17660 3852 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:21:36,133 views 17660 18500 User logged in: mugahed
+ERROR 2025-07-28 19:21:36,258 views 17660 18500 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:21:52,868 log 17660 6680 Not Found: /api/sentiment/
+WARNING 2025-07-28 19:22:41,918 log 17660 23672 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:22:46,856 views 17660 6680 User logged in: mugahed
+ERROR 2025-07-28 19:22:47,040 views 17660 6680 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 19:22:55,010 views 17660 18500 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 19:23:26,183 autoreload 17660 5400 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:23:28,570 autoreload 23976 3136 Watching for file changes with StatReloader
+INFO 2025-07-28 19:23:51,673 autoreload 23976 3136 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:23:53,623 autoreload 5952 23776 Watching for file changes with StatReloader
+INFO 2025-07-28 19:24:33,330 autoreload 5952 23776 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:24:35,368 autoreload 24572 7472 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:24:43,234 log 24572 14412 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:24:47,625 views 24572 5260 User logged in: mugahed
+ERROR 2025-07-28 19:24:47,757 views 24572 14412 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:25:05,004 log 24572 3420 Not Found: /api/sentiment/
+INFO 2025-07-28 19:25:28,344 autoreload 24572 7472 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:25:30,008 autoreload 14160 23432 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:26:02,717 log 14160 16416 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:26:07,277 views 14160 21048 User logged in: mugahed
+ERROR 2025-07-28 19:26:07,392 views 14160 18236 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:26:17,653 log 14160 16416 Method Not Allowed: /api/products/sentiment/
+INFO 2025-07-28 19:27:19,189 autoreload 14160 23432 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:27:21,141 autoreload 21372 21712 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:27:38,362 log 21372 6184 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:27:42,140 views 21372 22952 User logged in: mugahed
+ERROR 2025-07-28 19:27:42,259 views 21372 12848 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:27:51,553 log 21372 17568 Method Not Allowed: /api/products/sentiment/
+INFO 2025-07-28 19:28:47,713 autoreload 21372 21712 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:28:49,794 autoreload 21260 1164 Watching for file changes with StatReloader
+INFO 2025-07-28 19:29:03,206 autoreload 21260 1164 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:29:06,339 autoreload 18232 15172 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:29:11,021 log 18232 10720 Method Not Allowed: /api/products/sentiment/
+WARNING 2025-07-28 19:29:11,280 log 18232 10720 Method Not Allowed: /api/products/sentiment/
+WARNING 2025-07-28 19:29:21,116 log 18232 10720 Method Not Allowed: /api/products/sentiment/
+WARNING 2025-07-28 19:29:29,250 log 18232 8888 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:29:33,940 views 18232 20224 User logged in: mugahed
+ERROR 2025-07-28 19:29:34,058 views 18232 8888 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:29:43,514 log 18232 8888 Method Not Allowed: /api/products/sentiment/
+INFO 2025-07-28 19:30:48,935 autoreload 18232 15172 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:30:51,211 autoreload 4044 14632 Watching for file changes with StatReloader
+INFO 2025-07-28 19:30:57,330 autoreload 4044 14632 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:30:59,297 autoreload 22356 9488 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:31:05,112 log 22356 11488 Method Not Allowed: /api/products/sentiment/
+WARNING 2025-07-28 19:31:05,365 log 22356 11488 Method Not Allowed: /api/products/sentiment/
+INFO 2025-07-28 19:31:39,978 autoreload 22356 9488 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:31:42,231 autoreload 24380 12684 Watching for file changes with StatReloader
+INFO 2025-07-28 19:31:47,608 autoreload 24380 12684 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:31:49,065 autoreload 13596 22024 Watching for file changes with StatReloader
+INFO 2025-07-28 19:32:06,753 autoreload 13596 22024 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:32:08,618 autoreload 23648 17644 Watching for file changes with StatReloader
+INFO 2025-07-28 19:32:17,726 autoreload 23648 17644 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:32:19,818 autoreload 2228 23516 Watching for file changes with StatReloader
+INFO 2025-07-28 19:33:35,284 autoreload 2228 23516 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:33:37,475 autoreload 16560 16440 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:34:03,497 log 16560 24560 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:34:08,707 views 16560 21164 User logged in: mugahed
+ERROR 2025-07-28 19:34:08,945 views 16560 21164 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:34:19,074 log 16560 24560 Method Not Allowed: /api/products/sentiment/
+INFO 2025-07-28 19:35:19,599 autoreload 16560 16440 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:35:21,924 autoreload 9132 21864 Watching for file changes with StatReloader
+INFO 2025-07-28 19:35:45,189 autoreload 9132 21864 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:35:48,035 autoreload 23468 3872 Watching for file changes with StatReloader
+INFO 2025-07-28 19:35:58,013 views 23468 19004 User logged in: mugahed
+ERROR 2025-07-28 19:35:58,166 views 23468 19004 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:36:06,965 log 23468 19004 Method Not Allowed: /api/products/analyze-sentiment/
+WARNING 2025-07-28 19:36:25,005 log 23468 19004 Method Not Allowed: /api/products/analyze-sentiment/
+INFO 2025-07-28 19:37:22,261 autoreload 23468 3872 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:37:24,883 autoreload 14648 22168 Watching for file changes with StatReloader
+INFO 2025-07-28 19:37:41,436 autoreload 14648 22168 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\urls.py changed, reloading.
+INFO 2025-07-28 19:37:44,669 autoreload 24200 9604 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:38:06,445 log 24200 18900 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:38:10,783 views 24200 20280 User logged in: mugahed
+ERROR 2025-07-28 19:38:10,967 views 24200 20280 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:38:19,806 log 24200 6216 Unauthorized: /api/products/analyze-sentiment/
+WARNING 2025-07-28 19:38:21,180 log 24200 6216 Unauthorized: /api/products/analyze-sentiment/
+INFO 2025-07-28 19:38:40,783 autoreload 5876 13332 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:38:48,268 log 5876 10860 Unauthorized: /api/products/analyze-sentiment/
+INFO 2025-07-28 19:39:25,489 autoreload 5876 13332 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:39:29,004 autoreload 852 22688 Watching for file changes with StatReloader
+INFO 2025-07-28 19:40:11,626 autoreload 852 22688 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-07-28 19:40:13,785 autoreload 20592 700 Watching for file changes with StatReloader
+WARNING 2025-07-28 19:40:23,247 log 20592 10876 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:40:28,646 views 20592 15236 User logged in: mugahed
+ERROR 2025-07-28 19:40:28,760 views 20592 15236 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 19:40:48,141 log 20592 20956 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 19:40:53,598 views 20592 13268 User logged in: mugahed
+ERROR 2025-07-28 19:40:53,744 views 20592 3260 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 20:09:48,609 autoreload 9100 14048 Watching for file changes with StatReloader
+WARNING 2025-07-28 20:10:15,493 file_download 9100 14048 Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+INFO 2025-07-28 20:14:15,434 views 9100 18088 User logged in: mugahed
+ERROR 2025-07-28 20:14:15,867 views 9100 18088 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:14:26,784 log 9100 18760 Unauthorized: /api/products/analyze-sentiment/
+INFO 2025-07-28 20:20:27,094 autoreload 9100 14048 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-07-28 20:20:35,348 autoreload 22612 20868 Watching for file changes with StatReloader
+WARNING 2025-07-28 20:21:31,772 log 22612 19044 Unauthorized: /api/products/analyze-sentiment/
+WARNING 2025-07-28 20:21:35,936 log 22612 7588 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 20:21:36,059 log 22612 8096 Unauthorized: /api/auth/token/refresh/
+INFO 2025-07-28 20:21:41,342 views 22612 9636 User logged in: mugahed
+ERROR 2025-07-28 20:21:41,577 views 22612 7588 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:23:14,594 log 22612 19044 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:23:19,905 views 22612 7588 User logged in: mugahed
+ERROR 2025-07-28 20:23:20,030 views 22612 9636 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:25:39,308 log 22612 7588 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:25:45,019 views 22612 22896 User logged in: mugahed
+ERROR 2025-07-28 20:25:45,179 views 22612 19044 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:26:25,824 log 22612 18088 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:26:32,179 views 22612 18088 User logged in: mugahed
+ERROR 2025-07-28 20:26:32,337 views 22612 18088 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:26:52,775 log 22612 21268 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:26:58,471 views 22612 21268 User logged in: mugahed
+ERROR 2025-07-28 20:26:58,604 views 22612 16800 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:27:16,309 log 22612 5908 Not Found: /
+WARNING 2025-07-28 20:30:32,176 log 22612 7604 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:30:38,084 views 22612 6676 User logged in: mugahed
+ERROR 2025-07-28 20:30:38,207 views 22612 13592 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:32:41,807 log 22612 13592 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:32:46,375 views 22612 5424 User logged in: mugahed
+ERROR 2025-07-28 20:32:46,464 views 22612 5424 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:35:02,940 log 22612 5424 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:35:07,235 views 22612 7604 User logged in: mugahed
+ERROR 2025-07-28 20:35:07,338 views 22612 7604 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:36:27,141 log 22612 24392 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:36:31,125 views 22612 23964 User logged in: mugahed
+ERROR 2025-07-28 20:36:31,248 views 22612 8088 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:37:59,336 log 22612 23404 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:38:03,910 views 22612 23404 User logged in: mugahed
+ERROR 2025-07-28 20:38:04,035 views 22612 23964 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 20:41:11,942 autoreload 22612 20868 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\models.py changed, reloading.
+INFO 2025-07-28 20:41:19,092 autoreload 14320 22848 Watching for file changes with StatReloader
+ERROR 2025-07-28 20:41:46,290 log 14320 24324 Internal Server Error: /api/products/dell-prod-01/reviews/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products.sentiment_rating
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 21, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py", line 290, in perform_create
+    product = get_object_or_404(Product, slug=product_slug)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 643, in get
+    num = len(clone)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1926, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products.sentiment_rating
+WARNING 2025-07-28 20:41:49,398 log 14320 22392 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 20:41:50,036 log 14320 22392 Internal Server Error: /api/products/dell-prod-01/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products.sentiment_rating
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 212, in get
+    return self.retrieve(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py", line 128, in retrieve
+    instance = self.get_object()
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 100, in get_object
+    obj = get_object_or_404(queryset, **filter_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 19, in get_object_or_404
+    return _get_object_or_404(queryset, *filter_args, **filter_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\shortcuts.py", line 85, in get_object_or_404
+    return queryset.get(*args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 643, in get
+    num = len(clone)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1926, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products.sentiment_rating
+ERROR 2025-07-28 20:41:50,935 log 14320 8804 Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products.sentiment_rating
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 42, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 175, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\pagination.py", line 223, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\paginator.py", line 191, in __len__
+    return len(self.object_list)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1926, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products.sentiment_rating
+ERROR 2025-07-28 20:41:51,200 log 14320 4844 Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products.sentiment_rating
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 42, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 175, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\pagination.py", line 223, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\paginator.py", line 191, in __len__
+    return len(self.object_list)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1926, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products.sentiment_rating
+INFO 2025-07-28 20:41:54,646 views 14320 4844 User logged in: mugahed
+ERROR 2025-07-28 20:41:54,770 views 14320 8804 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 20:41:54,833 services 14320 8804 Error generating general recommendations: no such column: products.sentiment_rating
+ERROR 2025-07-28 20:41:55,157 log 14320 11448 Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products.sentiment_rating
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 42, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 175, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\pagination.py", line 223, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\paginator.py", line 191, in __len__
+    return len(self.object_list)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1926, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products.sentiment_rating
+ERROR 2025-07-28 20:41:55,264 log 14320 4844 Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: products.sentiment_rating
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 42, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 175, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\pagination.py", line 223, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\paginator.py", line 191, in __len__
+    return len(self.object_list)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1926, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: products.sentiment_rating
+INFO 2025-07-28 20:43:33,871 autoreload 2712 19164 Watching for file changes with StatReloader
+WARNING 2025-07-28 20:43:59,964 log 2712 15912 Unauthorized: /api/auth/profile/
+ERROR 2025-07-28 20:44:00,851 views 2712 2232 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 20:44:05,919 views 2712 13696 User logged in: mugahed
+ERROR 2025-07-28 20:44:06,337 views 2712 13696 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:44:40,810 log 2712 15912 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:44:46,656 views 2712 6016 User logged in: mugahed
+ERROR 2025-07-28 20:44:46,755 views 2712 6016 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:48:27,154 log 2712 17020 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 20:48:32,984 views 2712 23160 User logged in: mugahed
+ERROR 2025-07-28 20:48:33,114 views 2712 6016 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 20:49:14,974 log 2712 6016 Unauthorized: /api/auth/profile/
+WARNING 2025-07-28 20:49:28,052 log 2712 17680 Unauthorized: /api/products/analyze-sentiment/
+ERROR 2025-07-28 20:49:28,425 log 2712 17680 Internal Server Error: /api/products/dell-prod-01/reviews/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 21, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py", line 292, in perform_create
+    review = serializer.save(user=self.request.user, product=product, is_owner=is_owner)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 989, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 675, in create
+    obj = self.model(**kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\fields\related_descriptors.py", line 283, in __set__
+    raise ValueError(
+    ...<7 lines>...
+    )
+ValueError: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x000001EE8761B3E0>": "ProductReview.user" must be a "User" instance.
+INFO 2025-07-28 20:49:57,688 views 2712 17680 User logged in: mugahed
+ERROR 2025-07-28 20:49:58,005 views 2712 17680 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 20:50:32,923 views 2712 17344 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 20:51:38,019 autoreload 2712 19164 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\serializers.py changed, reloading.
+INFO 2025-07-28 20:51:44,761 autoreload 3136 24572 Watching for file changes with StatReloader
+INFO 2025-07-28 20:52:24,207 views 3136 23124 User logged in: mugahed
+ERROR 2025-07-28 20:52:24,491 views 3136 23124 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 20:53:24,617 views 3136 23124 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 20:54:21,090 autoreload 3136 24572 C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\models.py changed, reloading.
+INFO 2025-07-28 20:54:27,124 autoreload 6780 3112 Watching for file changes with StatReloader
+INFO 2025-07-28 20:59:05,621 autoreload 10592 6688 Watching for file changes with StatReloader
+INFO 2025-07-28 20:59:35,501 views 10592 18624 User logged out: mugahed
+INFO 2025-07-28 20:59:35,508 views 10592 15696 User logged out: mugahed
+INFO 2025-07-28 20:59:43,291 views 10592 18624 User logged in: mugahed
+ERROR 2025-07-28 20:59:43,483 views 10592 9240 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 21:00:04,362 log 10592 15696 Internal Server Error: /api/products/dell-prod-01/reviews/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 21, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py", line 292, in perform_create
+    review = serializer.save(user=self.request.user, product=product, is_owner=is_owner)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 989, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 677, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1845, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+WARNING 2025-07-28 21:01:55,151 log 10592 15696 Unauthorized: /api/auth/profile/
+INFO 2025-07-28 21:02:00,423 views 10592 15696 User logged in: mugahed
+ERROR 2025-07-28 21:02:00,583 views 10592 18624 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 21:02:14,497 log 10592 15696 Internal Server Error: /api/products/dell-prod-01/reviews/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 21, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\Complete_GP\bestinclickbackend\products\views.py", line 292, in perform_create
+    review = serializer.save(user=self.request.user, product=product, is_owner=is_owner)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 989, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 677, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1845, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+ERROR 2025-07-28 21:02:24,881 views 10592 15696 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 21:02:46,637 views 10592 8424 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-07-28 21:02:53,084 log 10592 15696 Not Found: /api/products/undefined/
+ERROR 2025-07-28 21:02:55,648 views 10592 15696 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-07-28 21:03:18,853 views 10592 18624 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-07-28 21:03:44,716 views 10592 15696 User logged in: mugahed22
+INFO 2025-07-30 10:15:13,774 autoreload 14316 7224 Watching for file changes with StatReloader

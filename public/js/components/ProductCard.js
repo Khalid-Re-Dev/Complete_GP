@@ -38,7 +38,10 @@ export function ProductCard(product) {
     imageUrl = product.image_urls[0]
   } else if (product.images && product.images.length > 0) {
     imageUrl = product.images.find(img => img.is_primary)?.image || product.images[0]?.image
+  }  if (!imageUrl) {
+    imageUrl = product.images?.[0]?.image || product.images?.[0]?.url || '/placeholder.jpg'
   }
+
 
   return `
     <div class="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group cursor-pointer overflow-hidden" onclick="location.hash='/products/${productSlug}'">

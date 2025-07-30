@@ -11,7 +11,7 @@ export default function RegisterPage() {
                         Create your account
                     </h2>
                     <p class="mt-2 text-center text-sm text-muted">
-                        Join Best on Click and start shopping
+                        Join Best in Click and start shopping
                     </p>
                 </div>
                 <form id="register-form" class="mt-8 space-y-6">
@@ -144,7 +144,7 @@ export default function RegisterPage() {
           user: response.user,
         })
 
-        showToast("Registration successful! Welcome to Best on Click!", "success")
+        showToast("Registration successful! Welcome to Best in Click!", "success")
 
         // Redirect based on user role
         if (response.user.role === 'store_owner') {

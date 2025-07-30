@@ -39,6 +39,7 @@ export default function ProductDetailPage(params) {
   // Load product details
   loadProductDetails(page, params.id)
 
+
   return page
 }
 
@@ -64,8 +65,16 @@ function renderProductDetails(page, product) {
   const originalPrice = product.price
   const hasDiscount = (product.discount_percentage || 0) > 0
   const categoryName = product.category?.name || product.category || 'Uncategorized'
-  const rating = product.average_rating || product.rating || 0
-  const reviewsCount = product.total_reviews || product.reviews_count || 0
+  // Ensure correct review count and rating
+  const reviewsCount = product.total_reviews ?? product.reviews_count ?? (Array.isArray(product.reviews) ? product.reviews.length : 0);
+  let rating = 0;
+  if (product.average_rating !== undefined && product.average_rating !== null) {
+    rating = product.average_rating;
+  } else if (product.rating !== undefined && product.rating !== null) {
+    rating = product.rating;
+  } else if (Array.isArray(product.reviews) && product.reviews.length > 0) {
+    rating = product.reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / product.reviews.length;
+  }
   const isInStock = product.in_stock !== undefined ? product.in_stock : (product.stock || 0) > 0
 
   // Get images - handle both image_urls array and images objects
@@ -86,223 +95,282 @@ function renderProductDetails(page, product) {
     breadcrumbProduct.textContent = product.name
   }
 
-  const content = `
+  // قسم الرفيو الحديث
+  const reviewsSection = `
+    <div class="bg-white rounded-lg shadow-sm border p-8 mb-8">
+      <h2 class="text-2xl font-bold text-primary mb-4">
+        <i class="fa-solid fa-comments text-secondary mr-2"></i>
+        Reviews
+      </h2>
+      <form id="add-review-form" class="mb-6">
+        <div class="flex gap-4 mb-3">
+          <select id="review-rating" class="form-select w-32">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+          </select>
+          <input id="review-comment" type="text" class="form-input flex-1" placeholder="Write your review..." required>
+        </div>
+        <div id="sentiment-result" class="text-xs text-gray-500 mb-2"></div>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </form>
+      <div id="reviews-list">
+        <div id="reviews-skeleton" class="animate-pulse">
+          <div class="bg-gray-100 rounded-lg p-4 border mb-3">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="font-semibold bg-gray-300 text-transparent rounded w-24 h-4"></span>
+              <span class="text-xs bg-gray-300 text-transparent rounded w-16 h-4"></span>
+              <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-300 text-transparent w-12 h-4"></span>
+              <span class="ml-auto bg-gray-300 text-transparent rounded w-20 h-4"></span>
+            </div>
+            <div class="bg-gray-200 rounded h-4 mb-2 w-3/4"></div>
+            <div class="bg-gray-200 rounded h-3 w-1/4"></div>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 border mb-3">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="font-semibold bg-gray-300 text-transparent rounded w-24 h-4"></span>
+              <span class="text-xs bg-gray-300 text-transparent rounded w-16 h-4"></span>
+              <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-300 text-transparent w-12 h-4"></span>
+              <span class="ml-auto bg-gray-300 text-transparent rounded w-20 h-4"></span>
+            </div>
+            <div class="bg-gray-200 rounded h-4 mb-2 w-3/4"></div>
+            <div class="bg-gray-200 rounded h-3 w-1/4"></div>
+          </div>
+        </div>
+        <button id="show-more-reviews" class="btn btn-outline w-full mt-2" style="display:none;">عرض المزيد من المراجعات</button>
+      </div>
+    </div>
+  `;
 
+  const content = `
     <!-- Product Details Card -->
     <div class="bg-white rounded-lg shadow-sm border overflow-hidden mb-8">
       <div class="grid grid-cols-1 lg:grid-cols-2">
-        <!-- Product Images Gallery -->
-        <div class="p-4 md:p-8">
-          <div class="product-gallery">
-            <!-- Main Image Container -->
-            <div class="main-image-container relative mb-4">
-              <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden relative group shadow-lg">
-                <img src="${imageUrls[0]}"
-                     alt="${product.name}"
-                     class="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                     id="main-image"
-                     onclick="openImageModal('${imageUrls[0]}', '${product.name}')"
-                     onerror="this.src='/placeholder.jpg'; this.onerror=null;">
-
-                <!-- Image Loading Overlay -->
-                <div id="image-loading" class="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center hidden">
-                  <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-secondary"></div>
-                </div>
-
-                <!-- Zoom Indicator -->
-                <div class="absolute top-4 right-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded-full text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <i class="fa-solid fa-search-plus mr-1"></i>
-                  Click to zoom
-                </div>
-
-                <!-- Image Counter -->
-                ${imageUrls.length > 1 ? `
-                  <div class="absolute bottom-4 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded-full text-sm">
-                    <span id="current-image-index">1</span> / ${imageUrls.length}
-                  </div>
-                ` : ''}
-
-                <!-- Navigation Arrows for Mobile -->
-                ${imageUrls.length > 1 ? `
-                  <button class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 md:hidden"
-                          onclick="navigateImage(-1)">
-                    <i class="fa-solid fa-chevron-left text-gray-700"></i>
-                  </button>
-                  <button class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 shadow-lg transition-all duration-300 md:hidden"
-                          onclick="navigateImage(1)">
-                    <i class="fa-solid fa-chevron-right text-gray-700"></i>
-                  </button>
-                ` : ''}
-              </div>
+        <!-- Product Images -->
+        <div class="p-8 flex flex-col items-center justify-center">
+          <div class="relative w-full max-w-md">
+            <img id="main-image" src="${imageUrls[0]}" alt="${product.name}" class="w-full h-96 object-contain rounded-lg shadow-lg transition-all duration-300" onerror="this.src='/placeholder.jpg'; this.onerror=null;">
+            <div id="image-loading" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-70 rounded-lg hidden">
+              <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-secondary"></div>
             </div>
-
-            <!-- Thumbnail Gallery -->
-            ${imageUrls.length > 1 ? `
-              <div class="thumbnail-gallery">
-                <div class="flex gap-2 md:gap-3 overflow-x-auto pb-2 scrollbar-hide">
-                  ${imageUrls.map((url, index) => `
-                    <div class="thumbnail-wrapper flex-shrink-0">
-                      <div class="thumbnail-container w-16 h-16 md:w-20 md:h-20 bg-gray-100 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-300 hover:border-secondary hover:shadow-md ${index === 0 ? 'border-secondary shadow-md' : 'border-gray-200'}"
-                           onclick="changeMainImage('${url}', ${index}, this)">
-                        <img src="${url}"
-                             alt="${product.name} - Image ${index + 1}"
-                             class="w-full h-full object-cover transition-opacity duration-300 hover:opacity-80"
-                             loading="lazy"
-                             onerror="this.src='/placeholder.jpg'; this.onerror=null;">
-
-                        <!-- Loading indicator for thumbnails -->
-                        <div class="thumbnail-loading absolute inset-0 bg-gray-200 animate-pulse hidden"></div>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
-
-                <!-- Thumbnail Navigation Hint -->
-                <div class="text-center mt-2 text-xs text-gray-500 md:hidden">
-                  Swipe to see more images
-                </div>
-              </div>
-            ` : ''}
+            <div class="absolute bottom-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-xs font-bold shadow">${categoryName}</div>
+            <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-bold shadow">${isInStock ? 'In Stock' : 'Out of Stock'}</div>
+            <div class="absolute bottom-4 left-4 bg-gray-800 text-white px-3 py-1 rounded-full text-xs shadow">${imageUrls.length} Images</div>
+            <div class="absolute top-4 right-4 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-xs shadow">${product.sku || ''}</div>
           </div>
+          <div class="flex gap-2 mt-4 w-full justify-center">
+            ${imageUrls.map((url, idx) => `<div class="thumbnail-container border-2 border-gray-200 rounded-lg cursor-pointer transition-all duration-200" onclick="changeMainImage('${url}', ${idx}, this)"><img src="${url}" alt="${product.name}" class="thumbnail-image w-16 h-16 object-cover rounded-lg" onerror="this.src='/placeholder.jpg'; this.onerror=null;"></div>`).join('')}
+          </div>
+          <div class="mt-2 text-xs text-gray-500 text-center">صورة <span id="current-image-index">1</span> من ${imageUrls.length}</div>
         </div>
-
         <!-- Product Info -->
-        <div class="p-8 space-y-6">
-          <!-- Header -->
-          <div>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="px-3 py-1 bg-secondary bg-opacity-10 text-secondary text-sm font-medium rounded-full">
-                ${categoryName}
-              </span>
-              ${isInStock ?
-                '<span class="px-3 py-1 bg-success bg-opacity-10 text-success text-sm font-medium rounded-full">In Stock</span>' :
-                '<span class="px-3 py-1 bg-danger bg-opacity-10 text-danger text-sm font-medium rounded-full">Out of Stock</span>'
-              }
-            </div>
-            <h1 class="text-3xl lg:text-4xl font-bold text-primary mb-4">${product.name}</h1>
+        <div class="p-8 flex flex-col justify-between">
+          <h1 class="text-3xl font-bold text-primary mb-2">${product.name}</h1>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-lg font-bold text-secondary">${formatCurrency(finalPrice)}</span>
+            ${hasDiscount ? `<span class="text-sm line-through text-gray-400">${formatCurrency(originalPrice)}</span><span class="ml-2 text-xs bg-danger text-white px-2 py-1 rounded-full">-${product.discount_percentage}%</span>` : ''}
           </div>
-
-          <!-- Rating -->
-          ${rating > 0 ? `
-            <div class="flex items-center gap-3">
-              <div class="flex text-yellow-400">
-                ${Array.from({length: 5}, (_, i) => `
-                  <i class="fa-solid fa-star ${i < Math.floor(rating) ? '' : 'text-gray-300'}"></i>
-                `).join('')}
-              </div>
-              <span class="text-gray-600 font-medium">${rating.toFixed(1)}</span>
-              <span class="text-gray-400">•</span>
-              <span class="text-gray-600">${reviewsCount} reviews</span>
-            </div>
-          ` : ''}
-
-          <!-- Price -->
-          <div class="flex items-center gap-4">
-            <div class="text-4xl font-bold text-secondary">${formatCurrency(finalPrice)}</div>
-            ${hasDiscount ? `
-              <div class="flex flex-col">
-                <div class="text-lg text-gray-500 line-through">${formatCurrency(originalPrice)}</div>
-                <div class="text-sm text-success font-medium">Save ${Math.round(product.discount_percentage)}%</div>
-              </div>
-            ` : ''}
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-yellow-400">${'★'.repeat(Math.round(rating))}${'☆'.repeat(5-Math.round(rating))}</span>
+            <span class="text-xs text-gray-500">(${reviewsCount} reviews)</span>
           </div>
-
-          <!-- Description -->
-          ${product.description ? `
-            <div>
-              <h3 class="font-semibold text-lg mb-3 text-gray-800">Description</h3>
-              <p class="text-gray-600 leading-relaxed">${product.description}</p>
-            </div>
-          ` : ''}
-
-          <!-- Quantity and Actions -->
-          <div class="space-y-4 pt-4">
-            <!-- Quantity Selector -->
-            <div class="flex items-center gap-4">
-              <span class="text-gray-700 font-medium">Quantity:</span>
-              <div class="flex items-center border border-gray-300 rounded-lg">
-                <button class="px-4 py-2 hover:bg-gray-100 transition-colors" onclick="changeQuantity(-1)">
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-                <span class="px-6 py-2 border-x border-gray-300 font-medium" id="quantity" data-max-stock="${product.stock_quantity || 999}">1</span>
-                <button class="px-4 py-2 hover:bg-gray-100 transition-colors" onclick="changeQuantity(1)">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Main Action Button -->
-            <button class="btn btn-primary w-full text-lg py-4" onclick="addToCart('${product.slug || product.id}')" ${!isInStock ? 'disabled' : ''}>
-              <i class="fa-solid fa-shopping-cart mr-3"></i>
-              ${isInStock ? 'Add to Cart' : 'Out of Stock'}
-            </button>
-
-            <!-- Secondary Actions -->
-            <div class="grid grid-cols-2 gap-3">
-              <button class="btn btn-outline" onclick="addToWishlist(${product.id})">
-                <i class="fa-solid fa-heart mr-2"></i>
-                Wishlist
-              </button>
-              <button class="btn btn-outline" onclick="shareProduct()">
-                <i class="fa-solid fa-share mr-2"></i>
-                Share
-              </button>
-            </div>
+          <div class="mb-4 text-gray-700">${product.description || ''}</div>
+          <div class="flex items-center gap-4 mb-4">
+            <button class="btn btn-primary" onclick="addToCart('${product.slug}')"><i class="fa-solid fa-shopping-cart mr-2"></i> Add to Cart</button>
+            <button class="btn btn-outline" onclick="addToWishlist('${product.slug}')"><i class="fa-solid fa-heart mr-2"></i> Add to Wishlist</button>
+            <button class="btn btn-outline" onclick="shareProduct()"><i class="fa-solid fa-share-nodes mr-2"></i> Share</button>
           </div>
-
-          <!-- Product Details -->
-          <div class="border-t pt-6">
-            <h4 class="font-semibold text-gray-800 mb-4">Product Details</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-              <div class="flex justify-between">
-                <span class="text-gray-600">SKU:</span>
-                <span class="font-medium">PRD-${product.id.toString().padStart(6, '0')}</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Stock:</span>
-                <span class="font-medium">${product.stock || 0} units</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Category:</span>
-                <a href="#/products?category=${product.category}" class="text-secondary hover:text-primary transition-colors font-medium">${product.category}</a>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-gray-600">Brand:</span>
-                <span class="font-medium">${product.brand || 'N/A'}</span>
-              </div>
-            </div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs text-gray-500">Brand: ${product.brand?.name || product.brand || '-'}</span>
+            <span class="text-xs text-gray-500">Store: ${product.store?.name || product.store || '-'}</span>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-xs text-gray-500">SKU: ${product.sku || '-'}</span>
+            <span class="text-xs text-gray-500">Stock: ${product.stock || '-'}</span>
           </div>
         </div>
       </div>
     </div>
-
+    ${reviewsSection}
     <!-- Similar Products -->
-    <div class="bg-white rounded-lg shadow-sm border p-8">
-      <div class="flex items-center justify-between mb-8">
-        <div>
-          <h2 class="text-2xl font-bold text-primary flex items-center gap-2">
-            <i class="fa-solid fa-robot text-purple-500"></i>
-            You Might Also Like
-          </h2>
-          <p class="text-sm text-gray-600 mt-1">AI-powered recommendations based on this product</p>
-        </div>
-        <a href="#/products" class="text-secondary hover:text-primary transition-colors font-medium">
-          View All Products
-          <i class="fa-solid fa-arrow-right ml-2"></i>
-        </a>
-      </div>
-      <div id="similar-products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        <div class="col-span-full flex justify-center py-12">
-          <div class="text-center">
-            <div class="loader w-12 h-12 border-4 border-gray-200 border-t-secondary rounded-full animate-spin mx-auto mb-4"></div>
-            <p class="text-gray-500">Loading AI recommendations...</p>
-          </div>
-        </div>
+    <div class="bg-white rounded-lg shadow-sm border p-8 mt-8" id="similar-products">
+      <h2 class="text-xl font-bold text-primary mb-4"><i class="fa-solid fa-robot text-secondary mr-2"></i> منتجات مشابهة بالذكاء الاصطناعي</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="similar-products-list">
+        <!-- سيتم تحميل المنتجات المشابهة هنا -->
       </div>
     </div>
   `
 
+
   page.querySelector('#product-content').innerHTML = content
+
+  // تحميل وعرض المراجعات
+  loadProductReviews(product.slug)
+
+  // إضافة معالجة نموذج المراجعة
+  const reviewForm = page.querySelector('#add-review-form')
+  if (reviewForm) {
+    reviewForm.addEventListener('submit', async function(e) {
+      e.preventDefault()
+      const rating = parseInt(page.querySelector('#review-rating').value)
+      const comment = page.querySelector('#review-comment').value.trim()
+      if (!comment) {
+        showToast('يرجى كتابة تعليقك أولاً.', 'warning')
+        return
+      }
+      // تحليل الشعور
+      const sentiment = await analyzeSentiment(comment)
+      page.querySelector('#sentiment-result').textContent = `Sentiment: ${sentiment}`
+      // إرسال المراجعة للباك
+      const success = await submitProductReview(product.slug, rating, comment, sentiment)
+      if (success) {
+        showToast('تم إرسال المراجعة بنجاح!', 'success')
+        loadProductReviews(product.slug)
+        reviewForm.reset()
+        page.querySelector('#sentiment-result').textContent = ''
+      } else {
+        showToast('فشل إرسال المراجعة.', 'error')
+      }
+    })
+    page.querySelector('#review-comment').addEventListener('input', async function(e) {
+      const comment = e.target.value.trim()
+      if (comment.length > 10) {
+        const sentiment = await analyzeSentiment(comment)
+        page.querySelector('#sentiment-result').textContent = `Sentiment: ${sentiment}`
+      } else {
+        page.querySelector('#sentiment-result').textContent = ''
+      }
+    })
+  }
+
+  // دالة تحميل المراجعات من الباك
+  async function loadProductReviews(productId) {
+    const reviewsList = document.querySelector('#reviews-list')
+    if (!reviewsList) return
+    // Show skeleton while loading
+    const reviewsSkeleton = document.getElementById('reviews-skeleton')
+    if (reviewsSkeleton) reviewsSkeleton.style.display = 'block'
+    try {
+      const data = await productService.getProductReviews(productId)
+      // Hide skeleton after loading
+      const reviewsSkeleton = document.getElementById('reviews-skeleton')
+      if (reviewsSkeleton) reviewsSkeleton.style.display = 'none'
+      if (!data || !data.results || data.results.length === 0) {
+        reviewsList.innerHTML = '<div class="text-center text-muted">لا توجد مراجعات بعد.</div>'
+        return
+      }
+      // Sort reviews by date descending
+      const sortedReviews = data.results.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      // Show only the latest 3 reviews by default
+      let showingAll = false;
+      function renderReviews() {
+        const reviewsToShow = showingAll ? sortedReviews : sortedReviews.slice(0, 3);
+        reviewsList.innerHTML = reviewsToShow.map(review => {
+          let role = review.user_type === 'owner' || review.is_owner ? 'Owner' : 'Customer';
+          return `
+            <div class="bg-gray-50 rounded-lg p-4 border mb-3">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="font-semibold text-primary">${review.user_name || 'Anonymous'}</span>
+                <span class="text-xs text-gray-500">${new Date(review.created_at).toLocaleDateString()}</span>
+                <span class="px-2 py-1 rounded-full text-xs font-bold ${role === 'Owner' ? 'bg-secondary text-white' : 'bg-gray-200 text-gray-700'}">${role}</span>
+                <span class="ml-auto text-yellow-400">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</span>
+              </div>
+              <div class="text-gray-700 mb-2">${review.comment}</div>
+              <div class="text-xs text-gray-500">Sentiment: ${review.sentiment || 'N/A'}</div>
+            </div>
+          `;
+        }).join('');
+        // Show/hide the button
+        const showMoreBtn = document.getElementById('show-more-reviews');
+        if (sortedReviews.length > 3 && !showingAll) {
+          if (showMoreBtn) showMoreBtn.style.display = 'block';
+        } else {
+          if (showMoreBtn) showMoreBtn.style.display = 'none';
+        }
+      }
+      renderReviews();
+      // Add event listener for show more button
+      const showMoreBtn = document.getElementById('show-more-reviews');
+      if (showMoreBtn) {
+        showMoreBtn.onclick = function() {
+          showingAll = true;
+          renderReviews();
+        };
+      }
+    } catch (error) {
+      // Hide skeleton on error
+      const reviewsSkeleton = document.getElementById('reviews-skeleton')
+      if (reviewsSkeleton) reviewsSkeleton.style.display = 'none'
+      console.error('فشل تحميل المراجعات:', error)
+      let errorMsg = 'فشل تحميل المراجعات.'
+      if (error && error.message) {
+        errorMsg += `<br><span class='text-xs text-muted'>${error.message}</span>`
+      }
+      reviewsList.innerHTML = `<div class="text-center text-danger">${errorMsg}</div>`
+    }
+  }
+
+  // إرسال مراجعة جديدة
+  async function submitProductReview(productId, rating, comment, sentiment) {
+    try {
+      const data = await productService.createProductReview(productId, { rating, comment, sentiment })
+      if (data && (data.success === true || data.id || data.pk)) {
+        showToast('تم إرسال المراجعة بنجاح! شكراً لمساهمتك في تحسين تجربة المنتجات.', 'success');
+        return true;
+      }
+      if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+        showToast('تم إرسال المراجعة بنجاح! شكراً لمساهمتك في تحسين تجربة المنتجات.', 'success');
+        return true;
+      }
+      showToast('حدث خطأ غير متوقع أثناء إرسال المراجعة.', 'error');
+      return false;
+    } catch (error) {
+      if (error && error.message && error.message.includes('مراجعة لنفس المنتج')) {
+        showToast('لا يمكنك إضافة أكثر من مراجعة لنفس المنتج. يمكنك تعديل مراجعتك السابقة فقط.', 'warning');
+      } else if (error && error.message) {
+        showToast(`فشل إرسال المراجعة: ${error.message}`, 'error');
+      } else {
+        showToast('فشل إرسال المراجعة. حاول مرة أخرى لاحقاً.', 'error');
+      }
+      return false;
+    }
+  }
+
+  // تحليل الشعور
+  async function analyzeSentiment(text) {
+    try {
+      // Ensure API_BASE_URL is used for backend requests
+      let apiBase = '';
+      if (typeof window !== 'undefined' && window.API_BASE_URL) {
+        apiBase = window.API_BASE_URL;
+      } else if (typeof API_BASE_URL !== 'undefined') {
+        apiBase = API_BASE_URL;
+      } else {
+        apiBase = 'http://localhost:8000';
+      }
+      // Remove trailing slash if present
+      if (apiBase.endsWith('/')) apiBase = apiBase.slice(0, -1);
+      const response = await fetch(`${apiBase}/api/products/analyze-sentiment/`, {
+        method: 'POST',
+        headers: (() => {
+          const headers = { 'Content-Type': 'application/json' };
+          // Try to get token from localStorage (adjust if you use cookies or another storage)
+          const token = localStorage.getItem('token');
+          if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+          }
+          return headers;
+        })(),
+        body: JSON.stringify({ text })
+      });
+      const data = await response.json();
+      return data.sentiment || 'N/A';
+    } catch (error) {
+      return 'N/A';
+    }
+  }
 
   // Store current product data globally for cart/wishlist functions
   window.currentProduct = product
@@ -331,6 +399,7 @@ function renderProductDetails(page, product) {
 
 async function loadSimilarProducts(page, productId) {
   const container = page.querySelector('#similar-products')
+  if (!container) return;
   const startTime = performance.now()
 
   // Show loading skeleton
@@ -404,33 +473,33 @@ function createSimilarProductCard(similarProduct) {
   const stars = generateStarRating(rating)
 
   return `
-    <div class="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group cursor-pointer overflow-hidden" onclick="loadSimilarProductDetails(${similarProduct.product_id})">
+    <div class="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group cursor-pointer overflow-hidden flex flex-col min-w-[180px] max-w-[220px] mx-auto" style="width:100%;" onclick="loadSimilarProductDetails(${similarProduct.product_id})">
       <!-- Product Image -->
-      <div class="relative overflow-hidden">
+      <div class="relative overflow-hidden" style="height:120px;">
         <img src="${imageUrl}"
              alt="${similarProduct.name}"
-             class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
              onerror="this.src='/placeholder.jpg'; this.onerror=null;">
 
         <!-- AI Recommendation Badge -->
-        <div class="absolute top-3 left-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+        <div class="absolute top-2 left-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
           <i class="fa-solid fa-robot mr-1"></i>
           AI Pick
         </div>
 
         <!-- Similarity Score -->
-        <div class="absolute top-3 right-3 bg-black bg-opacity-70 text-white px-2 py-1 rounded-full text-xs">
+        <div class="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded-full text-xs">
           ${Math.round(similarProduct.score * 100)}% Match
         </div>
 
         <!-- Action Buttons -->
-        <div class="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-          <button class="bg-white p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition-colors"
+        <div class="absolute inset-0 bg-gray-900 bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+          <button class="bg-white p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition-colors"
                   onclick="addToWishlist(${similarProduct.product_id}, event)"
                   title="Add to Wishlist">
             <i class="fa-solid fa-heart"></i>
           </button>
-          <button class="bg-white p-3 rounded-full shadow-md hover:bg-secondary hover:text-white transition-colors"
+          <button class="bg-white p-2 rounded-full shadow-md hover:bg-secondary hover:text-white transition-colors"
                   onclick="quickAddToCart(${similarProduct.product_id}, event)"
                   title="Quick Add to Cart">
             <i class="fa-solid fa-shopping-cart"></i>
@@ -439,31 +508,29 @@ function createSimilarProductCard(similarProduct) {
       </div>
 
       <!-- Product Info -->
-      <div class="p-4">
-        <h3 class="font-semibold text-gray-800 mb-2 line-clamp-2 group-hover:text-secondary transition-colors">
+      <div class="p-2 flex-1 flex flex-col justify-between">
+        <h3 class="font-semibold text-gray-800 mb-1 line-clamp-2 group-hover:text-secondary transition-colors text-sm">
           ${similarProduct.name}
         </h3>
 
         <!-- Rating -->
-        <div class="flex items-center gap-2 mb-3">
-          <div class="flex text-yellow-400 text-sm">
+        <div class="flex items-center gap-1 mb-1">
+          <div class="flex text-yellow-400 text-xs">
             ${stars}
           </div>
           <span class="text-xs text-gray-500">(${rating})</span>
         </div>
 
         <!-- Price -->
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="text-lg font-bold text-secondary">${formattedPrice}</span>
-          </div>
-          <div class="text-xs text-gray-500">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-base font-bold text-secondary">${formattedPrice}</span>
+          <span class="text-xs text-gray-500">
             ${similarProduct.algorithm === 'content_similarity' ? 'Similar' : 'Recommended'}
-          </div>
+          </span>
         </div>
 
         <!-- Recommendation Reason -->
-        <div class="mt-2 text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded">
+        <div class="mt-1 text-xs text-gray-600 bg-gray-50 px-1 py-1 rounded">
           <i class="fa-solid fa-lightbulb mr-1"></i>
           ${similarProduct.reason}
         </div>

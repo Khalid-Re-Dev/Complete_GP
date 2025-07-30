@@ -1,3 +1,3 @@
 """
-Comments app for Best on Click.
+Comments app for Best in Click.
 """

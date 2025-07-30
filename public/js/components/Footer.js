@@ -15,7 +15,7 @@ export function renderFooter(container) {
                             <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white text-sm">
                                 <i class="fa-solid fa-shopping-bag"></i>
                             </div>
-                            <h3 class="text-2xl font-bold">Best on Click</h3>
+                            <h3 class="text-2xl font-bold">Best in Click</h3>
                         </div>
                         <p class="text-sm text-gray-300 mb-4">Your one-stop shop for the best deals online with AI-powered recommendations.</p>
                         <div class="flex gap-3">
@@ -74,8 +74,8 @@ export function renderFooter(container) {
                             </button>
                         </div>
                         <div class="text-xs text-gray-400 space-y-1">
-                            <p><i class="fa-solid fa-phone mr-2"></i>(225) 555-0118</p>
-                            <p><i class="fa-solid fa-envelope mr-2"></i>info@bestonclick.com</p>
+                            <p><i class="fa-solid fa-phone mr-2"></i>776468322</p>
+                            <p><i class="fa-solid fa-envelope mr-2"></i>ttt.ppp.sss.77@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@ export function renderFooter(container) {
             <div class="bg-light-gray py-4">
                 <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-muted text-sm">
                     <div class="mb-2 md:mb-0">
-                        <p>&copy; 2024 Best on Click. All rights reserved.</p>
+                        <p>&copy; 2024 Best in Click. All rights reserved.</p>
                     </div>
                     <div class="flex gap-4">
                         <a href="#/privacy" class="hover:text-secondary transition-colors">Privacy Policy</a>

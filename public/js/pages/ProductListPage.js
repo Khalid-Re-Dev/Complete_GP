@@ -350,8 +350,8 @@ function initializeProductList(page) {
       currentProducts = data.results || data
 
       // Load categories and stores after products are loaded to get counts
-      await loadCategoriesFromAPI()
-      await loadStoresFromAPI() // Load stores
+      await loadCategoriesFromAPI(page)
+      await loadStoresFromAPI(page)
 
       renderProducts()
       updateResultsInfo()
@@ -411,10 +411,11 @@ function initializeProductList(page) {
   }
 
   // Load categories from API and calculate counts
-  async function loadCategoriesFromAPI() {
+  async function loadCategoriesFromAPI(page) {
     try {
+      // تأكد من تعريف المتغير page
+      const container = (typeof page !== 'undefined') ? page.querySelector('#category-filters') : document.querySelector('#category-filters');
       const categoriesData = await productService.getCategories()
-      const container = page.querySelector('#category-filters')
 
       const categoryMap = new Map()
       currentProducts.forEach(product => {
@@ -462,7 +463,7 @@ function initializeProductList(page) {
   }
 
   // Load stores from API and calculate counts (Changed from loadVendorsFromAPI)
-  async function loadStoresFromAPI() {
+  async function loadStoresFromAPI(page) {
     try {
       const storesData = await productService.getStores() // Assuming a new service method: getStores
       const container = page.querySelector('#store-filters') // Changed ID
@@ -794,19 +795,4 @@ function initializeProductList(page) {
  * Renders the personalized recommendations section.
  * This function is called when the store state changes.
  */
-function renderPersonalizedSection() {
-  import("../components/PersonalizedRecommendations.js").then(module => {
-    const recSection = module.PersonalizedRecommendationsSection()
-    if (recSection) {
-      const container = page.querySelector("#personalized-recommendations-section")
-      if (container) {
-        // Clear existing recommendations before adding new ones
-        container.innerHTML = ''
-        container.appendChild(recSection)
-      }
-    }
-  })
-}
-
-// Initial render of personalized section
-renderPersonalizedSection()
+// ...existing code...

@@ -5,7 +5,7 @@ export default function AboutPage() {
         <div class="container mx-auto px-4 py-8">
             <!-- Hero Section -->
             <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold text-primary mb-4">About Best on Click</h1>
+                <h1 class="text-4xl font-bold text-primary mb-4">About Best in Click</h1>
                 <p class="text-xl text-muted max-w-3xl mx-auto">
                     We're revolutionizing online shopping with AI-powered recommendations and the best deals on the internet.
                 </p>
