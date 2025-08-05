@@ -25904,3 +25904,27 @@ ERROR 2025-08-05 12:16:51,391 log 8460 896 Internal Server Error: /api/reports/g
 ERROR 2025-08-05 12:16:52,541 views 8460 9872 Error in report generation: {'non_field_errors': [ErrorDetail(string='Store not found', code='invalid')]}
 ERROR 2025-08-05 12:16:52,599 log 8460 9872 Internal Server Error: /api/reports/generate/
 INFO 2025-08-05 12:21:38,621 autoreload 6216 6480 Watching for file changes with StatReloader
+WARNING 2025-08-05 12:23:23,016 log 6216 2376 Unauthorized: /api/auth/profile/
+ERROR 2025-08-05 12:23:24,228 views 6216 6272 Error logging user behavior: NOT NULL constraint failed: user_behavior_logs.session_id
+ERROR 2025-08-05 12:23:24,526 log 6216 6272 Internal Server Error: /api/user-behavior/log/
+INFO 2025-08-05 12:24:58,385 services 6216 2376 Generated 6 safe recommendations
+WARNING 2025-08-05 12:25:02,147 log 6216 6756 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=BeautyLux+\u0645\u0627\u0633\u062d+\u0636\u0648\u0626\u064a+
+WARNING 2025-08-05 12:25:02,295 log 6216 3112 Not Found: /media/https:/dummyimage.com/400x400/cccccc/000000&text=Gadgets
+WARNING 2025-08-05 12:25:02,355 log 6216 10972 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=\u0647\u0648\u0627\u0648\u064a+\u0647\u0627\u062a\u0641+\u0630\u0643\u064a+2023
+WARNING 2025-08-05 12:25:02,572 log 6216 9500 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=\u0647\u0648\u0627\u0648\u064a+\u0634\u0627\u0634\u0629+LED+2024
+WARNING 2025-08-05 12:25:02,675 log 6216 10272 Not Found: /media/https:/dummyimage.com/400x400/cccccc/000000&text=Product
+WARNING 2025-08-05 12:25:02,874 log 6216 8940 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=\u0647\u0648\u0627\u0648\u064a+\u0628\u0627\u0648\u0631+\u0628\u0627\u0646\u0643+2020
+INFO 2025-08-05 12:25:28,596 services 6216 2376 Generated 6 safe recommendations
+WARNING 2025-08-05 12:25:31,409 log 6216 8940 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=BeautyLux+\u0645\u0627\u0633\u062d+\u0636\u0648\u0626\u064a+
+WARNING 2025-08-05 12:25:31,436 log 6216 10972 Not Found: /media/https:/dummyimage.com/400x400/cccccc/000000&text=Gadgets
+WARNING 2025-08-05 12:25:31,455 log 6216 6756 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=\u0647\u0648\u0627\u0648\u064a+\u0634\u0627\u0634\u0629+LED+2024
+WARNING 2025-08-05 12:25:31,489 log 6216 3112 Not Found: /media/https:/dummyimage.com/400x400/cccccc/000000&text=Product
+WARNING 2025-08-05 12:25:31,500 log 6216 9500 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=\u0647\u0648\u0627\u0648\u064a+\u0647\u0627\u062a\u0641+\u0630\u0643\u064a+2023
+WARNING 2025-08-05 12:25:31,509 log 6216 10272 Not Found: /media/https:/via.placeholder.com/400x400/0066CC/FFFFFF?text=\u0647\u0648\u0627\u0648\u064a+\u0628\u0627\u0648\u0631+\u0628\u0627\u0646\u0643+2020
+INFO 2025-08-05 12:26:05,002 views 6216 2452 User logged in: ownertest
+ERROR 2025-08-05 12:26:23,589 views 6216 6272 Error saving item: NOT NULL constraint failed: user_behavior_logs.session_id
+ERROR 2025-08-05 12:26:23,654 log 6216 6272 Internal Server Error: /api/cart/save-item/
+ERROR 2025-08-05 12:26:33,948 views 6216 2452 Error adding to cart: NOT NULL constraint failed: user_behavior_logs.session_id
+ERROR 2025-08-05 12:26:34,085 log 6216 2452 Internal Server Error: /api/cart/add/
+ERROR 2025-08-05 12:26:50,289 views 6216 2452 Error adding to cart: NOT NULL constraint failed: user_behavior_logs.session_id
+ERROR 2025-08-05 12:26:50,465 log 6216 2452 Internal Server Error: /api/cart/add/
