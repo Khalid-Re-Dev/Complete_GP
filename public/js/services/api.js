@@ -422,7 +422,7 @@ export const dashboardService = {
     apiFetch(`/dashboard/products/${productId}/performance/`),
 }
 
-export const reportsService = {
+export const reportService = {
   // Report Generation - Updated to match backend API
   generateReport: (reportType, storeId, dateFrom, dateTo, parameters = {}) =>
     apiFetch("/reports/generate/", {
@@ -474,14 +474,7 @@ export const promotionsService = {
   getUserQRCodes: () => apiFetch("/promotions/my-qr-codes/"),
 }
 
-export const reportService = {
-  generateReport: (reportType) =>
-    apiFetch("/reports/generate/", {
-      method: "POST",
-      body: JSON.stringify({ report_type: reportType }),
-    }),
-  getReportStatus: (id) => apiFetch(`/reports/${id}/status/`),
-}
+// reportService is already defined above at line 425 with more comprehensive functions
 
 export const recommendationService = {
   // General recommendations (no auth required)
@@ -576,3 +569,37 @@ export const commentService = {
     }),
   getSentiment: (commentId) => apiFetch(`/comments/${commentId}/sentiment/`),
 }
+
+// Export aliases for backward compatibility
+export const reportsService = reportService;
+// promotionsService is already defined above at line 460
+
+// Main API service object that combines all services
+export const apiService = {
+  // Core API functions
+  apiFetch,
+  apiCall,
+  
+  // Individual services
+  auth: authService,
+  products: productService,
+  cart: cartService,
+  behavior: behaviorService,
+  dashboard: dashboardService,
+  recommendations: recommendationService,
+  promotions: promotionsService,
+  reports: reportService,
+  comparisons: comparisonService,
+  comments: commentService,
+  
+  // Utility functions
+  generateSessionId,
+  
+  // Configuration
+  setMockMode: (enabled) => { USE_MOCK_API = enabled; },
+  isMockMode: () => USE_MOCK_API,
+  getBaseUrl: () => API_BASE_URL
+}
+
+// Default export
+export default apiService;

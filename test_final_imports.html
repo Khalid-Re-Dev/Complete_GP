@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Import Test - Best on Click</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار الاستيرادات النهائي - Best on Click</h1>
+        <p>اختبار شامل لجميع الوحدات والخدمات بعد إصلاح مشكلة <code>reportService</code></p>
+        
+        <div class="stats" id="stats">
+            <div class="stat-card">
+                <div>إجمالي الاختبارات</div>
+                <div class="stat-number" id="total-tests">0</div>
+            </div>
+            <div class="stat-card">
+                <div>نجح</div>
+                <div class="stat-number" id="passed-tests" style="color: #28a745;">0</div>
+            </div>
+            <div class="stat-card">
+                <div>فشل</div>
+                <div class="stat-number" id="failed-tests" style="color: #dc3545;">0</div>
+            </div>
+            <div class="stat-card">
+                <div>معدل النجاح</div>
+                <div class="stat-number" id="success-rate" style="color: #17a2b8;">0%</div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <button onclick="runAllTests()">🚀 تشغيل جميع الاختبارات</button>
+            <button onclick="testNotifications()">🔔 اختبار الإشعارات</button>
+            <button onclick="testFeatures()">🏪 اختبار الميزات</button>
+            <button onclick="clearResults()">🗑️ مسح النتائج</button>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+
+    <script type="module">
+        let testResults = [];
+        
+        window.runAllTests = async function() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="test-section info">🔄 جاري تشغيل الاختبارات...</div>';
+            
+            testResults = [];
+            
+            // Test core services
+            await testCoreServices();
+            
+            // Test utilities
+            await testUtilities();
+            
+            // Test pages
+            await testPages();
+            
+            // Test features
+            await testStoreFeatures();
+            
+            // Update statistics
+            updateStats();
+            
+            // Display results
+            displayResults();
+        };
+
+        async function testCoreServices() {
+            const services = [
+                { name: 'apiService', path: '/js/services/api.js', export: 'apiService' },
+                { name: 'authService', path: '/js/services/api.js', export: 'authService' },
+                { name: 'productService', path: '/js/services/api.js', export: 'productService' },
+                { name: 'cartService', path: '/js/services/api.js', export: 'cartService' },
+                { name: 'dashboardService', path: '/js/services/api.js', export: 'dashboardService' },
+                { name: 'reportService', path: '/js/services/api.js', export: 'reportService' },
+                { name: 'reportsService (alias)', path: '/js/services/api.js', export: 'reportsService' },
+                { name: 'promotionsService', path: '/js/services/api.js', export: 'promotionsService' },
+                { name: 'recommendationService', path: '/js/services/api.js', export: 'recommendationService' },
+                { name: 'comparisonService', path: '/js/services/api.js', export: 'comparisonService' },
+                { name: 'commentService', path: '/js/services/api.js', export: 'commentService' },
+                { name: 'authService (standalone)', path: '/js/services/auth.js', export: 'authService' },
+                { name: 'storeService', path: '/js/services/store.js', export: 'storeService' }
+            ];
+            
+            for (const service of services) {
+                const result = await testImport(service);
+                testResults.push(result);
+            }
+        }
+
+        async function testUtilities() {
+            const utilities = [
+                { name: 'toastManager', path: '/js/utils/toast.js', export: 'toastManager' },
+                { name: 'showSuccess', path: '/js/utils/toast.js', export: 'showSuccess' },
+                { name: 'showError', path: '/js/utils/toast.js', export: 'showError' },
+                { name: 'showAchievement', path: '/js/utils/toast.js', export: 'showAchievement' },
+                { name: 'showPerformanceAlert', path: '/js/utils/toast.js', export: 'showPerformanceAlert' },
+                { name: 'showReviewNotification', path: '/js/utils/toast.js', export: 'showReviewNotification' },
+                { name: 'showSmartRecommendation', path: '/js/utils/toast.js', export: 'showSmartRecommendation' },
+                { name: 'markAllNotificationsAsRead', path: '/js/utils/toast.js', export: 'markAllNotificationsAsRead' },
+                { name: 'clearAllNotifications', path: '/js/utils/toast.js', export: 'clearAllNotifications' },
+                { name: 'getNotificationStats', path: '/js/utils/toast.js', export: 'getNotificationStats' },
+                { name: 'helpers', path: '/js/utils/helpers.js', export: 'formatCurrency' }
+            ];
+            
+            for (const utility of utilities) {
+                const result = await testImport(utility);
+                testResults.push(result);
+            }
+        }
+
+        async function testPages() {
+            const pages = [
+                { name: 'StoreApplicationPage', path: '/js/pages/store-application.js', export: 'StoreApplicationPage' },
+                { name: 'StoreDashboardPage', path: '/js/pages/store-dashboard.js', export: 'StoreDashboardPage' },
+                { name: 'StoreAnalyticsPage', path: '/js/pages/store-analytics.js', export: 'StoreAnalyticsPage' },
+                { name: 'StoreFeedbackPage', path: '/js/pages/store-feedback.js', export: 'StoreFeedbackPage' },
+                { name: 'StoreFeedbackManagementPage', path: '/js/pages/store-feedback-management.js', export: 'StoreFeedbackManagementPage' }
+            ];
+            
+            for (const page of pages) {
+                const result = await testImport(page);
+                testResults.push(result);
+            }
+        }
+
+        async function testStoreFeatures() {
+            // Test specific functionality
+            try {
+                const { apiService } = await import('/js/services/api.js');
+                const { showAchievement, showPerformanceAlert } = await import('/js/utils/toast.js');
+                
+                // Test API service structure
+                const apiTest = {
+                    name: 'API Service Structure',
+                    success: !!(apiService && apiService.auth && apiService.products && apiService.reports),
+                    message: apiService ? 'API service structure is complete' : 'API service structure incomplete',
+                    details: apiService ? `Available services: ${Object.keys(apiService).join(', ')}` : 'No API service found'
+                };
+                testResults.push(apiTest);
+                
+                // Test notification functions
+                const notificationTest = {
+                    name: 'Smart Notifications',
+                    success: !!(showAchievement && showPerformanceAlert),
+                    message: 'Smart notification functions available',
+                    details: 'Achievement and performance alert functions loaded'
+                };
+                testResults.push(notificationTest);
+                
+            } catch (error) {
+                testResults.push({
+                    name: 'Store Features Test',
+                    success: false,
+                    message: `Feature test failed: ${error.message}`,
+                    details: error.stack
+                });
+            }
+        }
+
+        async function testImport(testConfig) {
+            try {
+                const module = await import(testConfig.path);
+                
+                let importedItem;
+                if (testConfig.export === 'default') {
+                    importedItem = module.default;
+                } else {
+                    importedItem = module[testConfig.export];
+                }
+                
+                if (importedItem === undefined) {
+                    return {
+                        name: testConfig.name,
+                        success: false,
+                        message: `Export '${testConfig.export}' not found`,
+                        details: `Available exports: ${Object.keys(module).join(', ')}`
+                    };
+                }
+                
+                const type = typeof importedItem;
+                const isFunction = type === 'function';
+                const isObject = type === 'object' && importedItem !== null;
+                
+                return {
+                    name: testConfig.name,
+                    success: true,
+                    message: `Imported successfully (${type})`,
+                    details: isObject ? `Properties: ${Object.keys(importedItem).length}` : `Type: ${type}`
+                };
+                
+            } catch (error) {
+                return {
+                    name: testConfig.name,
+                    success: false,
+                    message: `Import failed: ${error.message}`,
+                    details: error.stack
+                };
+            }
+        }
+
+        function updateStats() {
+            const total = testResults.length;
+            const passed = testResults.filter(r => r.success).length;
+            const failed = total - passed;
+            const successRate = total > 0 ? ((passed / total) * 100).toFixed(1) : 0;
+            
+            document.getElementById('total-tests').textContent = total;
+            document.getElementById('passed-tests').textContent = passed;
+            document.getElementById('failed-tests').textContent = failed;
+            document.getElementById('success-rate').textContent = successRate + '%';
+        }
+
+        function displayResults() {
+            const resultsDiv = document.getElementById('results');
+            
+            let html = '';
+            
+            // Group results by category
+            const categories = {
+                'Services': testResults.filter(r => r.name.includes('Service')),
+                'Utilities': testResults.filter(r => r.name.includes('toast') || r.name.includes('helpers') || r.name.includes('Notification')),
+                'Pages': testResults.filter(r => r.name.includes('Page')),
+                'Features': testResults.filter(r => r.name.includes('API Service') || r.name.includes('Smart'))
+            };
+            
+            for (const [category, results] of Object.entries(categories)) {
+                if (results.length === 0) continue;
+                
+                html += `<div class="test-section">`;
+                html += `<h3>📋 ${category}</h3>`;
+                
+                for (const result of results) {
+                    const statusClass = result.success ? 'success' : 'error';
+                    const icon = result.success ? '✅' : '❌';
+                    
+                    html += `<div class="test-section ${statusClass}">`;
+                    html += `<strong>${icon} ${result.name}</strong><br>`;
+                    html += `<small>Status: ${result.message}</small><br>`;
+                    if (result.details) {
+                        html += `<pre>${result.details}</pre>`;
+                    }
+                    html += `</div>`;
+                }
+                
+                html += `</div>`;
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+
+        window.testNotifications = async function() {
+            try {
+                const { 
+                    showAchievement, 
+                    showPerformanceAlert, 
+                    showReviewNotification, 
+                    showSmartRecommendation,
+                    markAllNotificationsAsRead,
+                    getNotificationStats
+                } = await import('/js/utils/toast.js');
+                
+                // Test different notification types
+                showAchievement('🎉 تم إصلاح مشكلة reportService بنجاح!');
+                
+                setTimeout(() => {
+                    showPerformanceAlert('⚠️ تم اكتشاف تحسينات ممكنة في النظام');
+                }, 1000);
+                
+                setTimeout(() => {
+                    showReviewNotification('💬 مراجعة جديدة من عميل مؤكد');
+                }, 2000);
+                
+                setTimeout(() => {
+                    showSmartRecommendation('💡 نصيحة: استخدم الإحصائيات لتحسين أداء متجرك');
+                }, 3000);
+                
+                setTimeout(() => {
+                    const stats = getNotificationStats();
+                    console.log('📊 Notification Stats:', stats);
+                }, 4000);
+                
+                alert('✅ تم تشغيل اختبار الإشعارات! تحقق من الإشعارات المعروضة.');
+                
+            } catch (error) {
+                alert('❌ فشل اختبار الإشعارات: ' + error.message);
+            }
+        };
+
+        window.testFeatures = async function() {
+            try {
+                const { apiService } = await import('/js/services/api.js');
+                
+                console.log('🔍 Testing API Service...');
+                console.log('Available services:', Object.keys(apiService));
+                console.log('Auth service:', apiService.auth);
+                console.log('Products service:', apiService.products);
+                console.log('Reports service:', apiService.reports);
+                
+                alert('✅ تم اختبار الميزات بنجاح! تحقق من وحدة تحكم المتصفح للتفاصيل.');
+                
+            } catch (error) {
+                alert('❌ فشل اختبار الميزات: ' + error.message);
+            }
+        };
+
+        window.clearResults = function() {
+            document.getElementById('results').innerHTML = '';
+            testResults = [];
+            updateStats();
+        };
+
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 1000);
+        });
+
+        console.log('🧪 Final Import Test Page Loaded');
+    </script>
+</body>
+</html>

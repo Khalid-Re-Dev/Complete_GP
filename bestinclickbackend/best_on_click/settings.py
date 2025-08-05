@@ -48,12 +48,15 @@ LOCAL_APPS = [
     'dashboard',
     'reports',
     'cart',
+    'stores',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'best_on_click.middleware.MimeTypeMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'best_on_click.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'best_on_click.middleware.SecurityHeadersMiddleware',
 ]
 
 ROOT_URLCONF = 'best_on_click.urls'
@@ -140,6 +144,14 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# MIME Types Configuration
+import mimetypes
+mimetypes.add_type("application/javascript", ".js", True)
+mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("application/json", ".json", True)
+mimetypes.add_type("text/html", ".html", True)
+mimetypes.add_type("image/svg+xml", ".svg", True)
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -184,6 +196,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React development server
     "http://127.0.0.1:3000",
     "http://192.168.1.115:3000",  # Network IP
+    "http://192.168.1.116:3000",  # New Network IP
     "http://localhost:8080",  # Alternative port
     "http://127.0.0.1:8080",
 ]

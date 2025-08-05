@@ -201,9 +201,23 @@ async function initializeDashboard(page) {
  */
 async function getUserStoreId(user) {
   try {
-    // For now, we'll assume the store ID is 1 for the logged-in store owner
-    // In a real implementation, this would come from the user's profile or a stores endpoint
-    return 1
+    // Check if user has a store
+    const response = await fetch('/api/stores/my-store/', {
+      headers: {
+        'Authorization': `Bearer ${store.getState().token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    
+    if (response.ok) {
+      const storeData = await response.json()
+      return storeData.id
+    } else if (response.status === 404) {
+      // User doesn't have a store
+      return null
+    } else {
+      throw new Error('Failed to fetch store information')
+    }
   } catch (error) {
     console.error('Error getting store ID:', error)
     return null
@@ -435,9 +449,6 @@ async function loadRecentProducts(page, storeId) {
 }
 
 // Global functions for quick actions
-window.setupStore = function() {
-  showToast("Store setup feature coming soon!", "info")
-}
 
 window.addNewProduct = function() {
   location.hash = '#/products/add'
@@ -617,4 +628,78 @@ function setupEventListeners(page, storeId) {
   page.querySelector('#view-all-products-btn').addEventListener('click', () => {
     location.hash = '#/products'
   })
+}
+
+/**
+ * Setup store function - show dialog with options
+ */
+window.setupStore = function() {
+  // Create modal dialog
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  modal.innerHTML = `
+    <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+      <div class="text-center">
+        <div class="text-blue-600 text-6xl mb-4">
+          <i class="fa-solid fa-store"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">إنشاء متجرك</h2>
+        <p class="text-gray-600 mb-6">
+          مرحباً بك! لبدء استخدام لوحة التحكم، تحتاج إلى إنشاء متجرك أولاً.
+        </p>
+        
+        <div class="space-y-4">
+          <button 
+            onclick="proceedToStoreApplication()" 
+            class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          >
+            <i class="fa-solid fa-plus mr-2"></i>
+            إنشاء متجر جديد
+          </button>
+          
+          <button 
+            onclick="closeStoreSetupModal()" 
+            class="w-full bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+          >
+            إلغاء
+          </button>
+        </div>
+        
+        <div class="mt-6 text-sm text-gray-500">
+          <p>سيتم توجيهك لصفحة تقديم طلب إنشاء المتجر</p>
+        </div>
+      </div>
+    </div>
+  `;
+  
+  // Add to page
+  document.body.appendChild(modal);
+  
+  // Close on background click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeStoreSetupModal();
+    }
+  });
+}
+
+/**
+ * Proceed to store application
+ */
+window.proceedToStoreApplication = function() {
+  closeStoreSetupModal();
+  showToast('سيتم توجيهك لإنشاء متجرك الآن', 'info');
+  setTimeout(() => {
+    location.hash = '#/store/apply';
+  }, 500);
+}
+
+/**
+ * Close store setup modal
+ */
+window.closeStoreSetupModal = function() {
+  const modal = document.querySelector('.fixed.inset-0.bg-black.bg-opacity-50');
+  if (modal) {
+    modal.remove();
+  }
 }

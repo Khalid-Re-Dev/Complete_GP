@@ -86,6 +86,20 @@ function main() {
     }).catch(error => {
       console.log('Debug recommendations not loaded:', error.message)
     })
+    
+    // Load store system test utilities
+    import('./utils/testStoreSystem.js').then(() => {
+      console.log('🏪 Store system tester loaded. Use testStoreSystem.runAllTests() to test store features.')
+    }).catch(error => {
+      console.log('Store system tester not loaded:', error.message)
+    })
+    
+    // Load modal test utilities
+    import('./debug/modalTest.js').then(() => {
+      console.log('🧪 Modal test utilities loaded. Use modalTest.runAllTests() to test modal.')
+    }).catch(error => {
+      console.log('Modal test utilities not loaded:', error.message)
+    })
   }
 
   console.log("Best on Click App Initialized")

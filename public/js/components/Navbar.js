@@ -61,30 +61,40 @@ export function renderNavbar(container) {
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                         <div class="py-2">
-                            <a href="#/store-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <a href="#/store/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-chart-line mr-2"></i>
-                                Dashboard
+                                لوحة التحكم
                             </a>
                             <a href="#/products-management" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-box mr-2"></i>
-                                Products
+                                إدارة المنتجات
                             </a>
                             <a href="#/products/add" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-plus mr-2"></i>
-                                Add Product
+                                إضافة منتج
                             </a>
                             <div class="border-t border-gray-200 my-1"></div>
-                            <a href="#/analytics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <a href="#/store/analytics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-chart-bar mr-2"></i>
-                                Analytics
+                                التحليلات
+                            </a>
+                            <a href="#/store/feedback" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-comments mr-2"></i>
+                                آراء العملاء
                             </a>
                             <a href="#/reports" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-file-alt mr-2"></i>
-                                Reports
+                                التقارير
                             </a>
                         </div>
                     </div>
                 </div>
+            ` : ''}
+            ${user.role === 'customer' ? `
+                <a href="#/store/apply" class="flex items-center gap-2 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-store text-sm"></i>
+                    <span>إنشاء متجر</span>
+                </a>
             ` : ''}
             <a href="#/dashboard" class="flex items-center gap-2">
                 <i class="fa-solid fa-user-circle text-xl"></i>

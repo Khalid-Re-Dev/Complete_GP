@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIME Type Test - Best on Click</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .loading {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 MIME Type Test - Best on Click</h1>
+        <p>هذه الصفحة تختبر تحميل ملفات JavaScript مع MIME types الصحيحة</p>
+        
+        <button onclick="runAllTests()">تشغيل جميع الاختبارات</button>
+        <button onclick="clearResults()">مسح النتائج</button>
+        
+        <div id="results"></div>
+        
+        <h2>📊 تفاصيل الاختبارات</h2>
+        <div id="details"></div>
+    </div>
+
+    <script>
+        const testFiles = [
+            { path: '/js/services/auth.js', type: 'JavaScript Service' },
+            { path: '/js/services/store.js', type: 'Store Service' },
+            { path: '/js/utils/toast.js', type: 'Toast Utility' },
+            { path: '/js/pages/store-application.js', type: 'Store Application Page' },
+            { path: '/js/components/Navbar.js', type: 'Navbar Component' },
+            { path: '/js/router.js', type: 'Router' },
+            { path: '/js/main.js', type: 'Main Application' }
+        ];
+
+        async function runAllTests() {
+            const resultsDiv = document.getElementById('results');
+            const detailsDiv = document.getElementById('details');
+            
+            resultsDiv.innerHTML = '<div class="test-item loading">🔄 جاري تشغيل الاختبارات...</div>';
+            detailsDiv.innerHTML = '';
+            
+            let passedTests = 0;
+            let totalTests = testFiles.length;
+            
+            for (const testFile of testFiles) {
+                const result = await testFileLoad(testFile);
+                
+                const testDiv = document.createElement('div');
+                testDiv.className = `test-item ${result.success ? 'success' : 'error'}`;
+                testDiv.innerHTML = `
+                    <strong>${result.success ? '✅' : '❌'} ${testFile.type}</strong><br>
+                    <small>Path: ${testFile.path}</small><br>
+                    <small>Status: ${result.message}</small>
+                    ${result.details ? `<pre>${result.details}</pre>` : ''}
+                `;
+                
+                detailsDiv.appendChild(testDiv);
+                
+                if (result.success) passedTests++;
+            }
+            
+            // Test ES6 module import
+            const moduleTest = await testModuleImport();
+            const moduleDiv = document.createElement('div');
+            moduleDiv.className = `test-item ${moduleTest.success ? 'success' : 'error'}`;
+            moduleDiv.innerHTML = `
+                <strong>${moduleTest.success ? '✅' : '❌'} ES6 Module Import Test</strong><br>
+                <small>Status: ${moduleTest.message}</small>
+                ${moduleTest.details ? `<pre>${moduleTest.details}</pre>` : ''}
+            `;
+            detailsDiv.appendChild(moduleDiv);
+            
+            if (moduleTest.success) passedTests++;
+            totalTests++;
+            
+            // Summary
+            const successRate = ((passedTests / totalTests) * 100).toFixed(1);
+            resultsDiv.innerHTML = `
+                <div class="test-item ${successRate >= 90 ? 'success' : successRate >= 70 ? 'loading' : 'error'}">
+                    <h3>📋 نتائج الاختبارات</h3>
+                    <p><strong>المجموع:</strong> ${totalTests}</p>
+                    <p><strong>نجح:</strong> ${passedTests}</p>
+                    <p><strong>فشل:</strong> ${totalTests - passedTests}</p>
+                    <p><strong>معدل النجاح:</strong> ${successRate}%</p>
+                </div>
+            `;
+        }
+
+        async function testFileLoad(testFile) {
+            try {
+                const response = await fetch(testFile.path);
+                
+                const contentType = response.headers.get('content-type');
+                const status = response.status;
+                
+                if (status !== 200) {
+                    return {
+                        success: false,
+                        message: `HTTP ${status}`,
+                        details: `Failed to load file: ${response.statusText}`
+                    };
+                }
+                
+                if (!contentType || !contentType.includes('javascript')) {
+                    return {
+                        success: false,
+                        message: `Wrong MIME type: ${contentType}`,
+                        details: `Expected: application/javascript\nActual: ${contentType}`
+                    };
+                }
+                
+                const content = await response.text();
+                if (content.length === 0) {
+                    return {
+                        success: false,
+                        message: 'Empty file',
+                        details: 'File loaded but content is empty'
+                    };
+                }
+                
+                return {
+                    success: true,
+                    message: `✅ Loaded successfully (${content.length} bytes)`,
+                    details: `Content-Type: ${contentType}\nSize: ${content.length} bytes`
+                };
+                
+            } catch (error) {
+                return {
+                    success: false,
+                    message: `Network error: ${error.message}`,
+                    details: error.stack
+                };
+            }
+        }
+
+        async function testModuleImport() {
+            try {
+                // Try to dynamically import a module
+                const module = await import('/js/utils/toast.js');
+                
+                return {
+                    success: true,
+                    message: 'ES6 module imported successfully',
+                    details: `Module exports: ${Object.keys(module).join(', ')}`
+                };
+                
+            } catch (error) {
+                return {
+                    success: false,
+                    message: `Module import failed: ${error.message}`,
+                    details: error.stack
+                };
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+            document.getElementById('details').innerHTML = '';
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 1000);
+        });
+
+        // Add some diagnostic info
+        console.log('🧪 MIME Type Test Page Loaded');
+        console.log('Current URL:', window.location.href);
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Browser supports ES6 modules:', 'noModule' in HTMLScriptElement.prototype);
+    </script>
+</body>
+</html>

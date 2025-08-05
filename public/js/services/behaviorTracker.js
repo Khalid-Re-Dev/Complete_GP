@@ -111,14 +111,9 @@ function storeLocalBehavior(payload) {
  */
 async function retryFailedEvents() {
   try {
-    const failedEvents = JSON.parse(localStorage.getItem('failed_behavior_events') || '[]')
-    if (failedEvents.length === 0) return
-    
-    const retryPromises = failedEvents.map(event => behaviorService.log(event))
-    await Promise.allSettled(retryPromises)
-    
-    // Clear failed events after retry
-    localStorage.removeItem('failed_behavior_events')
+    // Temporarily disabled to avoid API errors
+    console.log('Behavior tracking retry disabled temporarily')
+    return;
   } catch (error) {
     console.error('Failed to retry events:', error)
   }

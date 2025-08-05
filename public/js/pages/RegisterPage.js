@@ -137,7 +137,21 @@ export default function RegisterPage() {
       console.log('Registration response:', response)
 
       if (response.tokens) {
-        // Auto-login after registration
+        // Auto-login after registration - Save to authService
+        console.log('💾 Saving user data to authService:', response.user);
+        
+        // Manually set authService state
+        authService.token = response.tokens.access;
+        authService.refreshToken = response.tokens.refresh;
+        authService.currentUser = response.user;
+        
+        // Store in localStorage (both formats for compatibility)
+        localStorage.setItem('authToken', response.tokens.access);
+        localStorage.setItem('access_token', response.tokens.access);
+        localStorage.setItem('refreshToken', response.tokens.refresh);
+        localStorage.setItem('currentUser', JSON.stringify(response.user));
+        
+        // Also update store state
         store.setState({
           isAuthenticated: true,
           token: response.tokens.access,
@@ -145,10 +159,19 @@ export default function RegisterPage() {
         })
 
         showToast("Registration successful! Welcome to Best on Click!", "success")
+        
+        // Verify auth state
+        console.log('🔐 Auth state after registration:', {
+          isAuthenticated: authService.isAuthenticated(),
+          user: authService.getCurrentUser(),
+          token: !!authService.token
+        });
 
         // Redirect based on user role
         if (response.user.role === 'store_owner') {
-          location.hash = "/dashboard"
+          // Check if store owner has a store
+          console.log('🏪 Store owner registered, checking for existing store...')
+          await checkStoreOwnerRedirect(response.user)
         } else {
           location.hash = "/"
         }
@@ -176,4 +199,72 @@ export default function RegisterPage() {
   })
 
   return page
+}
+
+// Helper function to check store owner redirect
+async function checkStoreOwnerRedirect(user) {
+  try {
+    console.log('🔍 Checking store for user:', user.username)
+    
+    // Wait a bit for store state to be updated
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    // Check if user has a store
+    const token = store.getState().token;
+    console.log('🔑 Token available:', !!token)
+    
+    if (!token) {
+      console.error('❌ No token available for store check');
+      showToast("Welcome! Please create your store first", "info")
+      location.hash = "/store/apply";
+      return;
+    }
+    
+    console.log('📡 Checking for existing store via API...')
+    const response = await fetch('/api/stores/my-store/', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    
+    console.log('📊 API Response status:', response.status)
+    
+    if (response.ok) {
+      const storeData = await response.json()
+      console.log('🏪 Store data received:', storeData)
+      
+      if (storeData && storeData.id) {
+        // User has a store, redirect to dashboard
+        console.log('✅ User has existing store, redirecting to dashboard')
+        showToast("Welcome back! Redirecting to dashboard", "success")
+        location.hash = "/dashboard"
+      } else {
+        // User doesn't have a store, redirect to store application
+        console.log('📝 User needs to create store, redirecting to application')
+        showToast("Welcome! Please create your store first", "info")
+        location.hash = "/store/apply"
+      }
+    } else if (response.status === 404) {
+      // No store found, redirect to store application
+      console.log('🆕 No store found (404), redirecting to application')
+      showToast("Welcome! Please create your store first", "info")
+      
+      // Add a longer delay to ensure state is properly set
+      setTimeout(() => {
+        console.log('🔄 Setting location to /store/apply')
+        location.hash = "/store/apply"
+      }, 1000)
+    } else {
+      // Other API error, redirect to store application
+      console.log('⚠️ API error, redirecting to application')
+      showToast("Welcome! Please create your store first", "info")
+      location.hash = "/store/apply"
+    }
+  } catch (error) {
+    console.error('💥 Error checking store:', error)
+    // On error, redirect to store application to be safe
+    showToast("مرحباً! يرجى إنشاء متجرك أولاً", "info")
+    location.hash = "/store/apply"
+  }
 }
