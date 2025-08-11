@@ -1,3 +1,3 @@
 """
-Dashboard app for Best on Click.
+Dashboard app for Best in Click.
 """

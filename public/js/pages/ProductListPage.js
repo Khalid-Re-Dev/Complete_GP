@@ -350,8 +350,13 @@ function initializeProductList(page) {
       currentProducts = data.results || data
 
       // Load categories and stores after products are loaded to get counts
+<<<<<<< HEAD
       await loadCategoriesFromAPI()
       await loadStoresFromAPI() // Load stores
+=======
+      await loadCategoriesFromAPI(page)
+      await loadStoresFromAPI(page)
+>>>>>>> def781f8f93d6d29063fe6e7d67b40972a8a6784
 
       renderProducts()
       updateResultsInfo()
@@ -411,10 +416,15 @@ function initializeProductList(page) {
   }
 
   // Load categories from API and calculate counts
+<<<<<<< HEAD
   async function loadCategoriesFromAPI() {
+=======
+  async function loadCategoriesFromAPI(page) {
+>>>>>>> def781f8f93d6d29063fe6e7d67b40972a8a6784
     try {
+      // تأكد من تعريف المتغير page
+      const container = (typeof page !== 'undefined') ? page.querySelector('#category-filters') : document.querySelector('#category-filters');
       const categoriesData = await productService.getCategories()
-      const container = page.querySelector('#category-filters')
 
       const categoryMap = new Map()
       currentProducts.forEach(product => {
@@ -462,7 +472,11 @@ function initializeProductList(page) {
   }
 
   // Load stores from API and calculate counts (Changed from loadVendorsFromAPI)
+<<<<<<< HEAD
   async function loadStoresFromAPI() {
+=======
+  async function loadStoresFromAPI(page) {
+>>>>>>> def781f8f93d6d29063fe6e7d67b40972a8a6784
     try {
       const storesData = await productService.getStores() // Assuming a new service method: getStores
       const container = page.querySelector('#store-filters') // Changed ID
@@ -794,6 +808,7 @@ function initializeProductList(page) {
  * Renders the personalized recommendations section.
  * This function is called when the store state changes.
  */
+<<<<<<< HEAD
 function renderPersonalizedSection() {
   import("../components/PersonalizedRecommendations.js").then(module => {
     const recSection = module.PersonalizedRecommendationsSection()
@@ -810,3 +825,6 @@ function renderPersonalizedSection() {
 
 // Initial render of personalized section
 renderPersonalizedSection()
+=======
+// ...existing code...
+>>>>>>> def781f8f93d6d29063fe6e7d67b40972a8a6784

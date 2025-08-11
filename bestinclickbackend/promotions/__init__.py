@@ -1,3 +1,3 @@
 """
-Promotions app for Best on Click.
+Promotions app for Best in Click.
 """

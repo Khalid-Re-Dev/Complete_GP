@@ -30,7 +30,7 @@ function main() {
   // Initialize the user behavior tracker
   initBehaviorTracker()
 
-  console.log("Best on Click App Initialized")
+  console.log("Best in Click App Initialized")
 }
 
 // Run the main function when the DOM is fully loaded

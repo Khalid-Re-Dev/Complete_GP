@@ -1,3 +1,4 @@
+import WishlistPage from "./pages/WishlistPage.js"
 import HomePage from "./pages/HomePage.js"
 import LoginPage from "./pages/LoginPage.js"
 import RegisterPage from "./pages/RegisterPage.js"
@@ -33,7 +34,9 @@ const routes = {
   "/contact": ContactPage,
   "/create-store": CreateStorePage,
   "/reports": ReportsPage,
-  "/compare": ComparePage
+  "/compare": ComparePage,
+  "/wishlist": WishlistPage
+
   // Add more routes as needed
 }
 /**

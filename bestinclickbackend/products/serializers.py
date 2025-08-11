@@ -3,7 +3,7 @@ Serializers for products app.
 """
 
 from rest_framework import serializers
-from .models import Category, Brand, Store, Product, ProductImage, ProductLike
+from .models import Category, Brand, Store, Product, ProductImage, ProductLike, ProductReview
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -138,3 +138,24 @@ class ProductLikeSerializer(serializers.ModelSerializer):
         model = ProductLike
         fields = ['id', 'user', 'product', 'created_at']
         read_only_fields = ['user']
+
+
+class ProductReviewSerializer(serializers.ModelSerializer):
+    def validate(self, attrs):
+        user = self.context['request'].user
+        product = attrs.get('product') or self.instance.product if self.instance else None
+        if user.is_authenticated and product:
+            from .models import ProductReview
+            exists = ProductReview.objects.filter(user=user, product=product).exists()
+            if exists and not self.instance:
+                raise serializers.ValidationError("لا يمكنك إضافة أكثر من مراجعة لنفس المنتج.")
+        return attrs
+    """
+    Serializer for product reviews.
+    """
+    user_name = serializers.CharField(source='user.username', read_only=True)
+    
+    class Meta:
+        model = ProductReview
+        fields = ['id', 'user_name', 'user', 'product', 'rating', 'comment', 'sentiment', 'is_owner', 'created_at']
+        read_only_fields = ['id', 'user', 'product', 'created_at', 'user_name']

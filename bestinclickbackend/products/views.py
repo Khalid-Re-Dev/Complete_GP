@@ -16,16 +16,17 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.shortcuts import get_object_or_404
-from django.db.models import Q, F
+from django.db.models import Q, F, Avg, Count
 from ai_models.services import SearchService, RecommendationService
-from .models import Category, Brand, Store, Product, ProductLike
+from .models import Category, Brand, Store, Product, ProductLike, ProductReview
 from .serializers import (
     CategorySerializer,
     BrandSerializer,
     StoreSerializer,
     ProductSerializer,
     ProductCreateUpdateSerializer,
-    ProductLikeSerializer
+    ProductLikeSerializer,
+    ProductReviewSerializer
 )
 from .filters import ProductFilter
 from .permissions import IsStoreOwnerOrReadOnly
@@ -269,3 +270,44 @@ class ProductUpdateView(generics.UpdateAPIView):
     
     def get_queryset(self):
         return Product.objects.filter(store__owner=self.request.user)
+
+
+class ProductReviewListCreateView(generics.ListCreateAPIView):
+    """
+    List and create product reviews.
+    """
+    serializer_class = ProductReviewSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        product_slug = self.kwargs['slug']
+        product = get_object_or_404(Product, slug=product_slug)
+        return ProductReview.objects.filter(product=product)
+
+    def perform_create(self, serializer):
+        from django.db.models import Avg, Count
+        product_slug = self.kwargs['slug']
+        product = get_object_or_404(Product, slug=product_slug)
+        is_owner = self.request.user.is_authenticated and hasattr(self.request.user, 'is_store_owner') and self.request.user.is_store_owner
+        review = serializer.save(user=self.request.user, product=product, is_owner=is_owner)
+
+        # Update product review count
+        product.total_reviews = ProductReview.objects.filter(product=product).count()
+
+        # Update average rating
+        product.average_rating = ProductReview.objects.filter(product=product).aggregate(avg=Avg('rating'))['avg'] or 0.0
+
+        # Update average sentiment score
+        sentiment_map = {'positive': 1, 'neutral': 0.5, 'negative': 0}
+        sentiments = ProductReview.objects.filter(product=product).values_list('sentiment', flat=True)
+        sentiment_scores = [sentiment_map.get(s, 0.5) for s in sentiments if s]
+        product.sentiment_rating = sum(sentiment_scores) / len(sentiment_scores) if sentiment_scores else 0.5
+
+        # Calculate interaction score (example: average of rating, sentiment, brand value, and review count)
+        brand_value = getattr(product.brand, 'value', 1) if hasattr(product.brand, 'value') else 1
+        interaction_score = (
+            (product.average_rating / 5.0) + product.sentiment_rating + (brand_value / 5.0) + (product.total_reviews / 100.0)
+        ) / 4.0
+        product.interaction_score = round(interaction_score, 3)
+
+        product.save()

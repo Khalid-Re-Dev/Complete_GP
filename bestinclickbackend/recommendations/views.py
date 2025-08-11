@@ -144,14 +144,26 @@ def personalized_recommendations(request):
                 algorithm_used=rec['algorithm']
             )
 
+        # جلب بيانات المنتجات الكاملة بنفس تنسيق ProductListView
+        from products.models import Product
+        from products.serializers import ProductSerializer
+        product_ids = [rec['product_id'] for rec in recommendations]
+        # Filter only active and complete products
+        products_qs = Product.objects.filter(id__in=product_ids, is_active=True)
+        products_map = {p.id: p for p in products_qs}
+        serialized_products = []
+        for rec in recommendations:
+            product_obj = products_map.get(rec['product_id'])
+            if product_obj and product_obj.slug and product_obj.image_urls:
+                product_data = ProductSerializer(product_obj, context={'request': request}).data
+                # Force id to be correct and not overwritten
+                product_data['id'] = getattr(product_obj, 'id', None)
+                product_data['score'] = rec.get('score')
+                product_data['algorithm'] = rec.get('algorithm')
+                serialized_products.append(product_data)
         response_data = {
-            'session_id': session.id,
-            'recommendations': recommendations,
-            'total_count': len(recommendations),
-            'algorithm_info': {
-                'type': 'personalized',
-                'description': 'Based on your preferences and behavior'
-            }
+            'count': len(serialized_products),
+            'results': serialized_products,
         }
 
         # Cache for 5 minutes (shorter for personalized)
@@ -211,6 +223,14 @@ def track_recommendation_interaction(request):
             result.was_added_to_cart = True
         elif action == 'purchase':
             result.was_purchased = True
+        elif action == 'favorite':
+            result.was_favorited = True
+        elif action == 'compare':
+            result.was_compared = True
+        elif action == 'view_details':
+            result.was_viewed_details = True
+        elif action == 'check_stock':
+            result.was_checked_stock = True
         
         result.save()
         

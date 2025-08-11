@@ -1,3 +1,3 @@
 """
-Products app for Best on Click.
+Products app for Best in Click.
 """

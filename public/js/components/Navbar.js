@@ -80,7 +80,7 @@ export function renderNavbar(container) {
                         <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white text-sm">
                             <i class="fa-solid fa-shopping-bag"></i>
                         </div>
-                        Best on Click
+                        Best in Click
                     </a>
                     <div class="hidden lg:flex items-center gap-6 text-muted font-bold">
                         <a href="#/" class="hover:text-secondary transition-colors">Home</a>
