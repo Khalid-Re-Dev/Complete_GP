@@ -1,3 +1,3 @@
 """
-Authentication app for Best on Click.
+Authentication app for Best in Click.
 """

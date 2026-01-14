@@ -154,26 +154,34 @@ export default function StoreOwnerDashboard() {
   `)
 
   // Initialize dashboard
-  initializeDashboard(page)
+  checkUserStoreAndInit(page)
 
   return page
 }
 
 /**
+ * Check if user has a store, if not redirect to create store, else initialize dashboard
+ */
+async function checkUserStoreAndInit(page) {
+  try {
+    // جلب بيانات المتجر الخاص بالمستخدم الحالي
+    const myStore = await dashboardService.getMyStore();
+    if (!myStore || !myStore.id) {
+      showStoreSetupRequired(page);
+      return;
+    }
+    initializeDashboard(page, myStore.id);
+  } catch (error) {
+    console.error('Error fetching user store:', error);
+    showDashboardError(page, error);
+  }
+}
+
+/**
  * Initialize dashboard with real data
  */
-async function initializeDashboard(page) {
+async function initializeDashboard(page, storeId) {
   try {
-    const { user } = store.getState()
-    
-    // First, get user's store information
-    const storeId = await getUserStoreId(user)
-    
-    if (!storeId) {
-      showStoreSetupRequired(page)
-      return
-    }
-
     // Load all dashboard data
     await Promise.all([
       loadStoreInfo(page, storeId),
@@ -196,19 +204,7 @@ async function initializeDashboard(page) {
   }
 }
 
-/**
- * Get user's store ID
- */
-async function getUserStoreId(user) {
-  try {
-    // For now, we'll assume the store ID is 1 for the logged-in store owner
-    // In a real implementation, this would come from the user's profile or a stores endpoint
-    return 1
-  } catch (error) {
-    console.error('Error getting store ID:', error)
-    return null
-  }
-}
+// لم يعد هناك حاجة لدالة getUserStoreId، حيث يتم جلب المعرف من API
 
 /**
  * Show store setup required message
@@ -239,10 +235,11 @@ function showDashboardError(page, error) {
   page.querySelector('#dashboard-error').classList.remove('hidden')
   
   const retryBtn = page.querySelector('#retry-dashboard')
-  retryBtn.addEventListener('click', () => {
+  retryBtn.addEventListener('click', async () => {
     page.querySelector('#dashboard-error').classList.add('hidden')
     page.querySelector('#dashboard-loading').classList.remove('hidden')
-    initializeDashboard(page)
+    // تحقق مرة أخرى من حالة المتجر عند إعادة المحاولة
+    await checkUserStoreAndInit(page)
   })
 }
 
@@ -251,24 +248,25 @@ function showDashboardError(page, error) {
  */
 async function loadStoreInfo(page, storeId) {
   try {
-    // For now, we'll use mock data since there's no store details endpoint
-    const storeInfo = {
-      name: "My Store",
-      email: "store@example.com",
-      phone: "+1234567890",
-      address: "123 Store Street, City, State",
-      is_verified: true,
-      is_active: true
+    // جلب بيانات المتجر الحقيقية من API
+    const storeInfo = await dashboardService.getMyStore();
+    if (!storeInfo || !storeInfo.id) {
+      page.querySelector('#store-details').innerHTML = `
+        <div class="text-center py-4">
+          <p class="text-danger">No store information found</p>
+        </div>
+      `;
+      return;
     }
 
-    const storeDetailsContainer = page.querySelector('#store-details')
+    const storeDetailsContainer = page.querySelector('#store-details');
     storeDetailsContainer.innerHTML = `
       <div>
         <h4 class="font-semibold mb-2">Store Details</h4>
-        <p class="text-sm text-muted mb-1"><strong>Name:</strong> ${storeInfo.name}</p>
-        <p class="text-sm text-muted mb-1"><strong>Email:</strong> ${storeInfo.email}</p>
-        <p class="text-sm text-muted mb-1"><strong>Phone:</strong> ${storeInfo.phone}</p>
-        <p class="text-sm text-muted"><strong>Address:</strong> ${storeInfo.address}</p>
+        <p class="text-sm text-muted mb-1"><strong>Name:</strong> ${storeInfo.name || '-'}</p>
+        <p class="text-sm text-muted mb-1"><strong>Email:</strong> ${storeInfo.email || '-'}</p>
+        <p class="text-sm text-muted mb-1"><strong>Phone:</strong> ${storeInfo.phone || '-'}</p>
+        <p class="text-sm text-muted"><strong>Address:</strong> ${storeInfo.address || '-'}</p>
       </div>
       <div>
         <h4 class="font-semibold mb-2">Store Status</h4>
@@ -285,14 +283,14 @@ async function loadStoreInfo(page, storeId) {
           Edit Store Info
         </button>
       </div>
-    `
+    `;
   } catch (error) {
-    console.error('Error loading store info:', error)
+    console.error('Error loading store info:', error);
     page.querySelector('#store-details').innerHTML = `
       <div class="text-center py-4">
         <p class="text-danger">Failed to load store information</p>
       </div>
-    `
+    `;
   }
 }
 
@@ -342,8 +340,9 @@ async function loadRecentProducts(page, storeId) {
     console.log('Products data:', products)
 
     const productsContainer = page.querySelector('#products-overview')
+    const productList = products && Array.isArray(products.results) ? products.results : [];
 
-    if (!products || products.length === 0) {
+    if (productList.length === 0) {
       productsContainer.innerHTML = `
         <div class="text-center py-8">
           <div class="text-muted text-4xl mb-4">
@@ -360,7 +359,7 @@ async function loadRecentProducts(page, storeId) {
     }
 
     // Show recent products (limit to 5)
-    const recentProducts = products.slice(0, 5)
+    const recentProducts = productList.slice(0, 5)
     productsContainer.innerHTML = `
       <div class="overflow-x-auto">
         <table class="w-full">
@@ -436,7 +435,8 @@ async function loadRecentProducts(page, storeId) {
 
 // Global functions for quick actions
 window.setupStore = function() {
-  showToast("Store setup feature coming soon!", "info")
+  // توجيه المستخدم إلى صفحة إنشاء المتجر
+  location.hash = '#/create-store'
 }
 
 window.addNewProduct = function() {

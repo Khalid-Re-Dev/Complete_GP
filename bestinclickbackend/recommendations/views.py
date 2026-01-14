@@ -97,14 +97,13 @@ def personalized_recommendations(request):
         serializer = RecommendationRequestSerializer(data=request.GET)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
         # Check cache for this user
         cache_key = f"personalized_recommendations_{request.user.id}_{serializer.validated_data.get('limit', 10)}"
         cached_result = cache.get(cache_key)
-        
         if cached_result:
             return Response(cached_result, status=status.HTTP_200_OK)
-        
+
         # Generate personalized recommendations
         recommendation_service = RecommendationService()
         recommendations = recommendation_service.get_personalized_recommendations(
@@ -113,14 +112,28 @@ def personalized_recommendations(request):
             category_id=serializer.validated_data.get('category_id'),
             exclude_products=serializer.validated_data.get('exclude_products', [])
         )
-        
+
+        # إذا لم توجد توصيات شخصية، جرب التوصيات العامة
+        if not recommendations:
+            general_recs = recommendation_service.get_general_recommendations(
+                limit=serializer.validated_data.get('limit', 10),
+                category_id=serializer.validated_data.get('category_id'),
+                exclude_products=serializer.validated_data.get('exclude_products', [])
+            )
+            if not general_recs:
+                return Response({
+                    'recommendations': [],
+                    'message': 'لا توجد بيانات كافية لتوليد توصيات مخصصة أو عامة.'
+                }, status=status.HTTP_200_OK)
+            recommendations = general_recs
+
         # Create session for tracking
         session = RecommendationSession.objects.create(
             user=request.user,
             session_id=serializer.validated_data.get('session_id'),
             recommendation_type='personalized'
         )
-        
+
         # Store results
         for idx, rec in enumerate(recommendations):
             RecommendationResult.objects.create(
@@ -130,28 +143,50 @@ def personalized_recommendations(request):
                 position=idx + 1,
                 algorithm_used=rec['algorithm']
             )
-        
+
+        # جلب بيانات المنتجات الكاملة بنفس تنسيق ProductListView
+        from products.models import Product
+        from products.serializers import ProductSerializer
+        product_ids = [rec['product_id'] for rec in recommendations]
+        # Filter only active and complete products
+        products_qs = Product.objects.filter(id__in=product_ids, is_active=True)
+        products_map = {p.id: p for p in products_qs}
+        serialized_products = []
+        for rec in recommendations:
+            product_obj = products_map.get(rec['product_id'])
+            if product_obj and product_obj.slug and product_obj.image_urls:
+                product_data = ProductSerializer(product_obj, context={'request': request}).data
+                # Force id to be correct and not overwritten
+                product_data['id'] = getattr(product_obj, 'id', None)
+                product_data['score'] = rec.get('score')
+                product_data['algorithm'] = rec.get('algorithm')
+                serialized_products.append(product_data)
         response_data = {
-            'session_id': session.id,
-            'recommendations': recommendations,
-            'total_count': len(recommendations),
-            'algorithm_info': {
-                'type': 'personalized',
-                'description': 'Based on your preferences and behavior'
-            }
+            'count': len(serialized_products),
+            'results': serialized_products,
         }
-        
+
         # Cache for 5 minutes (shorter for personalized)
         cache.set(cache_key, response_data, 300)
-        
+
         return Response(response_data, status=status.HTTP_200_OK)
-        
+
     except Exception as e:
         logger.error(f"Error generating personalized recommendations for user {request.user.id}: {str(e)}")
-        return Response(
-            {'error': 'Failed to generate personalized recommendations'},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
-        )
+        # جرب fallback للتوصيات العامة إذا حدث خطأ
+        try:
+            recommendation_service = RecommendationService()
+            general_recs = recommendation_service.get_general_recommendations(limit=10)
+            return Response({
+                'recommendations': general_recs,
+                'message': 'تم عرض توصيات عامة لحدوث خطأ في التوصيات الشخصية.'
+            }, status=status.HTTP_200_OK)
+        except Exception as e2:
+            logger.error(f"Error fallback to general recommendations: {str(e2)}")
+            return Response(
+                {'error': 'Failed to generate personalized or general recommendations'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 
 @api_view(['POST'])
@@ -188,6 +223,14 @@ def track_recommendation_interaction(request):
             result.was_added_to_cart = True
         elif action == 'purchase':
             result.was_purchased = True
+        elif action == 'favorite':
+            result.was_favorited = True
+        elif action == 'compare':
+            result.was_compared = True
+        elif action == 'view_details':
+            result.was_viewed_details = True
+        elif action == 'check_stock':
+            result.was_checked_stock = True
         
         result.save()
         

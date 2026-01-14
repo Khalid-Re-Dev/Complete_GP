@@ -1,3 +1,3 @@
 """
-Cart app for Best on Click.
+Cart app for Best in Click.
 """

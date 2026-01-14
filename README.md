@@ -1,6 +1,6 @@
-# Best on Click - Pure Web E-commerce Application
+# Best in Click - Pure Web E-commerce Application
 
-This repository contains the complete source code for the "Best on Click" e-commerce application. It is built using pure web technologies (HTML5, CSS3, and Vanilla JavaScript) with Tailwind CSS for styling, featuring a modern, responsive design and advanced functionality including user behavior tracking and AI integration hooks.
+This repository contains the complete source code for the "Best in Click" e-commerce application. It is built using pure web technologies (HTML5, CSS3, and Vanilla JavaScript) with Tailwind CSS for styling, featuring a modern, responsive design and advanced functionality including user behavior tracking and AI integration hooks.
 
 ## Core Features
 

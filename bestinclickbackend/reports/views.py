@@ -32,21 +32,57 @@ class GenerateReportView(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
     
     def create(self, request, *args, **kwargs):
+        """
+        احترافي: إذا لم يُرسل store_id أو كان غير صحيح، يتم جلب أول متجر يملكه المستخدم تلقائياً أو إرجاع رسالة خطأ واضحة.
+        """
+        import traceback
+        from decimal import Decimal
+        def convert_decimal(obj):
+            if isinstance(obj, dict):
+                return {k: convert_decimal(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_decimal(i) for i in obj]
+            elif isinstance(obj, Decimal):
+                return float(obj)
+            else:
+                return obj
+
         try:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            
+
+            # معالجة store_id بشكل احترافي
+            store_id = serializer.validated_data.get('store_id')
+            if not store_id:
+                # إذا لم يُرسل store_id، جلب أول متجر يملكه المستخدم
+                user_stores = Store.objects.filter(owner=request.user)
+                if not user_stores.exists():
+                    return Response(
+                        {'error': 'You do not have any store. Please create a store first.'},
+                        status=status.HTTP_400_BAD_REQUEST
+                    )
+                store_id = user_stores.first().id
+            else:
+                # تحقق أن المتجر فعلاً يخص المستخدم
+                if not Store.objects.filter(id=store_id, owner=request.user).exists():
+                    return Response(
+                        {'error': 'Invalid store_id. You do not own this store.'},
+                        status=status.HTTP_400_BAD_REQUEST
+                    )
+
             # Create report record
+            parameters = serializer.validated_data.get('parameters', {})
+            parameters = convert_decimal(parameters)
             report = GeneratedReport.objects.create(
                 report_type=serializer.validated_data['report_type'],
                 generated_by=request.user,
-                store_id=serializer.validated_data.get('store_id'),
+                store_id=store_id,
                 date_from=serializer.validated_data['date_from'],
                 date_to=serializer.validated_data['date_to'],
-                parameters=serializer.validated_data.get('parameters', {}),
+                parameters=parameters,
                 status='pending'
             )
-            
+
             # Generate report asynchronously (in production, use Celery)
             try:
                 report_service = ReportGenerationService()
@@ -58,32 +94,34 @@ class GenerateReportView(generics.CreateAPIView):
                     date_to=report.date_to,
                     parameters=report.parameters
                 )
-                
+
                 # Update report with generated data
-                report.raw_data = report_data['raw_data']
+                report.raw_data = convert_decimal(report_data['raw_data'])
                 report.ai_summary_text = report_data['ai_summary']
-                report.visualizations = report_data.get('visualizations', {})
+                report.visualizations = convert_decimal(report_data.get('visualizations', {}))
                 report.status = 'completed'
                 report.completed_at = timezone.now()
                 report.save()
-                
+
             except Exception as e:
-                logger.error(f"Error generating report: {str(e)}")
+                tb = traceback.format_exc()
+                logger.error(f"Error generating report: {str(e)}\nTraceback:\n{tb}")
                 report.status = 'failed'
                 report.save()
-                
+
                 return Response(
-                    {'error': 'Report generation failed'},
+                    {'error': 'Report generation failed', 'details': str(e), 'traceback': tb},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
-            
+
             response_serializer = GeneratedReportSerializer(report)
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
-            
+
         except Exception as e:
-            logger.error(f"Error in report generation: {str(e)}")
+            tb = traceback.format_exc()
+            logger.error(f"Error in report generation: {str(e)}\nTraceback:\n{tb}")
             return Response(
-                {'error': 'Failed to generate report'},
+                {'error': 'Failed to generate report', 'details': str(e), 'traceback': tb},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 

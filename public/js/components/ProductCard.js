@@ -1,3 +1,18 @@
+// Compare button handler: navigates to Compare page with product ID (number only)
+window.compareProduct = function(productId, event = null) {
+  if (event) {
+    const button = event.target.closest('button');
+    const originalContent = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+    button.disabled = true;
+    setTimeout(() => {
+      button.innerHTML = originalContent;
+      button.disabled = false;
+    }, 1000);
+  }
+  // Navigate to compare page with product id in hash
+  location.hash = `/compare?product=${encodeURIComponent(productId)}`;
+}
 import { formatCurrency, showToast } from "../utils/helpers.js?v=2024"
 
 /**
@@ -12,17 +27,21 @@ export function ProductCard(product) {
   const hasDiscount = (product.discount_percentage || 0) > 0
   const categoryName = product.category?.name || product.category || 'Uncategorized'
   const productSlug = product.slug || product.id
+  const productId = product.id
   const rating = product.average_rating || product.rating || 0
   const reviewsCount = product.total_reviews || product.reviews_count || 0
   const isInStock = product.in_stock !== undefined ? product.in_stock : (product.stock || 0) > 0
 
   // Get primary image
-  let imageUrl = 'https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent(product.name)
+  let imageUrl = '/placeholder.jpg'
   if (product.image_urls && product.image_urls.length > 0) {
     imageUrl = product.image_urls[0]
   } else if (product.images && product.images.length > 0) {
     imageUrl = product.images.find(img => img.is_primary)?.image || product.images[0]?.image
+  }  if (!imageUrl) {
+    imageUrl = product.images?.[0]?.image || product.images?.[0]?.url || '/placeholder.jpg'
   }
+
 
   return `
     <div class="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group cursor-pointer overflow-hidden" onclick="location.hash='/products/${productSlug}'">
@@ -31,7 +50,7 @@ export function ProductCard(product) {
         <img src="${imageUrl}"
              alt="${product.name}"
              class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-             onerror="this.src='https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent('${product.name}'); this.onerror=null;">
+             onerror="this.src='/placeholder.jpg'; this.onerror=null;">
 
         <!-- Discount Badge -->
         ${hasDiscount ? `
@@ -59,6 +78,12 @@ export function ProductCard(product) {
                   title="Quick View"
                   aria-label="View ${product.name} details">
             <i class="fa-solid fa-eye"></i>
+          </button>
+          <button class="action-button"
+                  onclick="event.stopPropagation(); compareProduct('${productId}', event)"
+                  title="Compare"
+                  aria-label="Compare ${product.name}">
+            <i class="fa-solid fa-code-compare"></i>
           </button>
         </div>
       </div>

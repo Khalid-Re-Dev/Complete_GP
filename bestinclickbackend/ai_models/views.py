@@ -10,7 +10,9 @@ from django.utils import timezone
 from products.models import Product
 from .models import UserBehaviorLog, UserSessionInteraction
 from .services import SearchService, RecommendationService, SentimentAnalysisService
+from rest_framework.views import APIView
 import logging
+from textblob import TextBlob
 
 logger = logging.getLogger(__name__)
 
@@ -166,3 +168,29 @@ def user_behavior_analytics(request):
             {'error': 'Failed to get analytics'},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+
+from transformers import pipeline
+
+# تحميل نموذج التحليل مرة واحدة عند بدء التشغيل
+sentiment_pipeline = pipeline("sentiment-analysis")
+
+class SentimentAnalysisView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        text = request.data.get("text", "").strip()
+
+        if not text:
+            return Response({"error": "النص مطلوب"}, status=400)
+
+        # تحليل الشعور باستخدام نموذج ذكاء صناعي مدرب
+        result = sentiment_pipeline(text)[0]
+        label = result['label'].lower()  # "positive" or "negative"
+        score = round(result['score'], 3)
+
+        return Response({
+            "sentiment": label,
+            "confidence": score,
+            "original_text": text
+        })

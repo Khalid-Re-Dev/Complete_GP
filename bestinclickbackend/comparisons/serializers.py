@@ -13,9 +13,9 @@ class ProductComparisonRequestSerializer(serializers.Serializer):
     """
     product_ids = serializers.ListField(
         child=serializers.IntegerField(),
-        min_length=2,
+        min_length=1,
         max_length=5,
-        help_text="List of product IDs to compare (2-5 products)"
+        help_text="List of product IDs to compare (1-5 products)"
     )
     criteria = serializers.ListField(
         child=serializers.CharField(),

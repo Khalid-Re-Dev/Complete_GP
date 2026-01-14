@@ -1,4 +1,4 @@
-# Best on Click - E-commerce Backend
+# Best in Click - E-commerce Backend
 
 A comprehensive Django REST API backend for an AI-powered e-commerce platform with advanced features including smart search, personalized recommendations, product comparisons, and promotional QR code system.
 
@@ -232,7 +232,7 @@ This project is licensed under the MIT License.
 For support and questions, please open an issue in the repository.
 \`\`\`
 
-This completes the comprehensive Django backend for the "Best on Click" e-commerce application. The project now includes:
+This completes the comprehensive Django backend for the "Best in Click" e-commerce application. The project now includes:
 
 ## ✅ **COMPLETE FILE STRUCTURE:**
 

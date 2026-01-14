@@ -1,3 +1,3 @@
 """
-Reports app for Best on Click.
+Reports app for Best in Click.
 """

@@ -1,3 +1,3 @@
 """
-AI Models app for Best on Click.
+AI Models app for Best in Click.
 """
