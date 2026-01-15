@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Imports - Best on Click</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-item {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .loading {
+            background-color: #fff3cd;
+            border-color: #ffeaa7;
+            color: #856404;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Import Test - Best on Click</h1>
+        <p>هذه الصفحة تختبر استيراد جميع الوحدات JavaScript</p>
+        
+        <button onclick="runImportTests()">تشغيل اختبارات الاستيراد</button>
+        <button onclick="clearResults()">مسح النتائج</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script type="module">
+        window.runImportTests = async function() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="test-item loading">🔄 جاري اختبار الاستيرادات...</div>';
+            
+            const imports = [
+                // Core services
+                { name: 'apiService', path: '/js/services/api.js', import: 'apiService' },
+                { name: 'authService', path: '/js/services/api.js', import: 'authService' },
+                { name: 'productService', path: '/js/services/api.js', import: 'productService' },
+                { name: 'cartService', path: '/js/services/api.js', import: 'cartService' },
+                { name: 'reportsService', path: '/js/services/api.js', import: 'reportsService' },
+                { name: 'promotionsService', path: '/js/services/api.js', import: 'promotionsService' },
+                { name: 'dashboardService', path: '/js/services/api.js', import: 'dashboardService' },
+                { name: 'recommendationService', path: '/js/services/api.js', import: 'recommendationService' },
+                { name: 'comparisonService', path: '/js/services/api.js', import: 'comparisonService' },
+                { name: 'commentService', path: '/js/services/api.js', import: 'commentService' },
+                
+                // Utils
+                { name: 'toast', path: '/js/utils/toast.js', import: 'toastManager' },
+                { name: 'helpers', path: '/js/utils/helpers.js', import: 'default' },
+                
+                // Auth service (standalone)
+                { name: 'auth standalone', path: '/js/services/auth.js', import: 'authService' },
+                
+                // Store service
+                { name: 'store', path: '/js/services/store.js', import: 'default' },
+                
+                // Mock services
+                { name: 'mockApi', path: '/js/services/mockApi.js', import: 'mockAuthService' },
+                { name: 'mockData', path: '/js/services/mockData.js', import: 'default' }
+            ];
+            
+            let passedTests = 0;
+            let totalTests = imports.length;
+            
+            resultsDiv.innerHTML = '';
+            
+            for (const testImport of imports) {
+                const result = await testImport(testImport);
+                
+                const testDiv = document.createElement('div');
+                testDiv.className = `test-item ${result.success ? 'success' : 'error'}`;
+                testDiv.innerHTML = `
+                    <strong>${result.success ? '✅' : '❌'} ${testImport.name}</strong><br>
+                    <small>Path: ${testImport.path}</small><br>
+                    <small>Import: ${testImport.import}</small><br>
+                    <small>Status: ${result.message}</small>
+                    ${result.details ? `<pre>${result.details}</pre>` : ''}
+                `;
+                
+                resultsDiv.appendChild(testDiv);
+                
+                if (result.success) passedTests++;
+            }
+            
+            // Summary
+            const successRate = ((passedTests / totalTests) * 100).toFixed(1);
+            const summaryDiv = document.createElement('div');
+            summaryDiv.className = `test-item ${successRate >= 90 ? 'success' : successRate >= 70 ? 'loading' : 'error'}`;
+            summaryDiv.innerHTML = `
+                <h3>📋 نتائج الاختبارات</h3>
+                <p><strong>المجموع:</strong> ${totalTests}</p>
+                <p><strong>نجح:</strong> ${passedTests}</p>
+                <p><strong>فشل:</strong> ${totalTests - passedTests}</p>
+                <p><strong>معدل النجاح:</strong> ${successRate}%</p>
+            `;
+            resultsDiv.insertBefore(summaryDiv, resultsDiv.firstChild);
+        };
+
+        async function testImport(testConfig) {
+            try {
+                const module = await import(testConfig.path);
+                
+                let importedItem;
+                if (testConfig.import === 'default') {
+                    importedItem = module.default;
+                } else {
+                    importedItem = module[testConfig.import];
+                }
+                
+                if (importedItem === undefined) {
+                    return {
+                        success: false,
+                        message: `Export '${testConfig.import}' not found`,
+                        details: `Available exports: ${Object.keys(module).join(', ')}`
+                    };
+                }
+                
+                const type = typeof importedItem;
+                const isFunction = type === 'function';
+                const isObject = type === 'object' && importedItem !== null;
+                const isClass = isFunction && importedItem.prototype;
+                
+                return {
+                    success: true,
+                    message: `Imported successfully`,
+                    details: `Type: ${type}${isClass ? ' (class)' : ''}${isObject ? ` (${Object.keys(importedItem).length} properties)` : ''}`
+                };
+                
+            } catch (error) {
+                return {
+                    success: false,
+                    message: `Import failed: ${error.message}`,
+                    details: error.stack
+                };
+            }
+        }
+
+        window.clearResults = function() {
+            document.getElementById('results').innerHTML = '';
+        };
+
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(runImportTests, 1000);
+        });
+
+        console.log('🧪 Import Test Page Loaded');
+    </script>
+</body>
+</html>

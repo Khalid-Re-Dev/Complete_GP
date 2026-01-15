@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم المتقدمة - Best on Click</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom styles for advanced dashboard */
+        .widget-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .widget-container:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .widget-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .widget-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+        
+        .widget-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .widget-controls button {
+            background: none;
+            border: none;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .widget-controls button:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        .widget-content {
+            padding: 1.5rem;
+        }
+        
+        .widget-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            padding: 2rem;
+        }
+        
+        .metric-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .metric-value {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-status {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .metric-status.good { background: #10b981; color: white; }
+        .metric-status.warning { background: #f59e0b; color: white; }
+        .metric-status.poor { background: #ef4444; color: white; }
+        
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .performance-recommendations {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        
+        .performance-recommendations h4 {
+            margin: 0 0 0.75rem 0;
+            color: #92400e;
+            font-weight: 600;
+        }
+        
+        .performance-recommendations ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .recommendation-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #fbbf24;
+        }
+        
+        .recommendation-item:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendation-item.priority-high {
+            color: #dc2626;
+        }
+        
+        .recommendation-item.priority-medium {
+            color: #d97706;
+        }
+        
+        .recommendation-item.priority-low {
+            color: #059669;
+        }
+        
+        .realtime-metrics {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .metric-item {
+            text-align: center;
+        }
+        
+        .metric-item .metric-label {
+            font-size: 0.75rem;
+            color: #0369a1;
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-item .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0c4a6e;
+        }
+        
+        .realtime-chart {
+            margin: 1rem 0;
+            text-align: center;
+        }
+        
+        .realtime-alerts .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+        }
+        
+        .alert-item.severity-high {
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            color: #dc2626;
+        }
+        
+        .alert-item.severity-medium {
+            background: #fffbeb;
+            border: 1px solid #fcd34d;
+            color: #d97706;
+        }
+        
+        .alert-item.severity-low {
+            background: #f0f9ff;
+            border: 1px solid #93c5fd;
+            color: #2563eb;
+        }
+        
+        .inventory-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .summary-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .summary-card.warning {
+            background: #fffbeb;
+            border-color: #fbbf24;
+        }
+        
+        .summary-card.danger {
+            background: #fef2f2;
+            border-color: #f87171;
+        }
+        
+        .summary-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .summary-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .alerts-list, .recommendations-list, .insights-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .alert-item, .recommendation-item, .insight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .customer-metrics .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .segments-chart {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .alerts-summary {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+        
+        .alert-count {
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .alert-count.critical {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .alert-count.warning {
+            background: #fffbeb;
+            color: #d97706;
+        }
+        
+        .alert-count.info {
+            background: #f0f9ff;
+            color: #2563eb;
+        }
+        
+        .bi-overview {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .bi-score {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .score-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .score-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .score-trend {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .score-trend.up {
+            color: #10b981;
+        }
+        
+        .score-trend.down {
+            color: #ef4444;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .insight-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .insight-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .insight-card.impact-high {
+            border-left: 4px solid #dc2626;
+        }
+        
+        .insight-card.impact-medium {
+            border-left: 4px solid #d97706;
+        }
+        
+        .insight-card.impact-low {
+            border-left: 4px solid #059669;
+        }
+        
+        .insight-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #6366f1;
+        }
+        
+        .insight-actions {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .action-btn:hover {
+            background: #4f46e5;
+        }
+        
+        .action-btn.primary { background: #3b82f6; }
+        .action-btn.secondary { background: #6b7280; }
+        .action-btn.success { background: #10b981; }
+        .action-btn.warning { background: #f59e0b; }
+        .action-btn.danger { background: #ef4444; }
+        .action-btn.info { background: #06b6d4; }
+        
+        .predictions-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .prediction-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .prediction-metric {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .prediction-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.25rem;
+        }
+        
+        .prediction-confidence {
+            font-size: 0.75rem;
+            color: #059669;
+        }
+        
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .revenue-overview {
+            margin-bottom: 1.5rem;
+        }
+        
+        .revenue-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .metric-change {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .metric-change.positive {
+            color: #10b981;
+        }
+        
+        .metric-change.negative {
+            color: #ef4444;
+        }
+        
+        .revenue-chart {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .revenue-insights ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .revenue-insights .insight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .revenue-insights .insight-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .widget-large { grid-column: span 8; }
+        .widget-medium { grid-column: span 6; }
+        .widget-small { grid-column: span 4; }
+        
+        @media (max-width: 1024px) {
+            .widget-large, .widget-medium, .widget-small {
+                grid-column: span 12;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .performance-metrics,
+            .metric-row,
+            .inventory-summary,
+            .customer-metrics .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .insights-grid,
+            .predictions-list,
+            .quick-actions-grid,
+            .revenue-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-gray-900">
+                        <i class="fas fa-chart-line text-blue-600 mr-2"></i>
+                        لوحة التحكم المتقدمة
+                    </h1>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <!-- Filters -->
+                    <select id="timeframe-filter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                        <option value="7d">آخر 7 أيام</option>
+                        <option value="30d" selected>آخر 30 يوم</option>
+                        <option value="90d">آخر 90 يوم</option>
+                        <option value="1y">آخر سنة</option>
+                    </select>
+                    
+                    <select id="store-filter" class="border border-gray-300 rounded-md px-3 py-2 text-sm">
+                        <option value="">جميع المتاجر</option>
+                        <option value="store1">متجر الإلكترونيات</option>
+                        <option value="store2">متجر الأزياء</option>
+                        <option value="store3">متجر الكتب</option>
+                    </select>
+                    
+                    <!-- Real-time toggle -->
+                    <label class="flex items-center">
+                        <input type="checkbox" id="realtime-toggle" checked class="mr-2">
+                        <span class="text-sm text-gray-700">التحديث المباشر</span>
+                    </label>
+                    
+                    <!-- Refresh button -->
+                    <button onclick="advancedDashboard.refreshAllData()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm">
+                        <i class="fas fa-sync-alt mr-1"></i>
+                        تحديث
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div id="dashboard-loading" class="hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <p class="mt-4 text-gray-600">جاري تحميل لوحة التحكم المتقدمة...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div id="dashboard-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- Performance Overview Widget -->
+            <div id="performance-overview" class="widget-container widget-large">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Quick Actions Widget -->
+            <div id="quick-actions" class="widget-container widget-small">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Real-time Analytics Widget -->
+            <div id="realtime-analytics" class="widget-container widget-large">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Alerts & Notifications Widget -->
+            <div id="alerts-notifications" class="widget-container widget-small">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Inventory Status Widget -->
+            <div id="inventory-status" class="widget-container widget-medium">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Customer Insights Widget -->
+            <div id="customer-insights" class="widget-container widget-medium">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Revenue Analytics Widget -->
+            <div id="revenue-analytics" class="widget-container widget-large">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+            <!-- Business Intelligence Widget -->
+            <div id="business-intelligence" class="widget-container widget-large">
+                <!-- Widget content will be rendered by JavaScript -->
+            </div>
+            
+        </div>
+        
+        <!-- Additional Sections -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+            
+            <!-- System Status -->
+            <div class="widget-container">
+                <div class="widget-header">
+                    <h3 class="widget-title">حالة النظام</h3>
+                </div>
+                <div class="widget-content">
+                    <div id="system-status">
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">خدمات API</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    متصل
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">قاعدة البيانات</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    متصل
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">التخزين المؤقت</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                                    بطيء
+                                </span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">النسخ الاحتياطي</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    <i class="fas fa-check-circle mr-1"></i>
+                                    محدث
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Activities -->
+            <div class="widget-container">
+                <div class="widget-header">
+                    <h3 class="widget-title">الأنشطة الأخيرة</h3>
+                </div>
+                <div class="widget-content">
+                    <div id="recent-activities">
+                        <div class="space-y-3">
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-shopping-cart text-blue-500"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm text-gray-900">طلب جديد من العميل أحمد محمد</p>
+                                    <p class="text-xs text-gray-500">منذ 5 دقائق</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-star text-yellow-500"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm text-gray-900">مراجعة جديدة 5 نجوم</p>
+                                    <p class="text-xs text-gray-500">منذ 15 دقيقة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-exclamation-triangle text-orange-500"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm text-gray-900">تنبيه مخزون منخفض</p>
+                                    <p class="text-xs text-gray-500">منذ 30 دقيقة</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-user-plus text-green-500"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm text-gray-900">عميل جديد سجل في الموقع</p>
+                                    <p class="text-xs text-gray-500">منذ ساعة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex justify-between items-center">
+                <div class="text-sm text-gray-500">
+                    © 2024 Best on Click - لوحة التحكم المتقدمة
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-500">آخر تحديث:</span>
+                    <span id="last-update" class="text-sm font-medium text-gray-900">
+                        <!-- Will be updated by JavaScript -->
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module">
+        // Import and initialize advanced dashboard
+        import { advancedDashboard } from './js/pages/advanced-dashboard.js';
+        
+        // Update last update time
+        function updateLastUpdateTime() {
+            const lastUpdateElement = document.getElementById('last-update');
+            if (lastUpdateElement) {
+                lastUpdateElement.textContent = new Date().toLocaleString('ar-SA');
+            }
+        }
+        
+        // Update time every minute
+        updateLastUpdateTime();
+        setInterval(updateLastUpdateTime, 60000);
+        
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                advancedDashboard.refreshAllData();
+            }
+        });
+        
+        // Handle online/offline status
+        window.addEventListener('online', () => {
+            advancedDashboard.refreshAllData();
+        });
+        
+        window.addEventListener('offline', () => {
+            console.warn('Dashboard is offline - some features may not work');
+        });
+        
+        // Global error handler
+        window.addEventListener('error', (event) => {
+            console.error('Dashboard error:', event.error);
+        });
+        
+        // Performance monitoring
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`Dashboard loaded in ${loadTime.toFixed(2)}ms`);
+        });
+    </script>
+</body>
+</html>

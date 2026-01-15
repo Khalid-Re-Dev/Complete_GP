@@ -51,7 +51,7 @@ class UserBehaviorLog(models.Model):
     )
     
     # Session tracking
-    session_id = models.CharField(max_length=255, blank=True)
+    session_id = models.CharField(max_length=255, blank=True, null=True)
     ip_address = models.GenericIPAddressField(null=True, blank=True)
     user_agent = models.TextField(blank=True)
     

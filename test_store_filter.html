@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Filter Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+        <h2 class="text-xl font-bold mb-4">Store Filter Test</h2>
+        
+        <!-- Store Filter -->
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Select Store:</label>
+            <div class="relative">
+                <select id="store-select" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">🏪 All Stores</option>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <i class="fa-solid fa-chevron-down text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Selected Store Info -->
+        <div id="selected-store-info" class="hidden bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <i class="fa-solid fa-store text-blue-600 text-sm"></i>
+                </div>
+                <div class="flex-1">
+                    <h5 class="font-semibold text-blue-900 text-sm" id="selected-store-name"></h5>
+                    <p class="text-xs text-blue-700" id="selected-store-products"></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Products Display -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Products:</h3>
+            <div id="products-list" class="space-y-2">
+                <p class="text-gray-500">Loading products...</p>
+            </div>
+        </div>
+        
+        <!-- Debug Info -->
+        <div class="bg-gray-50 p-3 rounded text-xs">
+            <h4 class="font-semibold mb-1">Debug Info:</h4>
+            <div id="debug-info">Ready to test...</div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Mock stores data
+        const mockStores = [
+            {
+                id: 1,
+                name: "TechWorld",
+                products_count: 45,
+                rating: 4.8,
+                verified: true,
+                location: "New York, USA"
+            },
+            {
+                id: 2,
+                name: "ElectroHub",
+                products_count: 32,
+                rating: 4.6,
+                verified: true,
+                location: "California, USA"
+            },
+            {
+                id: 3,
+                name: "GadgetZone",
+                products_count: 28,
+                rating: 4.7,
+                verified: true,
+                location: "Texas, USA"
+            }
+        ];
+
+        // Mock products data
+        const mockProducts = [
+            { id: 1, name: "iPhone 15 Pro", store: "TechWorld", price: 999.99 },
+            { id: 2, name: "MacBook Pro 16\"", store: "TechWorld", price: 2499.99 },
+            { id: 3, name: "Apple Watch Series 9", store: "ElectroHub", price: 399.99 },
+            { id: 4, name: "Canon EOS R5", store: "GadgetZone", price: 3899.99 },
+            { id: 5, name: "Sony WH-1000XM5", store: "ElectroHub", price: 399.99 },
+            { id: 6, name: "PlayStation 5", store: "GadgetZone", price: 499.99 }
+        ];
+
+        let currentFilter = null;
+
+        function debugLog(message) {
+            const debugDiv = document.getElementById('debug-info');
+            debugDiv.innerHTML += '<br>' + new Date().toLocaleTimeString() + ': ' + message;
+            console.log(message);
+        }
+
+        function loadStores() {
+            debugLog('Loading stores...');
+            const storeSelect = document.getElementById('store-select');
+            
+            // Clear existing options except "All Stores"
+            storeSelect.innerHTML = '<option value="">🏪 All Stores</option>';
+            
+            // Add store options
+            mockStores.forEach(store => {
+                const option = document.createElement('option');
+                option.value = store.name;
+                option.textContent = `${store.verified ? '✅' : ''} ${store.name} (${store.products_count} products) ⭐${store.rating}`;
+                storeSelect.appendChild(option);
+            });
+            
+            debugLog(`Loaded ${mockStores.length} stores successfully`);
+        }
+
+        function updateSelectedStoreInfo(selectedStoreName) {
+            const selectedStoreInfo = document.getElementById('selected-store-info');
+            const selectedStoreNameEl = document.getElementById('selected-store-name');
+            const selectedStoreProductsEl = document.getElementById('selected-store-products');
+            
+            if (!selectedStoreName) {
+                selectedStoreInfo.classList.add('hidden');
+                return;
+            }
+            
+            const store = mockStores.find(s => s.name === selectedStoreName);
+            if (!store) return;
+            
+            selectedStoreNameEl.innerHTML = `${store.name} ${store.verified ? '<i class="fa-solid fa-check-circle text-green-500 ml-1"></i>' : ''}`;
+            selectedStoreProductsEl.innerHTML = `<i class="fa-solid fa-box mr-1"></i>${store.products_count} products • <i class="fa-solid fa-star text-yellow-500 mr-1"></i>${store.rating} • <i class="fa-solid fa-map-marker-alt mr-1"></i>${store.location}`;
+            
+            selectedStoreInfo.classList.remove('hidden');
+        }
+
+        function filterProducts(storeName) {
+            debugLog(`Filtering products by store: ${storeName || 'All Stores'}`);
+            
+            let filteredProducts = mockProducts;
+            if (storeName) {
+                filteredProducts = mockProducts.filter(p => p.store === storeName);
+            }
+            
+            const productsList = document.getElementById('products-list');
+            if (filteredProducts.length === 0) {
+                productsList.innerHTML = '<p class="text-gray-500">No products found for this store.</p>';
+            } else {
+                productsList.innerHTML = filteredProducts.map(product => `
+                    <div class="bg-gray-50 p-2 rounded">
+                        <div class="font-medium">${product.name}</div>
+                        <div class="text-sm text-gray-600">Store: ${product.store} • $${product.price}</div>
+                    </div>
+                `).join('');
+            }
+            
+            debugLog(`Showing ${filteredProducts.length} products`);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            debugLog('DOM loaded, initializing...');
+            
+            // Load stores
+            loadStores();
+            
+            // Load all products initially
+            filterProducts(null);
+            
+            // Add event listener for store selection
+            const storeSelect = document.getElementById('store-select');
+            storeSelect.addEventListener('change', function(e) {
+                const selectedStore = e.target.value;
+                debugLog(`Store selection changed to: ${selectedStore || 'All Stores'}`);
+                
+                currentFilter = selectedStore || null;
+                
+                // Update store info display
+                updateSelectedStoreInfo(selectedStore);
+                
+                // Filter products
+                filterProducts(selectedStore);
+            });
+            
+            debugLog('Initialization complete!');
+        });
+    </script>
+</body>
+</html>

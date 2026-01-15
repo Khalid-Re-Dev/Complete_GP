@@ -1,0 +1,8 @@
+# Additional requirements for store management system
+schedule==1.2.0  # For automated analytics updates
+celery==5.3.4    # For background tasks (optional)
+redis==5.0.1     # For caching and task queue (optional)
+pillow==10.1.0   # For image processing (store documents)
+python-magic==0.4.27  # For file type detection
+reportlab==4.0.7  # For PDF report generation
+openpyxl==3.1.2   # For Excel export functionality

@@ -1,6 +1,7 @@
 import { createElementFromHTML, showToast } from "../utils/helpers.js"
 import { productService } from "../services/api.js"
 import { ProductCard } from "../components/ProductCard.js"
+import { trackSearch, trackFilter, trackSort } from "../services/behaviorTracker.js"
 
 export default function ProductListPage() {
   const page = createElementFromHTML(`
@@ -60,6 +61,52 @@ export default function ProductListPage() {
                                     </div>
                                 </div>
 
+                                <!-- Stores Filter -->
+                                <div>
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h4 class="font-semibold text-primary flex items-center">
+                                            <i class="fa-solid fa-store text-secondary mr-2"></i>
+                                            Stores
+                                        </h4>
+                                        <span class="text-xs text-gray-500 bg-light-gray px-2 py-1 rounded font-medium" id="store-count">Filter</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <!-- Store Select Dropdown -->
+                                        <div class="relative group">
+                                            <select class="w-full px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary bg-white text-gray-700 appearance-none pr-10 transition-all duration-200 hover:border-secondary/50 group-hover:shadow-sm" id="store-select">
+                                                <option value="">🏪 All Stores</option>
+                                                <!-- Stores will be loaded here -->
+                                            </select>
+                                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                                <i class="fa-solid fa-chevron-down text-gray-400 transition-transform duration-200 group-hover:text-secondary" id="store-chevron"></i>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Selected Store Info -->
+                                        <div class="hidden bg-gradient-to-r from-secondary/5 to-primary/5 border border-secondary/20 rounded-lg p-3" id="selected-store-info">
+                                            <div class="flex items-center space-x-3">
+                                                <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center">
+                                                    <i class="fa-solid fa-store text-secondary text-sm"></i>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <h5 class="font-semibold text-primary text-sm" id="selected-store-name"></h5>
+                                                    <p class="text-xs text-gray-600" id="selected-store-products"></p>
+                                                </div>
+                                                <button class="text-gray-400 hover:text-red-500 transition-colors duration-200" onclick="clearStoreFilter()" title="Clear store filter">
+                                                    <i class="fa-solid fa-times text-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Store Loading State -->
+                                        <div class="hidden text-center py-3" id="stores-loading">
+                                            <div class="inline-flex items-center space-x-2 text-gray-500">
+                                                <div class="w-4 h-4 border-2 border-gray-300 border-t-secondary rounded-full animate-spin"></div>
+                                                <span class="text-sm">Loading stores...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!-- Price Range -->
                                 <div>
                                     <h4 class="font-semibold text-gray-800 mb-4 flex items-center">
@@ -205,6 +252,26 @@ export default function ProductListPage() {
       chevron.classList.add('fa-chevron-down')
     }
   }
+  
+  // Clear store filter functionality
+  window.clearStoreFilter = function() {
+    const storeSelect = page.querySelector('#store-select')
+    const selectedStoreInfo = page.querySelector('#selected-store-info')
+    
+    if (storeSelect) {
+      storeSelect.value = ''
+      currentFilters.store = null
+    }
+    
+    if (selectedStoreInfo) {
+      selectedStoreInfo.classList.add('hidden')
+    }
+    
+    // Apply filters to refresh products
+    applyFilters()
+    
+    showToast('Store filter cleared', 'info')
+  }
 
   return page
 }
@@ -218,7 +285,8 @@ function initializeProductList(page) {
     priceMin: null,
     priceMax: null,
     search: '',
-    sort: 'name'
+    sort: 'name',
+    store: null
   }
 
   // Parse URL parameters on page load
@@ -244,7 +312,163 @@ function initializeProductList(page) {
     }
   }
 
-  // Load products
+
+
+  // Load stores from API and render dropdown
+  async function loadStoresFromAPI() {
+    const storeSelect = page.querySelector('#store-select')
+    const storesLoading = page.querySelector('#stores-loading')
+    const storeCount = page.querySelector('#store-count')
+    
+    console.log('🏪 Starting loadStoresFromAPI...')
+    console.log('Store select element:', storeSelect)
+    
+    if (!storeSelect) {
+      console.error('❌ Store select element not found!')
+      return
+    }
+    
+    // Disable select while loading
+    storeSelect.disabled = true
+    
+    try {
+      // Show loading state
+      if (storesLoading) {
+        storesLoading.classList.remove('hidden')
+        console.log('📊 Loading state shown')
+      }
+      
+      console.log('🏪 Calling productService.getStores()...')
+      const storesResponse = await productService.getStores()
+      console.log('✅ Stores loaded successfully:', storesResponse)
+      
+      // Extract stores array from response
+      const storesData = storesResponse.results || storesResponse || []
+      console.log('📊 Number of stores:', storesData.length)
+      
+      // Hide loading state
+      if (storesLoading) {
+        storesLoading.classList.add('hidden')
+      }
+      
+      // Remove old options except 'All Stores'
+      storeSelect.innerHTML = '<option value="">🏪 All Stores</option>'
+      
+      // Enable the select element
+      storeSelect.disabled = false
+      
+      // Update store count
+      if (storeCount) {
+        storeCount.textContent = `${storesData.length} stores`
+      }
+      
+      storesData.forEach(store => {
+        const option = document.createElement('option')
+        option.value = store.name
+        
+        // Create rich option text with emojis and info
+        const verifiedIcon = store.verified ? '✅' : ''
+        const ratingStars = store.rating ? `⭐${store.rating}` : ''
+        const productCount = store.products_count || 0
+        
+        option.textContent = `${verifiedIcon} ${store.name} (${productCount} products) ${ratingStars}`.trim()
+        
+        // Store additional data for later use
+        option.dataset.storeId = store.id
+        option.dataset.storeRating = store.rating || 0
+        option.dataset.storeVerified = store.verified || false
+        option.dataset.storeLocation = store.location || ''
+        option.dataset.storeProductsCount = productCount
+        
+        if (currentFilters.store === store.name) {
+          option.selected = true
+        }
+        storeSelect.appendChild(option)
+      })
+      
+      // Add store change event listener
+      storeSelect.addEventListener('change', async (e) => {
+        console.log('🔄 Store filter changed!')
+        const selectedStore = e.target.value
+        console.log('🏪 Selected store:', selectedStore)
+        
+        currentFilters.store = selectedStore || null
+        console.log('📊 Updated currentFilters.store:', currentFilters.store)
+        
+        // Update selected store info
+        updateSelectedStoreInfo(selectedStore, storesData)
+        
+        // Apply filters
+        console.log('🔍 Applying filters...')
+        await applyFilters()
+        
+        // Track store filter
+        if (selectedStore) {
+          trackFilter('store', selectedStore)
+        }
+        
+        console.log('✅ Store filter applied successfully!')
+      })
+      
+      console.log('✅ Store change event listener added!')
+      
+    } catch (error) {
+      console.error('❌ Failed to load stores:', error)
+      
+      // Hide loading state
+      if (storesLoading) {
+        storesLoading.classList.add('hidden')
+      }
+      
+      // Show error state
+      storeSelect.innerHTML = '<option value="">Failed to load stores</option>'
+      storeSelect.disabled = true
+      
+      if (storeCount) {
+        storeCount.textContent = 'Error'
+        storeCount.className = 'text-xs text-red-500 bg-red-50 px-2 py-1 rounded font-medium'
+      }
+      
+      showToast('Failed to load stores', 'error')
+    }
+  }
+  
+  // Update selected store info display
+  function updateSelectedStoreInfo(selectedStoreName, storesData) {
+    const selectedStoreInfo = page.querySelector('#selected-store-info')
+    const selectedStoreNameEl = page.querySelector('#selected-store-name')
+    const selectedStoreProductsEl = page.querySelector('#selected-store-products')
+    
+    if (!selectedStoreInfo || !selectedStoreName) {
+      if (selectedStoreInfo) {
+        selectedStoreInfo.classList.add('hidden')
+      }
+      return
+    }
+    
+    const store = storesData.find(s => s.name === selectedStoreName)
+    if (!store) return
+    
+    // Update store info
+    if (selectedStoreNameEl) {
+      selectedStoreNameEl.innerHTML = `
+        ${store.name}
+        ${store.verified ? '<i class="fa-solid fa-check-circle text-green-500 ml-1" title="Verified Store"></i>' : ''}
+      `
+    }
+    
+    if (selectedStoreProductsEl) {
+      selectedStoreProductsEl.innerHTML = `
+        <i class="fa-solid fa-box mr-1"></i>${store.products_count || 0} products
+        ${store.rating ? `<span class="mx-2">•</span><i class="fa-solid fa-star text-yellow-500 mr-1"></i>${store.rating}` : ''}
+        ${store.location ? `<span class="mx-2">•</span><i class="fa-solid fa-map-marker-alt mr-1"></i>${store.location}` : ''}
+      `
+    }
+    
+    // Show store info
+    selectedStoreInfo.classList.remove('hidden')
+  }
+
   async function loadProducts() {
     try {
       // Build query parameters
@@ -262,6 +486,10 @@ function initializeProductList(page) {
       }
       if (currentFilters.search) {
         params.append('search', currentFilters.search)
+      }
+      if (currentFilters.store) {
+        console.log('🏪 Adding store filter to API params:', currentFilters.store)
+        params.append('store__name', currentFilters.store)
       }
       if (currentFilters.sort) {
         let ordering = ''
@@ -284,9 +512,12 @@ function initializeProductList(page) {
         params.append('ordering', ordering)
       }
 
+      console.log('📡 API call params:', params.toString())
       const data = await productService.getProducts(params.toString())
+      console.log('📦 Products received:', data)
       currentProducts = data.results || data
       filteredProducts = [...currentProducts]
+      console.log('📊 Filtered products count:', filteredProducts.length)
 
       // Load categories from API
       await loadCategoriesFromAPI()
@@ -319,6 +550,8 @@ function initializeProductList(page) {
 
   // Apply filters - now triggers a new API call
   async function applyFilters() {
+    console.log('🔍 applyFilters called with currentFilters:', currentFilters)
+    
     try {
       // Show loading state
       const grid = page.querySelector('#products-grid')
@@ -332,10 +565,14 @@ function initializeProductList(page) {
       `
 
       // Reload products with current filters
+      console.log('📦 Calling loadProducts with filters...')
       await loadProducts()
 
       // Update URL to reflect current filters
       updateUrl()
+
+      // Track filter usage
+      trackCurrentFilters()
 
     } catch (error) {
       console.error('Failed to apply filters:', error)
@@ -343,11 +580,79 @@ function initializeProductList(page) {
     }
   }
 
+  // Track current filter state
+  function trackCurrentFilters() {
+    const activeFilters = {}
+    
+    if (currentFilters.category) activeFilters.category = currentFilters.category
+    if (currentFilters.store) activeFilters.store = currentFilters.store
+    if (currentFilters.priceMin) activeFilters.price_min = currentFilters.priceMin
+    if (currentFilters.priceMax) activeFilters.price_max = currentFilters.priceMax
+    if (currentFilters.search) activeFilters.search = currentFilters.search
+    
+    // Track search if there's a search query
+    if (currentFilters.search) {
+      trackSearch(currentFilters.search, activeFilters, currentProducts.length)
+      
+      // Track search for personalization
+      if (window.personalizationService) {
+        window.personalizationService.trackInteraction('search', {
+          query: currentFilters.search,
+          resultsCount: currentProducts.length
+        })
+      }
+    }
+    
+    // Track individual filters
+    Object.entries(activeFilters).forEach(([key, value]) => {
+      if (key !== 'search') {
+        trackFilter(key, value, currentProducts.length)
+        
+        // Track filter usage for personalization
+        if (window.personalizationService) {
+          window.personalizationService.trackInteraction('filter_use', {
+            filterType: key,
+            value: value
+          })
+        }
+      }
+    })
+    
+    // Track category browsing for personalization
+    if (currentFilters.category && window.personalizationService) {
+      window.personalizationService.trackInteraction('category_browse', {
+        category: currentFilters.category
+      })
+    }
+    
+    // Track sort
+    if (currentFilters.sort && currentFilters.sort !== 'name') {
+      trackSort(currentFilters.sort, currentProducts.length)
+    }
+  }
+
   // Update results info
   function updateResultsInfo() {
     const info = page.querySelector('#results-info')
     if (info) {
-      info.textContent = `Showing ${currentProducts.length} products`
+      let infoText = `Showing ${currentProducts.length} products`
+      
+      // Add store filter info if active
+      if (currentFilters.store) {
+        infoText += ` from ${currentFilters.store}`
+      }
+      
+      // Add category filter info if active
+      if (currentFilters.category) {
+        infoText += ` in ${currentFilters.category}`
+      }
+      
+      // Add search info if active
+      if (currentFilters.search) {
+        infoText += ` matching "${currentFilters.search}"`
+      }
+      
+      info.textContent = infoText
     }
   }
 
@@ -450,13 +755,23 @@ function initializeProductList(page) {
         }
       })
 
+      // Track category filter
+      const newCategory = e.target.value || null
+      if (newCategory !== currentFilters.category) {
+        trackFilter('category', newCategory || 'all', 0) // Results count will be updated after load
+      }
+
       // Update filter
-      currentFilters.category = e.target.value || null
+      currentFilters.category = newCategory
       await applyFilters()
     }
 
     if (e.target.id === 'sort-select') {
-      currentFilters.sort = e.target.value
+      const newSort = e.target.value
+      if (newSort !== currentFilters.sort) {
+        trackSort(newSort, currentProducts.length)
+      }
+      currentFilters.sort = newSort
       await applyFilters()
     }
   })
@@ -465,19 +780,51 @@ function initializeProductList(page) {
     if (e.target.id === 'apply-price-filter') {
       const minInput = page.querySelector('#price-min')
       const maxInput = page.querySelector('#price-max')
-      currentFilters.priceMin = minInput.value ? parseFloat(minInput.value) : null
-      currentFilters.priceMax = maxInput.value ? parseFloat(maxInput.value) : null
+      const newPriceMin = minInput.value ? parseFloat(minInput.value) : null
+      const newPriceMax = maxInput.value ? parseFloat(maxInput.value) : null
+      
+      // Track price filter if changed
+      if (newPriceMin !== currentFilters.priceMin || newPriceMax !== currentFilters.priceMax) {
+        const priceRange = `${newPriceMin || 0}-${newPriceMax || 'max'}`
+        trackFilter('price_range', priceRange, 0) // Results count will be updated after load
+      }
+      
+      currentFilters.priceMin = newPriceMin
+      currentFilters.priceMax = newPriceMax
       await applyFilters()
     }
 
     if (e.target.id === 'clear-filters') {
-      currentFilters = { category: null, priceMin: null, priceMax: null, search: '', sort: 'name' }
-      page.querySelector('#search-input').value = ''
-      page.querySelector('#price-min').value = ''
-      page.querySelector('#price-max').value = ''
-      page.querySelector('#sort-select').value = 'name'
-      page.querySelector('input[name="category"][value=""]').checked = true
+      // Reset all filters including store
+      currentFilters = { 
+        category: null, 
+        priceMin: null, 
+        priceMax: null, 
+        search: '', 
+        sort: 'name',
+        store: null 
+      }
+      
+      // Reset form elements
+      const searchInput = page.querySelector('#search-input')
+      const priceMin = page.querySelector('#price-min')
+      const priceMax = page.querySelector('#price-max')
+      const sortSelect = page.querySelector('#sort-select')
+      const storeSelect = page.querySelector('#store-select')
+      const selectedStoreInfo = page.querySelector('#selected-store-info')
+      const categoryRadio = page.querySelector('input[name="category"][value=""]')
+      
+      if (searchInput) searchInput.value = ''
+      if (priceMin) priceMin.value = ''
+      if (priceMax) priceMax.value = ''
+      if (sortSelect) sortSelect.value = 'name'
+      if (storeSelect) storeSelect.value = ''
+      if (selectedStoreInfo) selectedStoreInfo.classList.add('hidden')
+      if (categoryRadio) categoryRadio.checked = true
+      
+      // Apply filters and show success message
       applyFilters()
+      showToast('All filters cleared', 'success')
     }
 
     if (e.target.id === 'ai-search-btn') {
@@ -487,7 +834,9 @@ function initializeProductList(page) {
 
   page.addEventListener('input', (e) => {
     if (e.target.id === 'search-input') {
-      currentFilters.search = e.target.value
+      const newSearch = e.target.value
+      currentFilters.search = newSearch
+      
       // Debounce search
       clearTimeout(searchTimeout)
       searchTimeout = setTimeout(async () => {
@@ -522,9 +871,60 @@ function initializeProductList(page) {
   // Hide filters on mobile by default
   if (window.innerWidth < 1024) {
     page.querySelector('#filters-panel').classList.add('hidden')
+  } 
+
+  // Parse URL parameters on page load
+  function parseUrlParams() {
+    const urlParams = new URLSearchParams(window.location.hash.split('?')[1] || '')
+
+    if (urlParams.get('search')) {
+      currentFilters.search = urlParams.get('search')
+      const searchInput = page.querySelector('#search-input')
+      if (searchInput) searchInput.value = currentFilters.search
+    }
+
+    if (urlParams.get('category')) {
+      currentFilters.category = urlParams.get('category')
+      const categoryRadio = page.querySelector(`input[name="category"][value="${currentFilters.category}"]`)
+      if (categoryRadio) categoryRadio.checked = true
+    }
+
+    if (urlParams.get('sort')) {
+      currentFilters.sort = urlParams.get('sort')
+      const sortSelect = page.querySelector('#sort-select')
+      if (sortSelect) sortSelect.value = currentFilters.sort
+    }
+
+    if (urlParams.get('store')) {
+      currentFilters.store = urlParams.get('store')
+    }
+  }
+
+  // Update URL to reflect current filters
+  function updateUrl() {
+    const params = new URLSearchParams()
+    
+    if (currentFilters.search) params.set('search', currentFilters.search)
+    if (currentFilters.category) params.set('category', currentFilters.category)
+    if (currentFilters.sort && currentFilters.sort !== 'name') params.set('sort', currentFilters.sort)
+    if (currentFilters.store) params.set('store', currentFilters.store)
+    if (currentFilters.priceMin) params.set('price_min', currentFilters.priceMin)
+    if (currentFilters.priceMax) params.set('price_max', currentFilters.priceMax)
+    
+    const newUrl = params.toString() ? `#/products?${params.toString()}` : '#/products'
+    if (window.location.hash !== newUrl) {
+      history.replaceState(null, '', newUrl)
+    }
   }
 
   // Initialize
   parseUrlParams()
-  loadProducts()
+  
+  // Load data
+  Promise.all([
+    loadStoresFromAPI(),
+    loadProducts()
+  ]).catch(error => {
+    console.error('Failed to initialize product list:', error)
+  })
 }

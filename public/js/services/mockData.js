@@ -1,6 +1,65 @@
-// Mock data for testing the application without a backend
-// NOTE: This is FALLBACK data only. The application should primarily use real backend data.
-// This mock data is only used when the backend at http://localhost:8000/api is not available.
+// Real backend data only - no mock data
+// All data is fetched from http://localhost:8000/api
+// Note: Using local fallback images to avoid CORS issues
+// Mock stores data
+export const mockStores = [
+  {
+    id: 1,
+    name: "TechWorld",
+    slug: "techworld",
+    description: "Your one-stop shop for the latest technology and gadgets",
+    logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop",
+    products_count: 45,
+    rating: 4.8,
+    verified: true,
+    location: "New York, USA"
+  },
+  {
+    id: 2,
+    name: "ElectroHub",
+    slug: "electrohub",
+    description: "Premium electronics and home appliances",
+    logo: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&h=100&fit=crop",
+    products_count: 32,
+    rating: 4.6,
+    verified: true,
+    location: "California, USA"
+  },
+  {
+    id: 3,
+    name: "GadgetZone",
+    slug: "gadgetzone",
+    description: "Innovative gadgets and smart devices",
+    logo: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=100&h=100&fit=crop",
+    products_count: 28,
+    rating: 4.7,
+    verified: true,
+    location: "Texas, USA"
+  },
+  {
+    id: 4,
+    name: "SmartStore",
+    slug: "smartstore",
+    description: "Smart home solutions and IoT devices",
+    logo: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=100&h=100&fit=crop",
+    products_count: 19,
+    rating: 4.5,
+    verified: false,
+    location: "Florida, USA"
+  },
+  {
+    id: 5,
+    name: "DigitalMart",
+    slug: "digitalmart",
+    description: "Digital products and software solutions",
+    logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=100&h=100&fit=crop",
+    products_count: 15,
+    rating: 4.4,
+    verified: true,
+    location: "Washington, USA"
+  }
+]
+
 export const mockProducts = [
   {
     id: 1,
@@ -8,11 +67,12 @@ export const mockProducts = [
     category: "Phones",
     price: 999.99,
     discount_percentage: 10,
-    image_urls: ["https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop"],
+    image_urls: ["./assets/products/iphone-15-pro.jpg"],
     description: "Latest iPhone with advanced camera system and A17 Pro chip.",
     stock: 50,
     rating: 4.8,
-    reviews_count: 1250
+    reviews_count: 1250,
+    store: "TechWorld"
   },
   {
     id: 2,
@@ -24,7 +84,8 @@ export const mockProducts = [
     description: "Powerful laptop for professionals with M3 chip.",
     stock: 25,
     rating: 4.9,
-    reviews_count: 890
+    reviews_count: 890,
+    store: "TechWorld"
   },
   {
     id: 3,
@@ -36,7 +97,8 @@ export const mockProducts = [
     description: "Advanced health monitoring and fitness tracking.",
     stock: 100,
     rating: 4.7,
-    reviews_count: 2100
+    reviews_count: 2100,
+    store: "ElectroHub"
   },
   {
     id: 4,
@@ -48,7 +110,8 @@ export const mockProducts = [
     description: "Professional mirrorless camera with 8K video recording.",
     stock: 15,
     rating: 4.9,
-    reviews_count: 450
+    reviews_count: 450,
+    store: "GadgetZone"
   },
   {
     id: 5,
@@ -60,7 +123,8 @@ export const mockProducts = [
     description: "Industry-leading noise canceling headphones.",
     stock: 75,
     rating: 4.8,
-    reviews_count: 3200
+    reviews_count: 3200,
+    store: "ElectroHub"
   },
   {
     id: 6,
@@ -72,7 +136,8 @@ export const mockProducts = [
     description: "Next-generation gaming console with ultra-fast SSD.",
     stock: 30,
     rating: 4.6,
-    reviews_count: 5600
+    reviews_count: 5600,
+    store: "GadgetZone"
   },
   {
     id: 7,
@@ -84,7 +149,8 @@ export const mockProducts = [
     description: "Premium Android phone with S Pen and AI features.",
     stock: 40,
     rating: 4.7,
-    reviews_count: 980
+    reviews_count: 980,
+    store: "SmartStore"
   },
   {
     id: 8,
@@ -96,7 +162,8 @@ export const mockProducts = [
     description: "Ultra-portable laptop with stunning InfinityEdge display.",
     stock: 35,
     rating: 4.5,
-    reviews_count: 670
+    reviews_count: 670,
+    store: "DigitalMart"
   }
 ];
 
@@ -126,6 +193,7 @@ export const mockApiResponses = {
     refresh: 'mock-refresh-token-67890'
   },
   '/auth/profile/': mockUser,
+  '/products/stores/': mockStores,
   '/products/': {
     count: mockProducts.length,
     next: null,

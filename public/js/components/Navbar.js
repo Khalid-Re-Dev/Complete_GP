@@ -13,6 +13,45 @@ export function renderNavbar(container) {
 
   const authLinks = isAuthenticated
     ? `
+            ${user.role === 'admin' ? `
+                <div class="relative group">
+                    <button class="flex items-center gap-2 hover:text-purple-600 transition-colors">
+                        <i class="fa-solid fa-crown text-xl text-purple-600"></i>
+                        <span>Super Admin</span>
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <div class="py-2">
+                            <a href="#/super-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                                <i class="fa-solid fa-tachometer-alt mr-2 text-purple-600"></i>
+                                Super Admin Dashboard
+                            </a>
+                            <div class="border-t border-gray-200 my-1"></div>
+                            <a href="#/super-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-users mr-2"></i>
+                                User Management
+                            </a>
+                            <a href="#/super-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-store mr-2"></i>
+                                Store Management
+                            </a>
+                            <a href="#/super-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-box mr-2"></i>
+                                Product Management
+                            </a>
+                            <div class="border-t border-gray-200 my-1"></div>
+                            <a href="#/super-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-chart-bar mr-2"></i>
+                                Analytics & Reports
+                            </a>
+                            <a href="#/super-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-cog mr-2"></i>
+                                System Settings
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            ` : ''}
             ${user.role === 'store_owner' ? `
                 <div class="relative group">
                     <button class="flex items-center gap-2 hover:text-blue-600 transition-colors">
@@ -22,30 +61,40 @@ export function renderNavbar(container) {
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                         <div class="py-2">
-                            <a href="#/store-dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <a href="#/store/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-chart-line mr-2"></i>
-                                Dashboard
+                                لوحة التحكم
                             </a>
                             <a href="#/products-management" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-box mr-2"></i>
-                                Products
+                                إدارة المنتجات
                             </a>
                             <a href="#/products/add" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-plus mr-2"></i>
-                                Add Product
+                                إضافة منتج
                             </a>
                             <div class="border-t border-gray-200 my-1"></div>
-                            <a href="#/analytics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <a href="#/store/analytics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-chart-bar mr-2"></i>
-                                Analytics
+                                التحليلات
+                            </a>
+                            <a href="#/store/feedback" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                <i class="fa-solid fa-comments mr-2"></i>
+                                آراء العملاء
                             </a>
                             <a href="#/reports" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-file-alt mr-2"></i>
-                                Reports
+                                التقارير
                             </a>
                         </div>
                     </div>
                 </div>
+            ` : ''}
+            ${user.role === 'customer' ? `
+                <a href="#/store/apply" class="flex items-center gap-2 bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    <i class="fa-solid fa-store text-sm"></i>
+                    <span>إنشاء متجر</span>
+                </a>
             ` : ''}
             <a href="#/dashboard" class="flex items-center gap-2">
                 <i class="fa-solid fa-user-circle text-xl"></i>
@@ -85,6 +134,10 @@ export function renderNavbar(container) {
                     <div class="hidden lg:flex items-center gap-6 text-muted font-bold">
                         <a href="#/" class="hover:text-secondary transition-colors">Home</a>
                         <a href="#/products" class="hover:text-secondary transition-colors">Products</a>
+                        <a href="#/promotions" class="hover:text-secondary transition-colors flex items-center gap-1">
+                            <i class="fa-solid fa-tags text-red-500"></i>
+                            Offers
+                        </a>
                         <a href="#/about" class="hover:text-secondary transition-colors">About</a>
                         <a href="#/contact" class="hover:text-secondary transition-colors">Contact</a>
                     </div>
@@ -98,6 +151,12 @@ export function renderNavbar(container) {
                         <button class="flex items-center gap-1 hover:text-blue-600 transition-colors" onclick="toggleSearch()" title="Search">
                             <i class="fa-solid fa-search"></i>
                         </button>
+                        <div class="relative">
+                            <button class="flex items-center gap-1 hover:text-blue-600 transition-colors relative" onclick="openComparisonModal()" title="Product Comparison">
+                                <i class="fa-solid fa-balance-scale"></i>
+                                <span class="comparison-badge text-xs bg-purple-600 text-white rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2" style="display: none;">0</span>
+                            </button>
+                        </div>
                         <div class="relative">
                             <a href="#/cart" class="flex items-center gap-1 hover:text-blue-600 transition-colors relative" title="Shopping Cart">
                                 <i class="fa-solid fa-shopping-cart"></i>
@@ -118,6 +177,10 @@ export function renderNavbar(container) {
                     <div class="flex flex-col space-y-4">
                         <a href="#/" class="text-muted hover:text-secondary transition-colors font-bold">Home</a>
                         <a href="#/products" class="text-muted hover:text-secondary transition-colors font-bold">Products</a>
+                        <a href="#/promotions" class="text-muted hover:text-secondary transition-colors font-bold flex items-center gap-2">
+                            <i class="fa-solid fa-tags text-red-500"></i>
+                            Special Offers
+                        </a>
                         <a href="#/about" class="text-muted hover:text-secondary transition-colors font-bold">About</a>
                         <a href="#/contact" class="text-muted hover:text-secondary transition-colors font-bold">Contact</a>
                         <div class="border-t pt-4">
@@ -130,14 +193,27 @@ export function renderNavbar(container) {
             <!-- Search Bar (Hidden by default) -->
             <div id="search-bar" class="hidden border-t bg-light-gray">
                 <div class="container mx-auto px-4 py-4">
-                    <div class="flex gap-2">
-                        <input type="search" placeholder="Search for products..." class="input-field flex-1" id="global-search">
-                        <button class="btn btn-primary" onclick="performSearch()">
-                            <i class="fa-solid fa-search"></i>
-                        </button>
-                        <button class="btn btn-outline" onclick="toggleSearch()">
-                            <i class="fa-solid fa-times"></i>
-                        </button>
+                    <div class="relative">
+                        <div class="flex gap-2">
+                            <div class="relative flex-1">
+                                <input type="search"
+                                       placeholder="Search for products, categories, brands..."
+                                       class="input-field w-full pr-12"
+                                       id="global-search"
+                                       autocomplete="off">
+                                <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    <i class="fa-solid fa-search"></i>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary" onclick="performSearch()">
+                                <i class="fa-solid fa-magic mr-2"></i>
+                                Smart Search
+                            </button>
+                            <button class="btn btn-outline" onclick="toggleSearch()">
+                                <i class="fa-solid fa-times"></i>
+                            </button>
+                        </div>
+                        <!-- Search suggestions will be inserted here by SmartSearch component -->
                     </div>
                 </div>
             </div>
@@ -186,9 +262,19 @@ export function renderNavbar(container) {
     const query = searchInput.value.trim()
 
     if (query) {
-      location.hash = `/products?search=${encodeURIComponent(query)}`
+      // Use smart search if available
+      if (window.performSmartSearch) {
+        window.performSmartSearch(query)
+      } else {
+        location.hash = `/products?search=${encodeURIComponent(query)}`
+      }
       window.toggleSearch() // Close search bar
     }
+  }
+
+  // Enhanced global search function for smart search integration
+  window.performSmartSearch = function(query) {
+    location.hash = `/products?search=${encodeURIComponent(query)}`
   }
 
   window.toggleMobileMenu = function() {

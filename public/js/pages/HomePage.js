@@ -1,6 +1,9 @@
 import { createElementFromHTML } from "../utils/helpers.js?v=2024"
 import { productService } from "../services/api.js"
 import { ProductCard } from "../components/ProductCard.js"
+import { createRecommendationsSection } from "../components/Recommendations.js"
+import promotionService from "../services/promotionService.js"
+import { CountdownTimer } from "../utils/countdown.js"
 
 /**
  * Renders the Home Page, inspired by the provided image.
@@ -9,14 +12,28 @@ import { ProductCard } from "../components/ProductCard.js"
 export default function HomePage() {
   const page = createElementFromHTML(`
         <div class="animate-fade-in">
-            <!-- Hero Section -->
-            <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
-                <div class="container mx-auto px-4 text-center">
-                    <h1 class="text-5xl font-extrabold text-primary mb-4">Limited Time Discount 40%</h1>
-                    <p class="text-3xl text-muted font-medium mb-8">$385.00</p>
-                    <div>
-                        <a href="#/products" class="btn btn-primary mr-4">Buy Now</a>
-                        <a href="#/compare" class="btn btn-outline">Compare Smartly</a>
+            <!-- Dynamic Promotions Hero Section -->
+            <section id="promotions-hero" class="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
+                <div class="container mx-auto px-4">
+                    <!-- Loading State -->
+                    <div id="promotions-loading" class="text-center">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                        <p class="text-gray-600">Loading amazing offers...</p>
+                    </div>
+                    
+                    <!-- Promotions Content -->
+                    <div id="promotions-content" class="hidden">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                    
+                    <!-- Fallback Content -->
+                    <div id="promotions-fallback" class="text-center hidden">
+                        <h1 class="text-5xl font-extrabold text-primary mb-4">Best on Click</h1>
+                        <p class="text-xl text-gray-600 mb-8">Discover amazing products at great prices</p>
+                        <div>
+                            <a href="#/products" class="btn btn-primary mr-4">Shop Now</a>
+                            <a href="#/compare" class="btn btn-outline">Compare Products</a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -103,6 +120,15 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
+
+            <!-- AI Recommendations Section -->
+            <section class="py-16">
+                <div class="container mx-auto px-4">
+                    <div id="recommendations-section">
+                        <!-- Recommendations will be loaded here -->
+                    </div>
+                </div>
+            </section>
             
             <!-- Additional sections like Popular Products can be added here -->
         </div>
@@ -111,6 +137,7 @@ export default function HomePage() {
   // Fetch and render products
   const newArrivalsGrid = page.querySelector("#new-arrivals-grid")
   const categoryGrid = page.querySelector("#category-grid")
+  const recommendationsSection = page.querySelector("#recommendations-section")
 
   productService
     .getProducts("page_size=5")
@@ -120,6 +147,18 @@ export default function HomePage() {
     .catch((err) => {
       newArrivalsGrid.innerHTML = `<p class="text-danger col-span-full text-center">Could not load products.</p>`
     })
+
+  // Initialize AI Recommendations
+  if (recommendationsSection) {
+    const recommendationsComponent = createRecommendationsSection({
+      type: 'personalized', // Will fallback to general if user not authenticated
+      limit: 6,
+      title: 'Recommended Just for You',
+      showTitle: true,
+      className: 'mb-8'
+    })
+    recommendationsSection.appendChild(recommendationsComponent)
+  }
 
   // Fetch all products to generate dynamic categories
   // Load categories with better error handling and loading states
@@ -350,6 +389,152 @@ export default function HomePage() {
       e.target.click()
     }
   })
+
+  // Load promotions for hero section
+  async function loadPromotions() {
+    const loadingEl = document.getElementById('promotions-loading')
+    const contentEl = document.getElementById('promotions-content')
+    const fallbackEl = document.getElementById('promotions-fallback')
+
+    // Check if elements exist
+    if (!loadingEl || !contentEl || !fallbackEl) {
+      console.warn('⚠️ Promotion elements not found, skipping promotions loading')
+      return
+    }
+
+    try {
+      console.log('🎯 Loading promotions for homepage...')
+      
+      // Get featured promotions
+      const promotions = await promotionService.getFeaturedPromotions(3)
+      
+      if (promotions && promotions.length > 0) {
+        console.log('✅ Promotions loaded:', promotions)
+        
+        // Hide loading, show content
+        loadingEl.classList.add('hidden')
+        contentEl.classList.remove('hidden')
+        
+        // Render promotions
+        renderPromotions(promotions, contentEl)
+      } else {
+        console.log('⚠️ No promotions found, showing fallback')
+        showFallback()
+      }
+      
+    } catch (error) {
+      console.error('❌ Error loading promotions:', error)
+      showFallback()
+    }
+
+    function showFallback() {
+      if (loadingEl) loadingEl.classList.add('hidden')
+      if (contentEl) contentEl.classList.add('hidden')
+      if (fallbackEl) fallbackEl.classList.remove('hidden')
+    }
+  }
+
+  // Render promotions in hero section
+  function renderPromotions(promotions, container) {
+    if (!promotions || promotions.length === 0) return
+
+    // Get the main promotion (highest value)
+    const mainPromo = promotions[0]
+    const formatted = promotionService.formatPromotion(mainPromo)
+
+    // Create main promotion display
+    const mainPromoHTML = `
+      <div class="text-center mb-8">
+        <div class="inline-block bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-4 animate-pulse">
+          🔥 LIMITED TIME OFFER
+        </div>
+        <h1 class="text-5xl font-extrabold text-primary mb-4">
+          ${formatted.displayText}
+        </h1>
+        <p class="text-xl text-gray-600 mb-2">${mainPromo.description}</p>
+        ${formatted.minimumAmount > 0 ? 
+          `<p class="text-lg text-gray-500 mb-6">Minimum order: $${formatted.minimumAmount.toFixed(2)}</p>` : 
+          '<div class="mb-6"></div>'
+        }
+        <div class="flex justify-center space-x-4">
+          <a href="#/products" class="btn btn-primary text-lg px-8 py-3">
+            Shop Now & Save
+          </a>
+          <a href="#/promotions" class="btn btn-outline text-lg px-8 py-3">
+            View All Offers
+          </a>
+        </div>
+        ${formatted.endDate ? 
+          `<div class="mt-6">
+            <div class="text-sm text-gray-500 mb-4">
+              <i class="fa-solid fa-clock mr-1"></i>
+              Offer ends: ${formatted.endDate.toLocaleDateString()}
+            </div>
+            <div id="main-countdown" class="mb-4"></div>
+          </div>` : ''
+        }
+      </div>
+    `
+
+    // Create additional promotions carousel if more than 1
+    let additionalPromosHTML = ''
+    if (promotions.length > 1) {
+      const otherPromos = promotions.slice(1)
+      additionalPromosHTML = `
+        <div class="mt-12">
+          <h3 class="text-center text-xl font-bold text-gray-700 mb-6">More Great Offers</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            ${otherPromos.map(promo => {
+              const fmt = promotionService.formatPromotion(promo)
+              return `
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-secondary hover:shadow-lg transition-shadow">
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-2xl font-bold text-secondary">${fmt.displayValue}</span>
+                    <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                      ${fmt.remainingUses} left
+                    </span>
+                  </div>
+                  <h4 class="font-bold text-gray-800 mb-2">${promo.name}</h4>
+                  <p class="text-gray-600 text-sm mb-3">${promo.description}</p>
+                  ${fmt.minimumAmount > 0 ? 
+                    `<p class="text-xs text-gray-500">Min. order: $${fmt.minimumAmount.toFixed(2)}</p>` : ''
+                  }
+                </div>
+              `
+            }).join('')}
+          </div>
+        </div>
+      `
+    }
+
+    container.innerHTML = mainPromoHTML + additionalPromosHTML
+    
+    // Initialize main countdown timer
+    if (formatted.endDate) {
+      setTimeout(() => {
+        const countdownContainer = document.getElementById('main-countdown')
+        if (countdownContainer) {
+          const timer = new CountdownTimer(formatted.endDate, countdownContainer, {
+            showDays: true,
+            showHours: true,
+            showMinutes: true,
+            showSeconds: true,
+            onComplete: () => {
+              console.log('Main promotion expired')
+              // Optionally reload promotions
+              loadPromotions()
+            }
+          })
+          timer.start()
+        }
+      }, 100)
+    }
+  }
+
+  // Initialize promotions loading after page is returned to DOM
+  setTimeout(() => {
+    loadPromotions()
+  }, 100)
 
   return page
 }

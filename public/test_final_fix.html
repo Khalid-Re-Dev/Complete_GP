@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار الإصلاح النهائي - Best on Click</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .test-success { background-color: #10b981; color: white; }
+        .test-error { background-color: #ef4444; color: white; }
+        .test-warning { background-color: #f59e0b; color: white; }
+        .test-info { background-color: #3b82f6; color: white; }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">
+                    <i class="fas fa-check-circle text-green-500"></i>
+                    اختبار الإصلاح النهائي
+                </h1>
+                <p class="text-center text-gray-600 mb-8">
+                    اختبار شامل لجميع الإصلاحات المطبقة على نظام Best on Click
+                </p>
+            </div>
+
+            <!-- Test Results Container -->
+            <div id="test-results" class="space-y-4">
+                <!-- Tests will be populated here -->
+            </div>
+
+            <!-- Summary -->
+            <div id="test-summary" class="bg-white rounded-lg shadow-lg p-6 mt-6">
+                <h2 class="text-xl font-bold mb-4">ملخص النتائج</h2>
+                <div id="summary-content">
+                    <!-- Summary will be populated here -->
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mt-6 space-x-4">
+                <button onclick="runAllTests()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg">
+                    <i class="fas fa-play"></i> تشغيل جميع الاختبارات
+                </button>
+                <button onclick="clearResults()" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg">
+                    <i class="fas fa-trash"></i> مسح النتائج
+                </button>
+                <a href="/store/analytics" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg inline-block">
+                    <i class="fas fa-chart-bar"></i> اختبار صفحة التحليلات
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        let testResults = [];
+
+        function addTestResult(name, status, message, details = null) {
+            testResults.push({ name, status, message, details });
+            updateTestDisplay();
+        }
+
+        function updateTestDisplay() {
+            const container = document.getElementById('test-results');
+            container.innerHTML = testResults.map(test => `
+                <div class="bg-white rounded-lg shadow p-4 border-l-4 ${getBorderColor(test.status)}">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fas ${getIcon(test.status)} ${getTextColor(test.status)} text-lg mr-3"></i>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">${test.name}</h3>
+                                <p class="text-gray-600 text-sm">${test.message}</p>
+                                ${test.details ? `<pre class="text-xs text-gray-500 mt-2 bg-gray-100 p-2 rounded">${test.details}</pre>` : ''}
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-sm font-medium ${getStatusClass(test.status)}">
+                            ${getStatusText(test.status)}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateSummary();
+        }
+
+        function updateSummary() {
+            const total = testResults.length;
+            const passed = testResults.filter(t => t.status === 'success').length;
+            const failed = testResults.filter(t => t.status === 'error').length;
+            const warnings = testResults.filter(t => t.status === 'warning').length;
+            
+            const summaryContent = document.getElementById('summary-content');
+            summaryContent.innerHTML = `
+                <div class="grid grid-cols-4 gap-4 text-center">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">${total}</div>
+                        <div class="text-sm text-blue-600">إجمالي الاختبارات</div>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">${passed}</div>
+                        <div class="text-sm text-green-600">نجح</div>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-red-600">${failed}</div>
+                        <div class="text-sm text-red-600">فشل</div>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <div class="text-2xl font-bold text-yellow-600">${warnings}</div>
+                        <div class="text-sm text-yellow-600">تحذيرات</div>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <div class="text-lg font-semibold ${passed === total ? 'text-green-600' : failed > 0 ? 'text-red-600' : 'text-yellow-600'}">
+                        ${passed === total ? '🎉 جميع الاختبارات نجحت!' : failed > 0 ? '❌ يوجد اختبارات فاشلة' : '⚠️ يوجد تحذيرات'}
+                    </div>
+                    <div class="text-sm text-gray-600 mt-1">
+                        معدل النجاح: ${total > 0 ? Math.round((passed / total) * 100) : 0}%
+                    </div>
+                </div>
+            `;
+        }
+
+        function getBorderColor(status) {
+            switch (status) {
+                case 'success': return 'border-green-500';
+                case 'error': return 'border-red-500';
+                case 'warning': return 'border-yellow-500';
+                default: return 'border-blue-500';
+            }
+        }
+
+        function getIcon(status) {
+            switch (status) {
+                case 'success': return 'fa-check-circle';
+                case 'error': return 'fa-times-circle';
+                case 'warning': return 'fa-exclamation-triangle';
+                default: return 'fa-info-circle';
+            }
+        }
+
+        function getTextColor(status) {
+            switch (status) {
+                case 'success': return 'text-green-500';
+                case 'error': return 'text-red-500';
+                case 'warning': return 'text-yellow-500';
+                default: return 'text-blue-500';
+            }
+        }
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'success': return 'bg-green-100 text-green-800';
+                case 'error': return 'bg-red-100 text-red-800';
+                case 'warning': return 'bg-yellow-100 text-yellow-800';
+                default: return 'bg-blue-100 text-blue-800';
+            }
+        }
+
+        function getStatusText(status) {
+            switch (status) {
+                case 'success': return 'نجح';
+                case 'error': return 'فشل';
+                case 'warning': return 'تحذير';
+                default: return 'معلومات';
+            }
+        }
+
+        async function runAllTests() {
+            testResults = [];
+            updateTestDisplay();
+
+            // Test 1: Import API Services
+            try {
+                addTestResult('استيراد خدمات API', 'info', 'جاري اختبار استيراد الخدمات...');
+                
+                const apiModule = await import('/js/services/api.js');
+                
+                if (apiModule.reportService) {
+                    addTestResult('خدمة التقارير', 'success', 'تم استيراد reportService بنجاح');
+                } else {
+                    addTestResult('خدمة التقارير', 'error', 'فشل في استيراد reportService');
+                }
+
+                if (apiModule.reportsService) {
+                    addTestResult('خدمة التقارير (alias)', 'success', 'تم استيراد reportsService بنجاح');
+                } else {
+                    addTestResult('خدمة التقارير (alias)', 'error', 'فشل في استيراد reportsService');
+                }
+
+                if (apiModule.promotionsService) {
+                    addTestResult('خدمة العروض', 'success', 'تم استيراد promotionsService بنجاح');
+                } else {
+                    addTestResult('خدمة العروض', 'error', 'فشل في استيراد promotionsService');
+                }
+
+                if (apiModule.apiService) {
+                    addTestResult('خدمة API الرئيسية', 'success', 'تم استيراد apiService بنجاح');
+                    
+                    if (apiModule.apiService.promotions) {
+                        addTestResult('مرجع العروض في apiService', 'success', 'apiService.promotions يعمل بشكل صحيح');
+                    } else {
+                        addTestResult('مرجع العروض في apiService', 'error', 'apiService.promotions غير موجود');
+                    }
+
+                    if (apiModule.apiService.reports) {
+                        addTestResult('مرجع التقارير في apiService', 'success', 'apiService.reports يعمل بشكل صحيح');
+                    } else {
+                        addTestResult('مرجع التقارير في apiService', 'error', 'apiService.reports غير موجود');
+                    }
+                } else {
+                    addTestResult('خدمة API الرئيسية', 'error', 'فشل في استيراد apiService');
+                }
+
+            } catch (error) {
+                addTestResult('استيراد خدمات API', 'error', 'فشل في استيراد الخدمات', error.message);
+            }
+
+            // Test 2: Store Analytics Page
+            try {
+                addTestResult('صفحة تحليلات المتجر', 'info', 'جاري اختبار صفحة التحليلات...');
+                
+                const analyticsModule = await import('/js/pages/store-analytics.js');
+                addTestResult('وحدة تحليلات المتجر', 'success', 'تم تحميل وحدة التحليلات بنجاح');
+                
+            } catch (error) {
+                addTestResult('صفحة تحليلات المتجر', 'error', 'فشل في تحميل صفحة التحليلات', error.message);
+            }
+
+            // Test 3: Store Feedback Page
+            try {
+                addTestResult('صفحة آراء العملاء', 'info', 'جاري اختبار صفحة آراء العملاء...');
+                
+                const feedbackModule = await import('/js/pages/store-feedback-management.js');
+                addTestResult('وحدة آراء العملاء', 'success', 'تم تحميل وحدة آراء العملاء بنجاح');
+                
+            } catch (error) {
+                addTestResult('صفحة آراء العملاء', 'error', 'فشل في تحميل صفحة آراء العملاء', error.message);
+            }
+
+            // Test 4: Auth Service
+            try {
+                addTestResult('خدمة المصادقة', 'info', 'جاري اختبار خدمة المصادقة...');
+                
+                const authModule = await import('/js/services/auth.js');
+                if (authModule.authService) {
+                    addTestResult('خدمة المصادقة', 'success', 'تم تحميل authService بنجاح');
+                    
+                    if (typeof authModule.authService.handleStoreOwnerLogin === 'function') {
+                        addTestResult('منطق تسجيل دخول المالك', 'success', 'دالة handleStoreOwnerLogin موجودة');
+                    } else {
+                        addTestResult('منطق تسجيل دخول المالك', 'warning', 'دالة handleStoreOwnerLogin غير موجودة');
+                    }
+                } else {
+                    addTestResult('خدمة المصادقة', 'error', 'فشل في تحميل authService');
+                }
+                
+            } catch (error) {
+                addTestResult('خدمة المصادقة', 'error', 'فشل في تحميل خدمة المصادقة', error.message);
+            }
+
+            // Test 5: Store Service
+            try {
+                addTestResult('خدمة المتجر', 'info', 'جاري اختبار خدمة المتجر...');
+                
+                const storeModule = await import('/js/services/store.js');
+                if (storeModule.storeService) {
+                    addTestResult('خدمة المتجر', 'success', 'تم تحميل storeService بنجاح');
+                    
+                    if (typeof storeModule.storeService.checkUserStoreStatus === 'function') {
+                        addTestResult('فحص حالة المتجر', 'success', 'دالة checkUserStoreStatus موجودة');
+                    } else {
+                        addTestResult('فحص حالة المتجر', 'warning', 'دالة checkUserStoreStatus غير موجودة');
+                    }
+                } else {
+                    addTestResult('خدمة المتجر', 'error', 'فشل في تحميل storeService');
+                }
+                
+            } catch (error) {
+                addTestResult('خدمة المتجر', 'error', 'فشل في تحميل خدمة المتجر', error.message);
+            }
+
+            // Test 6: Toast Notifications
+            try {
+                addTestResult('نظام الإشعارات', 'info', 'جاري اختبار نظام الإشعارات...');
+                
+                const toastModule = await import('/js/utils/toast.js');
+                if (toastModule.showSuccess && toastModule.showError && toastModule.showInfo && toastModule.showWarning) {
+                    addTestResult('نظام الإشعارات الأساسي', 'success', 'جميع دوال الإشعارات الأساسية موجودة');
+                } else {
+                    addTestResult('نظام الإشعارات الأساسي', 'warning', 'بعض دوال الإشعارات مفقودة');
+                }
+
+                if (toastModule.showAchievement && toastModule.showPerformanceAlert) {
+                    addTestResult('الإشعارات الذكية', 'success', 'الإشعارات الذكية متاحة');
+                } else {
+                    addTestResult('الإشعارات الذكية', 'warning', 'الإشعارات الذكية غير متاحة');
+                }
+                
+            } catch (error) {
+                addTestResult('نظام الإشعارات', 'error', 'فشل في تحميل نظام الإشعارات', error.message);
+            }
+
+            // Test 7: Console Errors Check
+            const originalConsoleError = console.error;
+            let consoleErrors = [];
+            console.error = function(...args) {
+                consoleErrors.push(args.join(' '));
+                originalConsoleError.apply(console, args);
+            };
+
+            setTimeout(() => {
+                console.error = originalConsoleError;
+                
+                if (consoleErrors.length === 0) {
+                    addTestResult('أخطاء وحدة التحكم', 'success', 'لا توجد أخطاء في وحدة التحكم');
+                } else {
+                    addTestResult('أخطاء وحدة التحكم', 'warning', `تم العثور على ${consoleErrors.length} خطأ`, consoleErrors.join('\n'));
+                }
+            }, 2000);
+
+            addTestResult('اكتمال الاختبارات', 'success', 'تم الانتهاء من جميع الاختبارات');
+        }
+
+        function clearResults() {
+            testResults = [];
+            updateTestDisplay();
+        }
+
+        // Make functions global
+        window.runAllTests = runAllTests;
+        window.clearResults = clearResults;
+
+        // Auto-run tests on page load
+        setTimeout(runAllTests, 1000);
+    </script>
+</body>
+</html>

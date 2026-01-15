@@ -22,6 +22,8 @@ function mockFetch(endpoint, options = {}) {
       } else if (endpoint.startsWith('/products/')) {
         if (endpoint === '/products/') {
           resolve(mockApiResponses['/products/']);
+        } else if (endpoint === '/products/stores/') {
+          resolve(mockApiResponses['/products/stores/']);
         } else {
           // Handle specific product by ID
           const id = parseInt(endpoint.split('/')[2]);
@@ -64,8 +66,87 @@ export const mockAuthService = {
 };
 
 export const mockProductService = {
-  getProducts: (params = '') => mockFetch('/products/'),
+  getProducts: (params = '') => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log('Mock API: getProducts with params:', params);
+        
+        let filteredProducts = [...mockProducts];
+        
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(params);
+        
+        // Filter by store
+        const storeFilter = urlParams.get('store__name');
+        if (storeFilter) {
+          console.log('Filtering by store:', storeFilter);
+          filteredProducts = filteredProducts.filter(p => p.store === storeFilter);
+        }
+        
+        // Filter by category
+        const categoryFilter = urlParams.get('category__name');
+        if (categoryFilter) {
+          console.log('Filtering by category:', categoryFilter);
+          filteredProducts = filteredProducts.filter(p => p.category === categoryFilter);
+        }
+        
+        // Filter by price range
+        const priceMin = urlParams.get('price__gte');
+        const priceMax = urlParams.get('price__lte');
+        if (priceMin) {
+          filteredProducts = filteredProducts.filter(p => p.price >= parseFloat(priceMin));
+        }
+        if (priceMax) {
+          filteredProducts = filteredProducts.filter(p => p.price <= parseFloat(priceMax));
+        }
+        
+        // Search filter
+        const searchQuery = urlParams.get('search');
+        if (searchQuery) {
+          const query = searchQuery.toLowerCase();
+          filteredProducts = filteredProducts.filter(p => 
+            p.name.toLowerCase().includes(query) || 
+            p.description.toLowerCase().includes(query) ||
+            p.category.toLowerCase().includes(query)
+          );
+        }
+        
+        // Sort products
+        const ordering = urlParams.get('ordering');
+        if (ordering) {
+          switch (ordering) {
+            case 'price':
+              filteredProducts.sort((a, b) => a.price - b.price);
+              break;
+            case '-price':
+              filteredProducts.sort((a, b) => b.price - a.price);
+              break;
+            case '-average_rating':
+              filteredProducts.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+              break;
+            case '-created_at':
+              filteredProducts.sort((a, b) => b.id - a.id); // Simulate newest first
+              break;
+            case 'name':
+            default:
+              filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+              break;
+          }
+        }
+        
+        console.log(`Mock API: Returning ${filteredProducts.length} products after filtering`);
+        
+        resolve({
+          count: filteredProducts.length,
+          next: null,
+          previous: null,
+          results: filteredProducts
+        });
+      }, MOCK_DELAY);
+    });
+  },
   getProductById: (id) => mockFetch(`/products/${id}/`),
+  getStores: (params = '') => mockFetch('/products/stores/'),
   getSimilarProducts: (id) => {
     // Return products from same category
     const product = mockProducts.find(p => p.id === parseInt(id));

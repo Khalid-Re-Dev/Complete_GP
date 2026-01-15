@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Duplicate Exports Fix</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 اختبار إصلاح التصديرات المكررة</h1>
+        <p>اختبار حل مشاكل <code>reportService</code> و <code>promotionsService</code></p>
+        
+        <button onclick="testDuplicateExports()">🧪 اختبار التصديرات</button>
+        <button onclick="testApiService()">🔗 اختبار API Service</button>
+        <button onclick="clearResults()">🗑️ مسح النتائج</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <script type="module">
+        window.testDuplicateExports = async function() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="test-result">🔄 جاري اختبار التصديرات...</div>';
+            
+            const tests = [];
+            
+            try {
+                // Test reportService
+                const { reportService, reportsService } = await import('/js/services/api.js');
+                
+                tests.push({
+                    name: 'reportService Import',
+                    success: !!reportService,
+                    message: reportService ? 'تم استيراد reportService بنجاح' : 'فشل استيراد reportService',
+                    details: reportService ? `Functions: ${Object.keys(reportService).join(', ')}` : 'No reportService found'
+                });
+                
+                tests.push({
+                    name: 'reportsService Alias',
+                    success: !!reportsService && reportsService === reportService,
+                    message: reportsService === reportService ? 'reportsService alias يعمل بشكل صحيح' : 'مشكلة في reportsService alias',
+                    details: `Same reference: ${reportsService === reportService}`
+                });
+                
+            } catch (error) {
+                tests.push({
+                    name: 'reportService Test',
+                    success: false,
+                    message: `خطأ في reportService: ${error.message}`,
+                    details: error.stack
+                });
+            }
+            
+            try {
+                // Test promotionsService
+                const { promotionsService } = await import('/js/services/api.js');
+                
+                tests.push({
+                    name: 'promotionsService Import',
+                    success: !!promotionsService,
+                    message: promotionsService ? 'تم استيراد promotionsService بنجاح' : 'فشل استيراد promotionsService',
+                    details: promotionsService ? `Functions: ${Object.keys(promotionsService).join(', ')}` : 'No promotionsService found'
+                });
+                
+            } catch (error) {
+                tests.push({
+                    name: 'promotionsService Test',
+                    success: false,
+                    message: `خطأ في promotionsService: ${error.message}`,
+                    details: error.stack
+                });
+            }
+            
+            try {
+                // Test no duplicate declarations
+                const module = await import('/js/services/api.js');
+                
+                tests.push({
+                    name: 'No Duplicate Declarations',
+                    success: true,
+                    message: 'لا توجد تصريحات مكررة - تم تحميل الوحدة بنجاح',
+                    details: `Total exports: ${Object.keys(module).length}`
+                });
+                
+            } catch (error) {
+                tests.push({
+                    name: 'Duplicate Declarations Check',
+                    success: false,
+                    message: `خطأ في التصريحات: ${error.message}`,
+                    details: error.stack
+                });
+            }
+            
+            displayTestResults(tests);
+        };
+
+        window.testApiService = async function() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<div class="test-result">🔄 جاري اختبار API Service...</div>';
+            
+            const tests = [];
+            
+            try {
+                const { apiService } = await import('/js/services/api.js');
+                
+                tests.push({
+                    name: 'apiService Import',
+                    success: !!apiService,
+                    message: 'تم استيراد apiService بنجاح',
+                    details: `Available services: ${Object.keys(apiService).join(', ')}`
+                });
+                
+                // Test individual services in apiService
+                const expectedServices = ['auth', 'products', 'cart', 'behavior', 'dashboard', 'recommendations', 'promotions', 'reports', 'comparisons', 'comments'];
+                
+                for (const serviceName of expectedServices) {
+                    tests.push({
+                        name: `apiService.${serviceName}`,
+                        success: !!apiService[serviceName],
+                        message: apiService[serviceName] ? `${serviceName} service متاح` : `${serviceName} service مفقود`,
+                        details: apiService[serviceName] ? `Type: ${typeof apiService[serviceName]}` : 'Service not found'
+                    });
+                }
+                
+                // Test specific functions
+                tests.push({
+                    name: 'promotions service in apiService',
+                    success: !!apiService.promotions && typeof apiService.promotions.getStoreDiscountHistory === 'function',
+                    message: 'promotions service يحتوي على الوظائف المطلوبة',
+                    details: apiService.promotions ? `Functions: ${Object.keys(apiService.promotions).join(', ')}` : 'No promotions service'
+                });
+                
+                tests.push({
+                    name: 'reports service in apiService',
+                    success: !!apiService.reports && typeof apiService.reports.generateReport === 'function',
+                    message: 'reports service يحتوي على الوظائف المطلوبة',
+                    details: apiService.reports ? `Functions: ${Object.keys(apiService.reports).join(', ')}` : 'No reports service'
+                });
+                
+            } catch (error) {
+                tests.push({
+                    name: 'apiService Test',
+                    success: false,
+                    message: `خطأ في apiService: ${error.message}`,
+                    details: error.stack
+                });
+            }
+            
+            displayTestResults(tests);
+        };
+
+        function displayTestResults(tests) {
+            const resultsDiv = document.getElementById('results');
+            
+            let html = '<h3>📋 نتائج الاختبار</h3>';
+            
+            const passed = tests.filter(t => t.success).length;
+            const total = tests.length;
+            const percentage = total > 0 ? ((passed / total) * 100).toFixed(1) : 0;
+            
+            html += `<div class="test-result ${percentage === '100.0' ? 'success' : 'error'}">`;
+            html += `<strong>📊 النتيجة الإجمالية: ${passed}/${total} (${percentage}%)</strong>`;
+            html += `</div>`;
+            
+            for (const test of tests) {
+                const statusClass = test.success ? 'success' : 'error';
+                const icon = test.success ? '✅' : '❌';
+                
+                html += `<div class="test-result ${statusClass}">`;
+                html += `<strong>${icon} ${test.name}</strong><br>`;
+                html += `<small>${test.message}</small>`;
+                if (test.details) {
+                    html += `<pre>${test.details}</pre>`;
+                }
+                html += `</div>`;
+            }
+            
+            resultsDiv.innerHTML = html;
+        }
+
+        window.clearResults = function() {
+            document.getElementById('results').innerHTML = '';
+        };
+
+        // Auto-run test on page load
+        window.addEventListener('load', () => {
+            setTimeout(testDuplicateExports, 1000);
+        });
+
+        console.log('🧪 Duplicate Exports Test Page Loaded');
+    </script>
+</body>
+</html>

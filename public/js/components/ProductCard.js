@@ -1,4 +1,8 @@
 import { formatCurrency, showToast } from "../utils/helpers.js?v=2024"
+import { trackProductClick, trackAddToCart, trackAddToWishlist } from "../services/behaviorTracker.js"
+import { addToComparison, isInComparison } from "./ProductComparison.js"
+import { cleanImageUrl, createCategoryPlaceholder } from "../utils/imageHandler.js"
+import { generateProductImage } from "../utils/localImageGenerator.js"
 
 /**
  * Creates a product card component.
@@ -16,22 +20,34 @@ export function ProductCard(product) {
   const reviewsCount = product.total_reviews || product.reviews_count || 0
   const isInStock = product.in_stock !== undefined ? product.in_stock : (product.stock || 0) > 0
 
-  // Get primary image
-  let imageUrl = 'https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent(product.name)
+  // Get primary image with proper handling
+  let imageUrl = generateProductImage(product.name, categoryName)
+  
+  // Try to use real image if available and valid
   if (product.image_urls && product.image_urls.length > 0) {
-    imageUrl = product.image_urls[0]
+    const cleanedUrl = cleanImageUrl(product.image_urls[0])
+    if (!cleanedUrl.startsWith('data:')) { // Not a fallback image
+      imageUrl = cleanedUrl
+    }
   } else if (product.images && product.images.length > 0) {
-    imageUrl = product.images.find(img => img.is_primary)?.image || product.images[0]?.image
+    const primaryImage = product.images.find(img => img.is_primary)?.image || product.images[0]?.image
+    const cleanedUrl = cleanImageUrl(primaryImage)
+    if (!cleanedUrl.startsWith('data:')) { // Not a fallback image
+      imageUrl = cleanedUrl
+    }
   }
 
   return `
-    <div class="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group cursor-pointer overflow-hidden" onclick="location.hash='/products/${productSlug}'">
+    <div class="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 group cursor-pointer overflow-hidden"
+         data-product-id="${product.id}"
+         onclick="handleProductCardClick('${productSlug}', ${JSON.stringify(product).replace(/"/g, '&quot;')})">
       <!-- Product Image -->
       <div class="relative overflow-hidden">
         <img src="${imageUrl}"
              alt="${product.name}"
              class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-             onerror="this.src='https://via.placeholder.com/300x300/f3f4f6/9ca3af?text=' + encodeURIComponent('${product.name}'); this.onerror=null;">
+             data-fallback-text="${product.name}"
+             loading="lazy">
 
         <!-- Discount Badge -->
         ${hasDiscount ? `
@@ -47,6 +63,12 @@ export function ProductCard(product) {
                   title="Add to Wishlist"
                   aria-label="Add ${product.name} to wishlist">
             <i class="fa-solid fa-heart ${product.is_liked ? 'text-red-500' : ''}"></i>
+          </button>
+          <button class="action-button ${isInComparison(product.id) ? 'comparison-active' : ''}"
+                  onclick="event.stopPropagation(); toggleComparison('${productSlug}', event)"
+                  title="${isInComparison(product.id) ? 'Remove from Comparison' : 'Add to Comparison'}"
+                  aria-label="${isInComparison(product.id) ? 'Remove' : 'Add'} ${product.name} ${isInComparison(product.id) ? 'from' : 'to'} comparison">
+            <i class="fa-solid fa-balance-scale ${isInComparison(product.id) ? 'text-purple-600' : ''}"></i>
           </button>
           <button class="action-button"
                   onclick="event.stopPropagation(); addToCart('${productSlug}', event)"
@@ -196,6 +218,14 @@ window.toggleWishlist = async function(productSlug, event = null) {
     // Get product ID from slug
     const productId = await getProductIdFromSlug(productSlug)
 
+    // Get product data for tracking
+    const productData = await getProductData(productSlug)
+
+    // Track add to wishlist behavior
+    if (productData) {
+      trackAddToWishlist(productData, 'product_card')
+    }
+
     // Import cart service dynamically to avoid circular dependencies
     const { cartService } = await import('../services/api.js')
 
@@ -261,6 +291,14 @@ window.addToCart = async function(productSlug, event = null) {
 
     // Get product ID from slug
     const productId = await getProductIdFromSlug(productSlug)
+
+    // Get product data for tracking
+    const productData = await getProductData(productSlug)
+
+    // Track add to cart behavior
+    if (productData) {
+      trackAddToCart(productData, 1, 'product_card')
+    }
 
     // Check if cart component is available
     if (window.cart) {
@@ -345,5 +383,116 @@ window.quickView = function(productSlug, event = null) {
   } catch (error) {
     console.error('Failed to navigate to product:', error)
     showToast('Failed to open product details', 'error')
+  }
+}
+
+// Helper function to get product data for tracking
+async function getProductData(productSlug) {
+  try {
+    // If slug is actually an ID, convert it
+    if (!isNaN(productSlug)) {
+      const { productService } = await import('../services/api.js')
+      const allProducts = await productService.getProducts()
+      return allProducts.results.find(p => p.id === parseInt(productSlug))
+    }
+
+    // Try to get from current product data first
+    const currentProduct = window.currentProduct
+    if (currentProduct && (currentProduct.slug === productSlug || currentProduct.id === productSlug)) {
+      return currentProduct
+    }
+
+    // Fallback: fetch product by slug
+    const { productService } = await import('../services/api.js')
+    return await productService.getProductById(productSlug)
+  } catch (error) {
+    console.error('Failed to get product data for tracking:', error)
+    return null
+  }
+}
+
+// Global function to handle product card clicks with tracking
+window.handleProductCardClick = function(productSlug, productData) {
+  try {
+    // Parse product data if it's a string
+    const product = typeof productData === 'string' ? JSON.parse(productData.replace(/&quot;/g, '"')) : productData
+    
+    // Track the click
+    trackProductClick(product, null, 'product_card')
+    
+    // Navigate to product page
+    location.hash = `/products/${productSlug}`
+  } catch (error) {
+    console.error('Failed to track product click:', error)
+    // Still navigate even if tracking fails
+    location.hash = `/products/${productSlug}`
+  }
+}
+
+// Global function to toggle product comparison
+window.toggleComparison = async function(productSlug, event = null) {
+  let button = null
+  let originalContent = null
+
+  try {
+    // Add loading state to button
+    if (event) {
+      button = event.target.closest('button')
+      originalContent = button.innerHTML
+      button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>'
+      button.disabled = true
+    }
+
+    // Get product data
+    const productData = await getProductData(productSlug)
+    if (!productData) {
+      throw new Error('Product not found')
+    }
+
+    // Import comparison functions
+    const { addToComparison, removeFromComparison, isInComparison } = await import('./ProductComparison.js')
+
+    if (isInComparison(productData.id)) {
+      // Remove from comparison
+      const success = removeFromComparison(productData.id)
+      if (success && button) {
+        button.innerHTML = '<i class="fa-solid fa-balance-scale"></i>'
+        button.classList.remove('comparison-active')
+        button.title = 'Add to Comparison'
+      }
+    } else {
+      // Add to comparison
+      const success = addToComparison(productData)
+      if (success && button) {
+        button.innerHTML = '<i class="fa-solid fa-balance-scale text-purple-600"></i>'
+        button.classList.add('comparison-active')
+        button.title = 'Remove from Comparison'
+      }
+    }
+
+  } catch (error) {
+    console.error('Failed to toggle comparison:', error)
+    showToast(error.message || 'Failed to update comparison', 'error')
+
+    // Show error state briefly
+    if (button && originalContent) {
+      button.classList.add('error')
+      button.innerHTML = '<i class="fa-solid fa-exclamation-triangle"></i>'
+
+      setTimeout(() => {
+        button.innerHTML = originalContent
+        button.disabled = false
+        button.classList.remove('error')
+      }, 1500)
+    }
+  } finally {
+    // Re-enable button
+    if (button) {
+      button.disabled = false
+      // Only restore content if it wasn't changed to success state
+      if (button.innerHTML.includes('fa-spinner') && originalContent) {
+        button.innerHTML = originalContent
+      }
+    }
   }
 }

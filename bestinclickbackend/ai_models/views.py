@@ -33,11 +33,12 @@ def log_user_behavior(request):
             )
         
         # Create behavior log
+        session_id = data.get('session_id')
         behavior_log = UserBehaviorLog(
             user=request.user if request.user.is_authenticated else None,
             action_type=action_type,
             metadata=data.get('metadata', {}),
-            session_id=data.get('session_id', ''),
+            session_id=session_id if session_id else None,
             ip_address=request.META.get('REMOTE_ADDR'),
             user_agent=request.META.get('HTTP_USER_AGENT', '')
         )

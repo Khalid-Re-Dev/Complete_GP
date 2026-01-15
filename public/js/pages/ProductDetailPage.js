@@ -1,7 +1,9 @@
 import { createElementFromHTML, showToast, formatCurrency } from "../utils/helpers.js?v=2024"
-import { productService } from "../services/api.js"
+import { productService, recommendationService } from "../services/api.js"
 import { ProductCard } from "../components/ProductCard.js"
 import { SkeletonProductDetail, SkeletonCards } from "../components/LoadingSpinner.js"
+import { CommentsSection } from "../components/CommentsSection.js"
+import { createRecommendationsSection } from "../components/Recommendations.js"
 import store from "../state/store.js"
 
 export default function ProductDetailPage(params) {
@@ -46,7 +48,6 @@ async function loadProductDetails(page, productId) {
   try {
     const product = await productService.getProductById(productId)
     renderProductDetails(page, product)
-    loadSimilarProducts(page, productId)
   } catch (error) {
     page.querySelector('#product-content').innerHTML = `
       <div class="text-center">
@@ -272,36 +273,54 @@ function renderProductDetails(page, product) {
       </div>
     </div>
 
-    <!-- Similar Products -->
-    <div class="bg-white rounded-lg shadow-sm border p-8">
-      <div class="flex items-center justify-between mb-8">
-        <div>
-          <h2 class="text-2xl font-bold text-primary flex items-center gap-2">
-            <i class="fa-solid fa-robot text-purple-500"></i>
-            You Might Also Like
-          </h2>
-          <p class="text-sm text-gray-600 mt-1">AI-powered recommendations based on this product</p>
-        </div>
-        <a href="#/products" class="text-secondary hover:text-primary transition-colors font-medium">
-          View All Products
-          <i class="fa-solid fa-arrow-right ml-2"></i>
-        </a>
-      </div>
-      <div id="similar-products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-        <div class="col-span-full flex justify-center py-12">
-          <div class="text-center">
-            <div class="loader w-12 h-12 border-4 border-gray-200 border-t-secondary rounded-full animate-spin mx-auto mb-4"></div>
-            <p class="text-gray-500">Loading AI recommendations...</p>
-          </div>
-        </div>
-      </div>
+    <!-- AI Recommendations -->
+    <div id="product-recommendations">
+      <!-- Recommendations will be loaded here -->
+    </div>
+
+    <!-- Comments and Ratings Section -->
+    <div id="comments-section-container" class="mt-8">
+      <!-- Comments section will be inserted here -->
     </div>
   `
 
   page.querySelector('#product-content').innerHTML = content
 
+  // Add Comments Section
+  const commentsContainer = page.querySelector('#comments-section-container')
+  if (commentsContainer) {
+    const commentsSection = CommentsSection(product.id, product)
+    commentsContainer.appendChild(commentsSection)
+  }
+
+  // Add AI Recommendations Section
+  const recommendationsContainer = page.querySelector('#product-recommendations')
+  if (recommendationsContainer) {
+    const recommendationsComponent = createRecommendationsSection({
+      type: 'personalized', // Will fallback to general if user not authenticated
+      limit: 4,
+      categoryId: product.category?.id,
+      excludeProducts: [product.id],
+      title: 'You Might Also Like',
+      showTitle: true,
+      className: 'bg-white rounded-lg shadow-sm border p-8'
+    })
+    recommendationsContainer.appendChild(recommendationsComponent)
+  }
+
   // Store current product data globally for cart/wishlist functions
   window.currentProduct = product
+
+  // Track product view for personalization
+  if (window.personalizationService) {
+    window.personalizationService.trackInteraction('product_view', {
+      productId: product.id,
+      category: product.category?.name || product.category,
+      brand: product.brand,
+      price: product.price || product.final_price,
+      name: product.name
+    })
+  }
 
   // Initialize image gallery functionality
   initializeImageGallery(imageUrls)
@@ -319,8 +338,24 @@ function renderProductDetails(page, product) {
       })
     } else {
       // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href)
-      showToast("Product link copied to clipboard!", "success")
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(window.location.href)
+        showToast("Product link copied to clipboard!", "success")
+      } else {
+        // Fallback for non-HTTPS environments
+        const textArea = document.createElement("textarea")
+        textArea.value = window.location.href
+        document.body.appendChild(textArea)
+        textArea.focus()
+        textArea.select()
+        try {
+          document.execCommand('copy')
+          showToast("Product link copied to clipboard!", "success")
+        } catch (err) {
+          showToast("Unable to copy link. Please copy manually: " + window.location.href, "info")
+        }
+        document.body.removeChild(textArea)
+      }
     }
   }
 }
@@ -996,17 +1031,7 @@ window.addToWishlist = async function(productSlug) {
   }
 }
 
-window.shareProduct = function() {
-  if (navigator.share) {
-    navigator.share({
-      title: document.title,
-      url: window.location.href
-    })
-  } else {
-    navigator.clipboard.writeText(window.location.href)
-    showToast('Product link copied to clipboard!', 'success')
-  }
-}
+
 
 window.changeMainImage = function(newSrc, thumbnail) {
   const mainImage = document.querySelector('#main-image')

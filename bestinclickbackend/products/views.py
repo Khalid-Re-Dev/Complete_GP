@@ -110,6 +110,18 @@ class ProductDetailView(generics.RetrieveAPIView):
     serializer_class = ProductSerializer
     permission_classes = [AllowAny]
     lookup_field = 'slug'
+
+
+class ProductDetailByIdView(generics.RetrieveAPIView):
+    """
+    Get product details by ID (for recommendations API).
+    """
+    queryset = Product.objects.filter(is_active=True).select_related(
+        'category', 'brand', 'store'
+    ).prefetch_related('images')
+    serializer_class = ProductSerializer
+    permission_classes = [AllowAny]
+    lookup_field = 'id'
     
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -124,7 +136,7 @@ class ProductDetailView(generics.RetrieveAPIView):
                 user=request.user,
                 product=instance,
                 action_type='view',
-                metadata={'source': 'product_detail'}
+                metadata={'source': 'product_detail_by_id'}
             )
         
         serializer = self.get_serializer(instance)
